@@ -3,7 +3,10 @@ package helpers;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -64,14 +67,19 @@ public class Environment {
   }
 
   private void initChrome(){
-    System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
-    this.driver = new ChromeDriver();
+    DesiredCapabilities cap = DesiredCapabilities.chrome();
+    ChromeOptions options = new ChromeOptions();
+    options.merge(cap);
+    this.driver = new ChromeDriver(options);
     this.driver.manage().window().maximize();
   }
 
   private void initFirefox(){
     System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
-    this.driver = new FirefoxDriver();
+    DesiredCapabilities cap = DesiredCapabilities.firefox();
+    FirefoxOptions options = new FirefoxOptions();
+    options.merge(cap);
+    this.driver = new FirefoxDriver(options);
     this.driver.manage().window().maximize();
   }
 
