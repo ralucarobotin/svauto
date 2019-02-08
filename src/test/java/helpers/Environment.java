@@ -20,8 +20,8 @@ public class Environment {
   private static Browsers browser;
   private static String url;
 
-  private final String CHROME_DRIVER_PATH = "./src/main/resources/chromedriver";
-  private final String FIREFOX_DRIVER_PATH = "./src/main/resources/geckodriver";
+  private final String CHROME_DRIVER_PATH = "./src/main/resources/chromedriver.exe";
+  private final String FIREFOX_DRIVER_PATH = "./src/main/resources/geckodriver.exe";
   protected final String APP_FILE = "./app.properties";
 
   @BeforeClass
