@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import static helpers.Utilities.getPropertyFileContent;
@@ -19,13 +20,12 @@ public class Environment {
   private static Browsers browser;
   private static String url;
 
-  private final String CHROME_DRIVER_PATH = "./src/main/resources/chromedriver";
   private final String FIREFOX_DRIVER_PATH = "./src/main/resources/geckodriver";
   protected final String APP_FILE = "./app.properties";
 
   @BeforeClass
   @Parameters({"browser", "url"})
-  public void openBrowser(String browser, String url) {
+  public void openBrowser(@Optional String browser, @Optional String url) {
     if (browser == null || StringUtils.isNotEmpty(url)){
       setBrowser();
       openBrowser();
@@ -38,7 +38,7 @@ public class Environment {
       this.driver.get(this.url);
     } else {
       setURL();
-      this.driver.get(url);
+      this.driver.get(this.url);
     }
   }
 

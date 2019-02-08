@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <properties>
+    <suiteFile>TestSuite.xml</suiteFile>
+  </properties>
+
   <groupId>com.softvision.svauto</groupId>
   <artifactId>svauto</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -13,6 +17,12 @@
   <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
+    <version>3.141.59</version>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+  <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-server</artifactId>
     <version>3.141.59</version>
   </dependency>
   <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
@@ -55,6 +65,16 @@
        <configuration>
          <source>1.8</source>
          <target>1.8</target>
+       </configuration>
+     </plugin>
+     <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-surefire-plugin</artifactId>
+       <version>3.0.0-M3</version>
+       <configuration>
+         <suiteXmlFiles>
+           <suiteXmlFile>src/test/resources/${suiteFile}</suiteXmlFile>
+         </suiteXmlFiles>
        </configuration>
      </plugin>
    </plugins>
