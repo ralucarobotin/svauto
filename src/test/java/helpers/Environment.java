@@ -20,6 +20,7 @@ public class Environment {
   private static Browsers browser;
   private static String url;
 
+  private final String CHROME_DRIVER_PATH = "./src/main/resources/chromedriver";
   private final String FIREFOX_DRIVER_PATH = "./src/main/resources/geckodriver";
   protected final String APP_FILE = "./app.properties";
 
@@ -67,6 +68,7 @@ public class Environment {
   }
 
   private void initChrome(){
+    System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
     DesiredCapabilities cap = DesiredCapabilities.chrome();
     ChromeOptions options = new ChromeOptions();
     options.merge(cap);
