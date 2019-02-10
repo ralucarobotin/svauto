@@ -5,25 +5,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Header extends AbstractPage {
+public class Header extends BasePage {
 
-  @FindBy(className = "login")
-  private WebElement loginButton;
+    @FindBy(className = "login")
+    private WebElement loginButton;
 
-  @FindBy(id = "header")
-  private WebElement headerContainer;
+    @FindBy(id = "header")
+    private WebElement headerContainer;
 
-  public Header(WebDriver driver){
-    super(driver);
-  }
+    public Header(WebDriver driver) {
+        super(driver);
+    }
 
-  @Override
-  public void waitForPageToLoad(){
-    wait.until(ExpectedConditions.visibilityOf(headerContainer));
-  }
+    @Override
+    public void waitForPageToLoad() {
+        wait.until(ExpectedConditions.visibilityOf(headerContainer));
+    }
 
-  public LoginPage clickLogin() {
-    loginButton.click();
-    return new LoginPage(driver);
-  }
+    public LoginPage clickLogin() {
+        loginButton.click();
+        return new LoginPage(driver);
+    }
 }

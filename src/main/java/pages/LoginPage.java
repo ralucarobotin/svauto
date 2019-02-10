@@ -7,38 +7,38 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static helpers.WebElementHelper.setFieldValue;
 
-public class LoginPage extends AbstractPage{
+public class LoginPage extends BasePage {
 
-  @FindBy(id = "email")
-  private WebElement emailField;
+    @FindBy(id = "email")
+    private WebElement emailField;
 
-  @FindBy(id = "passwd")
-  private WebElement passField;
+    @FindBy(id = "passwd")
+    private WebElement passField;
 
-  @FindBy(id = "SubmitLogin")
-  private WebElement logInButton;
+    @FindBy(id = "SubmitLogin")
+    private WebElement logInButton;
 
-  public LoginPage(WebDriver driver) {
-    super(driver);
-  }
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-  @Override
-  public void waitForPageToLoad() {
-    wait.until(ExpectedConditions.visibilityOf(emailField));
-  }
+    @Override
+    public void waitForPageToLoad() {
+        wait.until(ExpectedConditions.visibilityOf(emailField));
+    }
 
-  public MyAccountPage login(String email, String password) {
-    fillInEmail(email);
-    fillInPassword(password);
-    logInButton.click();
-    return new MyAccountPage(driver);
-  }
+    public MyAccountPage login(String email, String password) {
+        fillInEmail(email);
+        fillInPassword(password);
+        logInButton.click();
+        return new MyAccountPage(driver);
+    }
 
-  private void fillInEmail(String email){
-    setFieldValue(emailField, email);
-  }
+    private void fillInEmail(String email) {
+        setFieldValue(emailField, email);
+    }
 
-  private void fillInPassword(String password){
-    setFieldValue(passField, password);
-  }
+    private void fillInPassword(String password) {
+        setFieldValue(passField, password);
+    }
 }

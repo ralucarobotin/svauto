@@ -6,20 +6,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public class DashboardPage extends AbstractPage {
+public class DashboardPage extends BasePage {
 
-  public static Header header;
+    public static Header header;
 
-  @FindBy(id = "homeslider")
-  private WebElement carousel;
+    @FindBy(id = "homeslider")
+    private WebElement carousel;
 
-  public DashboardPage(WebDriver driver){
-    super(driver);
-    header = new Header(driver);
-  }
+    public DashboardPage(WebDriver driver) {
+        super(driver);
+        header = new Header(driver);
+    }
 
-  @Override
-  public void waitForPageToLoad(){
-    wait.until(ExpectedConditions.visibilityOf(carousel));
-  }
+    @Override
+    public void waitForPageToLoad() {
+        wait.until(ExpectedConditions.visibilityOf(carousel));
+    }
 }

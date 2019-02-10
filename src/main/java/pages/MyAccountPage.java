@@ -7,40 +7,40 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static helpers.WebElementHelper.isElementDisplayed;
 
-public class MyAccountPage extends AbstractPage{
+public class MyAccountPage extends BasePage {
 
-  @FindBy(className = "info-account")
-  private WebElement accountContainer;
+    @FindBy(className = "info-account")
+    private WebElement accountContainer;
 
-  @FindBy(css = "a[href*='history']")
-  private WebElement orderHistoryAdnDetailsButton;
+    @FindBy(css = "a[href*='history']")
+    private WebElement orderHistoryAdnDetailsButton;
 
-  @FindBy(css = "a[href*='history']")
-  private WebElement myCreditSlipsButton;
+    @FindBy(css = "a[href*='history']")
+    private WebElement myCreditSlipsButton;
 
-  @FindBy(css = "a[href*='history']")
-  private WebElement myAddressesButton;
+    @FindBy(css = "a[href*='history']")
+    private WebElement myAddressesButton;
 
-  @FindBy(css = "a[href*='history']")
-  private WebElement myPersonalInformationButton;
+    @FindBy(css = "a[href*='history']")
+    private WebElement myPersonalInformationButton;
 
-  @FindBy(css = "a[href*='history']")
-  private WebElement myWishlistButton;
+    @FindBy(css = "a[href*='history']")
+    private WebElement myWishlistButton;
 
-  public MyAccountPage(WebDriver driver){
-    super(driver);
-  }
+    public MyAccountPage(WebDriver driver) {
+        super(driver);
+    }
 
-  public boolean isMyAccountPageDisplayed(){
-    return isElementDisplayed(orderHistoryAdnDetailsButton)
-        && isElementDisplayed(myCreditSlipsButton)
-        && isElementDisplayed(myAddressesButton)
-        && isElementDisplayed(myPersonalInformationButton)
-        && isElementDisplayed(myWishlistButton);
-  }
+    public boolean isMyAccountPageDisplayed() {
+        return isElementDisplayed(orderHistoryAdnDetailsButton)
+                && isElementDisplayed(myCreditSlipsButton)
+                && isElementDisplayed(myAddressesButton)
+                && isElementDisplayed(myPersonalInformationButton)
+                && isElementDisplayed(myWishlistButton);
+    }
 
-  @Override
-  public void waitForPageToLoad(){
-    wait.until(ExpectedConditions.visibilityOf(accountContainer));
-  }
+    @Override
+    public void waitForPageToLoad() {
+        wait.until(ExpectedConditions.visibilityOf(accountContainer));
+    }
 }
