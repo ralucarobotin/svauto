@@ -4,6 +4,8 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
+import static helpers.Environment.APP_FILE;
+
 public class Utilities {
 
   public static String getPropertyValue(Properties properties, String propertyName) {
@@ -24,4 +26,7 @@ public class Utilities {
     return new ReadPropFile().getPropertiesValue(propertiesFileName);
   }
 
+  public static String getPropertyFromAppProp(String prop){
+    return getPropertyValue(getPropertyFileContent(APP_FILE), prop);
+  }
 }

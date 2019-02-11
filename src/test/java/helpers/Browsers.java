@@ -25,7 +25,7 @@ public enum Browsers {
       }
     }
     try {
-      throw new Exception("Browser not set");
+      throw new Exception("Browser not set.");
     } catch (Exception e) {
       e.printStackTrace();
     }

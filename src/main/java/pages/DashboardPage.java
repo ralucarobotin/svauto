@@ -18,6 +18,11 @@ public class DashboardPage extends AbstractPage {
     header = new Header(driver);
   }
 
+  public void login(String email, String password){
+    header.clickLoginButton();
+    new LoginPage(driver).login(email, password);
+  }
+
   @Override
   public void waitForPageToLoad(){
     wait.until(ExpectedConditions.visibilityOf(carousel));

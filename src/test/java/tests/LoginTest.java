@@ -8,8 +8,7 @@ import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.MyAccountPage;
 
-import static helpers.Utilities.getPropertyFileContent;
-import static helpers.Utilities.getPropertyValue;
+import static helpers.Utilities.getPropertyFromAppProp;
 
 public class LoginTest extends BaseTest {
 
@@ -28,12 +27,12 @@ public class LoginTest extends BaseTest {
   public Object[][] dataProvider(){
     return new Object[][]{
         {
-          getPropertyValue(getPropertyFileContent(APP_FILE), "email"),
-          getPropertyValue(getPropertyFileContent(APP_FILE), "password")
+          getPropertyFromAppProp( "email"),
+          getPropertyFromAppProp( "password")
         },
         {
-          getPropertyValue(getPropertyFileContent(APP_FILE), "email1"),
-          getPropertyValue(getPropertyFileContent(APP_FILE), "password")
+          getPropertyFromAppProp( "secondEmail"),
+          getPropertyFromAppProp( "password")
         }
       };
   }

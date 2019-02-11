@@ -26,4 +26,8 @@ public class Header extends AbstractPage {
     loginButton.click();
     return new LoginPage(driver);
   }
+
+  public void clickLoginButton() {
+    loginButton.click();
+  }
 }

@@ -12,8 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import static helpers.Utilities.getPropertyFileContent;
-import static helpers.Utilities.getPropertyValue;
+import static helpers.Utilities.getPropertyFromAppProp;
 
 public class Environment {
   private static WebDriver driver;
@@ -22,7 +21,7 @@ public class Environment {
 
   private final String CHROME_DRIVER_PATH = "./src/main/resources/chromedriver.exe";
   private final String FIREFOX_DRIVER_PATH = "./src/main/resources/geckodriver.exe";
-  protected final String APP_FILE = "./app.properties";
+  public static final String APP_FILE = "./app.properties";
 
   @BeforeClass
   @Parameters({"browser", "url"})
@@ -90,10 +89,10 @@ public class Environment {
   }
 
   private void setBrowser(){
-    this.browser = Browsers.stringToEnum(getPropertyValue(getPropertyFileContent(APP_FILE), "browser"));
+    this.browser = Browsers.stringToEnum(getPropertyFromAppProp( "browser"));
   }
 
   private void setURL(){
-    this.url = getPropertyValue(getPropertyFileContent(APP_FILE), "url");
+    this.url = getPropertyFromAppProp( "url");
   }
 }
