@@ -2,15 +2,15 @@ package helpers;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static helpers.Utilities.getPropertyFromAppProp;
 
@@ -22,6 +22,7 @@ public class Environment {
   private final String CHROME_DRIVER_PATH = "./src/main/resources/chromedriver.exe";
   private final String FIREFOX_DRIVER_PATH = "./src/main/resources/geckodriver.exe";
   public static final String APP_FILE = "./app.properties";
+  private final String GRID_URL = "http://localhost:4444/wd/hub";
 
   @BeforeClass
   @Parameters({"browser", "url"})
@@ -69,18 +70,22 @@ public class Environment {
   private void initChrome(){
     System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
     DesiredCapabilities cap = DesiredCapabilities.chrome();
-    ChromeOptions options = new ChromeOptions();
-    options.merge(cap);
-    this.driver = new ChromeDriver(options);
+    try {
+      this.driver = new RemoteWebDriver(new URL(GRID_URL), cap);
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
     this.driver.manage().window().maximize();
   }
 
   private void initFirefox(){
     System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
     DesiredCapabilities cap = DesiredCapabilities.firefox();
-    FirefoxOptions options = new FirefoxOptions();
-    options.merge(cap);
-    this.driver = new FirefoxDriver(options);
+    try {
+      this.driver = new RemoteWebDriver(new URL(GRID_URL), cap);
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
     this.driver.manage().window().maximize();
   }
 
