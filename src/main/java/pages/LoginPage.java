@@ -3,11 +3,11 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static helpers.WebElementHelper.setFieldValue;
+import static helpers.WebElementHelper.waitForElementToAppear;
 
-public class LoginPage extends AbstractPage{
+public class LoginPage extends BasePage {
 
   @FindBy(id = "email")
   private WebElement emailField;
@@ -24,7 +24,7 @@ public class LoginPage extends AbstractPage{
 
   @Override
   public void waitForPageToLoad() {
-    wait.until(ExpectedConditions.visibilityOf(emailField));
+    waitForElementToAppear(emailField);
   }
 
   public MyAccountPage login(String email, String password) {

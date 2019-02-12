@@ -3,9 +3,10 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Header extends AbstractPage {
+import static helpers.WebElementHelper.waitForElementToAppear;
+
+public class Header extends BasePage {
 
   @FindBy(className = "login")
   private WebElement loginButton;
@@ -19,7 +20,7 @@ public class Header extends AbstractPage {
 
   @Override
   public void waitForPageToLoad(){
-    wait.until(ExpectedConditions.visibilityOf(headerContainer));
+    waitForElementToAppear(headerContainer);
   }
 
   public LoginPage clickLogin() {

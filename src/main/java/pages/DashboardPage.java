@@ -3,10 +3,10 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static helpers.WebElementHelper.waitForElementToAppear;
 
-public class DashboardPage extends AbstractPage {
+public class DashboardPage extends BasePage {
 
   public static Header header;
 
@@ -25,6 +25,6 @@ public class DashboardPage extends AbstractPage {
 
   @Override
   public void waitForPageToLoad(){
-    wait.until(ExpectedConditions.visibilityOf(carousel));
+    waitForElementToAppear(carousel);
   }
 }
