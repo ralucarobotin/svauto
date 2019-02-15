@@ -4,8 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static helpers.WebElementHelper.isElementDisplayed;
-import static helpers.WebElementHelper.waitForElementToAppear;
+import static helpers.WebElementHelper.areVisible;
 
 public class MyAccountPage extends BasePage {
 
@@ -31,16 +30,17 @@ public class MyAccountPage extends BasePage {
     super(driver);
   }
 
-  public boolean isMyAccountPageDisplayed(){
-    return isElementDisplayed(orderHistoryAdnDetailsButton)
-        && isElementDisplayed(myCreditSlipsButton)
-        && isElementDisplayed(myAddressesButton)
-        && isElementDisplayed(myPersonalInformationButton)
-        && isElementDisplayed(myWishlistButton);
+  @Override
+  protected boolean isCurrent() {
+    return areVisible(accountContainer);
   }
 
   @Override
-  public void waitForPageToLoad(){
-    waitForElementToAppear(accountContainer);
+  protected boolean isValid() {
+    return areVisible(orderHistoryAdnDetailsButton,
+                      myCreditSlipsButton,
+                      myAddressesButton,
+                      myPersonalInformationButton,
+                      myWishlistButton);
   }
 }

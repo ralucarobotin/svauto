@@ -1,22 +1,37 @@
 package pages;
 
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class BasePage {
+import helpers.WebElementHelper;
 
-  protected WebDriver driver;
-  public static WebDriverWait wait;
 
-  private static final int TIMEOUT = 10;
+public class BasePage extends WebUiPage {
+
+  protected WebDriver  driver;
+
+  @FindBy(id = "header")
+  protected WebElement headerContainer;
+
+  @FindBy(className = "login")
+  protected WebElement headerLoginButton;
 
   public BasePage(WebDriver driver) {
+    super(driver);
     this.driver = driver;
-    this.wait = new WebDriverWait(driver, TIMEOUT);
     PageFactory.initElements(driver, this);
-    waitForPageToLoad();
   }
 
-  public abstract void waitForPageToLoad();
+  @Override
+  protected boolean isCurrent() {
+      return WebElementHelper.areVisible(headerContainer);
+  }
+
+  @Override
+  protected boolean isValid() {
+      return true;
+  }
 }

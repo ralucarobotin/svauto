@@ -1,48 +1,47 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Factory;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import sun.rmi.runtime.Log;
+
 import pages.DashboardPage;
+import pages.LoginPage;
 import pages.MyAccountPage;
 
 import static helpers.Utilities.getPropertyFromAppProp;
 
 public class LoginTest extends BaseTest {
 
+  private DashboardPage dashboardPage = null;
+  private LoginPage loginPage = null;
+  private MyAccountPage myAccountPage = null;
+
   private String email;
   private String password;
 
-  public LoginTest(){}
-
-  @Factory(dataProvider = "dataProvider")
-  public LoginTest(String email, String password){
-    this.email = email;
-    this.password = password;
+  public LoginTest(){
+    this.email = getPropertyFromAppProp("email");
+    this.password = getPropertyFromAppProp("password");
   }
 
-  @DataProvider
-  public Object[][] dataProvider(){
-    return new Object[][]{
-        {
-          getPropertyFromAppProp( "email"),
-          getPropertyFromAppProp( "password")
-        },
-        {
-          getPropertyFromAppProp( "secondEmail"),
-          getPropertyFromAppProp( "password")
-        }
-      };
+  @BeforeMethod
+  void beforeMethod(){
+    this.dashboardPage = new DashboardPage(getDriver());
+    this.loginPage = new LoginPage(getDriver());
+    this.myAccountPage = new MyAccountPage(getDriver());
   }
 
   @Test
-  public void testLogin() {
-    DashboardPage dashboardPage = new DashboardPage(getDriver());
-    MyAccountPage myAccountPage = dashboardPage.header.clickLogin()
-                                                      .login(this.email, this.password);
-    Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed(),
-        "The account page didn't load after login.");
+  public void testLogin(){
+    this.dashboardPage.open();
+    this.dashboardPage.verify();
+    this.dashboardPage.clickLoginButton();
+
+    this.loginPage.verify();
+    this.loginPage.login(email, password);
+
+    this.myAccountPage.verify();
   }
 }

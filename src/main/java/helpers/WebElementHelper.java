@@ -1,12 +1,14 @@
 package helpers;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static pages.BasePage.wait;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Logger;
 
 public class WebElementHelper {
+  private static final Logger LOG = Logger.getLogger(Class.class.getName());
 
   public static void setFieldValue(WebElement element, String text){
     element.click();
@@ -25,19 +27,19 @@ public class WebElementHelper {
     return false;
   }
 
-  public static void waitForElementToAppear(WebElement element){
-    wait.until(ExpectedConditions.visibilityOf(element));
-  }
+  public static boolean areVisible(WebElement... elements) {
+    final List<WebElement> webElements = Arrays.asList(elements);
+    final List<WebElement> elementsNotVisible = new ArrayList<>();
 
-  public static void waitForElementToDisappear(WebElement element){
-    wait.until(ExpectedConditions.invisibilityOf(element));
-  }
+    webElements.forEach(webElement -> {
+      if (!isElementDisplayed(webElement)) {
+        elementsNotVisible.add(webElement);
+      }
+    });
 
-  public static void waitForElementToAppear(By element){
-    wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-  }
-
-  public static void waitForElementToDisappear(By element){
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
+    if (!elementsNotVisible.isEmpty()) {
+      LOG.warning(String.format("The following elements are not visible in page: %s", elementsNotVisible));
+    }
+    return elementsNotVisible.isEmpty();
   }
 }

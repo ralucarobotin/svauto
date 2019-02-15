@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
-import static helpers.WebElementHelper.waitForElementToAppear;
 
 public class LoginPage extends BasePage {
 
@@ -23,15 +23,19 @@ public class LoginPage extends BasePage {
   }
 
   @Override
-  public void waitForPageToLoad() {
-    waitForElementToAppear(emailField);
+  protected boolean isCurrent() {
+    return areVisible(emailField);
   }
 
-  public MyAccountPage login(String email, String password) {
+  @Override
+  protected boolean isValid() {
+    return areVisible(emailField, passField, logInButton);
+  }
+
+  public void login(String email, String password) {
     fillInEmail(email);
     fillInPassword(password);
     logInButton.click();
-    return new MyAccountPage(driver);
   }
 
   private void fillInEmail(String email){
