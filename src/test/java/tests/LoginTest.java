@@ -1,10 +1,7 @@
 package tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import sun.rmi.runtime.Log;
 
 import pages.DashboardPage;
 import pages.LoginPage;
