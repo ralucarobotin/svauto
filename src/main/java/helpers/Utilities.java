@@ -9,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
 
+/**
+ * General helper class
+ */
 public class Utilities {
   public static final String APP_FILE = "./app.properties";
   private static final Logger LOG = Logger.getLogger(Class.class.getName());

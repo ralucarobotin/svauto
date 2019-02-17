@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Helper class for working with the page's elements
+ */
 public class WebElementHelper {
   private static final Logger LOG = Logger.getLogger(Class.class.getName());
 
