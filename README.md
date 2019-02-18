@@ -1,15 +1,9 @@
-# Project Title
-Softvision Automation Workshop
+# Softvision Automation Workshop
 
 
 ## Getting Started
 
--
-
-### Prerequisites
-
--
-
-```
-1.
-```
+- clone the project (https://github.com/ralucarobotin/svauto)
+- create your own branch
+- code, code, code
+- push your branch to remote
