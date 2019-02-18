@@ -1,6 +1,6 @@
 # Project Title
+Softvision Automation Workshop
 
-Madalin branch
 
 ## Getting Started
 
