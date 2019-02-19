@@ -3,6 +3,7 @@
   <test name="Workshop tests">
     <classes>
       <class name="tests.LoginTest"></class>
+      <class name="tests.CreateAccountTest"></class>
     </classes>
   </test>
 </suite>
