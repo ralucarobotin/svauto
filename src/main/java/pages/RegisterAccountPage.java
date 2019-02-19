@@ -10,6 +10,9 @@ import static helpers.WebElementHelper.setFieldNumeric;
 
 public class RegisterAccountPage extends BasePage {
 
+    @FindBy(className = "page-heading")
+    private WebElement createAccountText;
+
     //YOUR PERSONAL INFORMATION
     @FindBy(id = "id_gender1")
     private WebElement genderMaleSet;
@@ -88,18 +91,18 @@ public class RegisterAccountPage extends BasePage {
 
     @Override
     protected boolean isCurrent() {
-        return areVisible(emailField);
+        return areVisible(createAccountText);
     }
+
+//    customerFirstNameField, customerLastNameField, emailField, passField,
+//    firstNameField, lastNameField, companyField, address1Field, address2Field,
+//    cityField, postalCodeField, additionalInfoField, phoneField, mobilePhoneField, aliasField,
+//    registerAccountButton
 
     @Override
     protected boolean isValid() {
-        return areVisible(passField);
+        return areVisible(createAccountText);
     }
-
-    //customerFirstNameField, customerLastNameField, emailField, passField,
-    //                firstNameField, lastNameField, companyField, address1Field, address2Field,
-    //                cityField, postalCodeField, additionalInfoField, phoneField, mobilePhoneField, aliasField,
-    //                registerAccountButton
 
     public void register(String customerfirstName, String customerLastName, String password, Integer day, Integer month,
                          Integer year, String firstName, String lastName, String company, String address1, String address2,

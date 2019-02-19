@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -39,6 +40,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login("", "");
 
+        Assert.assertTrue(this.loginPage.viewError().isDisplayed());
         this.loginPage.verify();
     }
 
@@ -51,6 +53,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login("", password);
 
+        Assert.assertTrue(this.loginPage.viewError().isDisplayed());
         this.loginPage.verify();
     }
 
@@ -63,6 +66,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, "");
 
+        Assert.assertTrue(this.loginPage.viewError().isDisplayed());
         this.loginPage.verify();
     }
 
@@ -75,6 +79,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login("daniela", password);
 
+        Assert.assertTrue(this.loginPage.viewError().isDisplayed());
         this.loginPage.verify();
     }
 
@@ -87,6 +92,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, "testtest");
 
+        Assert.assertTrue(this.loginPage.viewError().isDisplayed());
         this.loginPage.verify();
     }
 
@@ -99,6 +105,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login("test@yahoo.com", "testtest");
 
+        Assert.assertTrue(this.loginPage.viewError().isDisplayed());
         this.loginPage.verify();
     }
 

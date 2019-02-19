@@ -1,5 +1,8 @@
 package tests;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -67,7 +70,33 @@ public class CreateAccountTest extends BaseTest {
         this.myAccountPage = new MyAccountPage(getDriver());
     }
 
-    @Test
+    @Test (priority = 0)
+    public void testEmptyEmail() {
+        this.dashboardPage.open();
+        this.dashboardPage.verify();
+        this.dashboardPage.clickLoginButton();
+
+        this.createAccountPage.verify();
+        this.createAccountPage.create("");
+
+        this.createAccountPage.verify();
+        Assert.assertTrue(this.createAccountPage.getError().isDisplayed());
+    }
+
+    @Test (priority = 1)
+    public void testInvalidEmail() {
+        this.dashboardPage.open();
+        this.dashboardPage.verify();
+        this.dashboardPage.clickLoginButton();
+
+        this.createAccountPage.verify();
+        this.createAccountPage.create("daniela");
+
+        this.createAccountPage.verify();
+//        Assert.assertTrue(this.createAccountPage.getError().isDisplayed());
+    }
+
+    @Test (priority = 2)
     public void testCreateAccount() {
         this.dashboardPage.open();
         this.dashboardPage.verify();
@@ -77,6 +106,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.create(emailNew);
 
         this.registerAccountPage.verify();
+
         this.registerAccountPage.register(customerFirstName, customerLastName, passwordNew, day, month, year, firstName,
                 lastName, company, address1, address2, city, state, postalCode, country, additionalInfo, phone, mobilePhone,
                 alias);

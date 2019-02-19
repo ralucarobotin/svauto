@@ -11,27 +11,78 @@ import helpers.WebElementHelper;
 
 public class BasePage extends WebUiPage {
 
-  protected WebDriver  driver;
+    protected WebDriver driver;
 
-  @FindBy(id = "header")
-  protected WebElement headerContainer;
+    @FindBy(id = "header")
+    protected WebElement headerContainer;
 
-  @FindBy(className = "login")
-  protected WebElement headerLoginButton;
+    @FindBy(className = "shop-phone")
+    protected WebElement headerShopPhone;
 
-  public BasePage(WebDriver driver) {
-    super(driver);
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
-  }
+    @FindBy(id = "contact-link")
+    protected WebElement headerContactButton;
 
-  @Override
-  protected boolean isCurrent() {
-      return WebElementHelper.areVisible(headerContainer);
-  }
+    @FindBy(className = "login")
+    protected WebElement headerLoginButton;
 
-  @Override
-  protected boolean isValid() {
-      return true;
-  }
+    @FindBy(className = "logo img-responsive")
+    protected WebElement headerLogo;
+
+    @FindBy(id = "search_query_top")
+    protected WebElement headerSearchField;
+
+    @FindBy(css = "#searchbox button")
+    protected WebElement headerSearchSubmit;
+
+    @FindBy(className = "shopping_cart")
+    protected WebElement headerShoppingCart;
+
+    @FindBy(css = "#block_top_menu.nth(0) ul li")
+    protected WebElement headerCategoryWomen;
+
+    @FindBy(css = "#block_top_menu.nth(1) ul li")
+    protected WebElement headerCategoryDresses;
+
+    @FindBy(id = "#block_top_menu.nth(2) ul li")
+    protected WebElement headerCategoryTShirts;
+
+    @FindBy(id = "newsletter-input")
+    protected WebElement headerNewsletter;
+
+    @FindBy(id = "footer")
+    protected WebElement footerContainer;
+
+    @FindBy(id = "newsletter-input")
+    protected WebElement footerNewsletter;
+
+    @FindBy(css = "#newsletter_block_left div form div button")
+    protected WebElement footerNewsletterSubmit;
+
+    @FindBy(css = "#social_block.nth(0) ul li a")
+    protected WebElement footerFacebookFollow;
+
+    @FindBy(css = "#social_block.nth(1) ul li a")
+    protected WebElement footerTwitterFollow;
+
+    @FindBy(css = "#social_block.nth(2) ul li a")
+    protected WebElement footerYouTubeFollow;
+
+    @FindBy(css = "#social_block.nth(3) ul li a")
+    protected WebElement footerGooglePlusFollow;
+
+    public BasePage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    @Override
+    protected boolean isCurrent() {
+        return WebElementHelper.areVisible(headerContainer);
+    }
+
+    @Override
+    protected boolean isValid() {
+        return true;
+    }
 }

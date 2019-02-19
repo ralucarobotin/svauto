@@ -15,6 +15,9 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "SubmitCreate")
     private WebElement createAccountButton;
 
+    @FindBy(id = "create_account_error")
+    private WebElement createAccountError;
+
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -36,6 +39,10 @@ public class CreateAccountPage extends BasePage {
 
     private void fillInEmail(String emailNew) {
         setFieldValue(emailField, emailNew);
+    }
+
+    public WebElement getError(){
+        return createAccountError;
     }
 }
 
