@@ -2,7 +2,6 @@ package helpers;
 
 /**
  * Exception to be thrown when a page is not current as expected
- *
  */
 public class PageNotCurrentException extends PageException {
 

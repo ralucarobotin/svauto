@@ -2,7 +2,6 @@ package helpers;
 
 /**
  * Base class for all page related exceptions
- *
  */
 public abstract class PageException extends RuntimeException {
 

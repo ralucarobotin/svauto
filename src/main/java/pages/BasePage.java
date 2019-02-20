@@ -11,27 +11,27 @@ import helpers.WebElementHelper;
 
 public class BasePage extends WebUiPage {
 
-  protected WebDriver  driver;
+    protected WebDriver driver;
 
-  @FindBy(id = "header")
-  protected WebElement headerContainer;
+    @FindBy(id = "header")
+    protected WebElement headerContainer;
 
-  @FindBy(className = "login")
-  protected WebElement headerLoginButton;
+    @FindBy(className = "login")
+    protected WebElement headerLoginButton;
 
-  public BasePage(WebDriver driver) {
-    super(driver);
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
-  }
+    public BasePage(WebDriver driver) {
+        super(driver);
+//    this.driver = driver;
+//    PageFactory.initElements(driver, this);
+    }
 
-  @Override
-  protected boolean isCurrent() {
-      return WebElementHelper.areVisible(headerContainer);
-  }
+    @Override
+    protected boolean isCurrent() {
+        return WebElementHelper.areVisible(headerContainer);
+    }
 
-  @Override
-  protected boolean isValid() {
-      return true;
-  }
+    @Override
+    protected boolean isValid() {
+        return true;
+    }
 }

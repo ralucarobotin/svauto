@@ -2,7 +2,6 @@ package helpers;
 
 /**
  * Exception to be thrown when a page is not valid
- *
  */
 public class PageNotValidException extends PageException {
 
