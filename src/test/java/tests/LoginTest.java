@@ -19,8 +19,7 @@ public class LoginTest extends BaseTest {
   private String password;
 
   public LoginTest(){
-    this.email = "";
-    this.password = "";
+
   }
 
   public void setEmail(String email){
@@ -50,6 +49,7 @@ public class LoginTest extends BaseTest {
   public void testLogin(){
     setEmail("email");
     setPassword("password");
+
     this.dashboardPage.open();
     this.dashboardPage.verify();
     this.dashboardPage.clickLoginButton();
