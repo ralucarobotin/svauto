@@ -13,17 +13,32 @@ public class DashboardPage extends BasePage {
   @FindBy(id = "homeslider")
   private WebElement carousel;
 
+<<<<<<< HEAD
   @FindBy(id = "editorial_block_center")
   private WebElement editorialBlockCenter;
 
   @Override
   protected boolean isCurrent() {
     return areVisible(carousel, editorialBlockCenter);
+=======
+  @FindBy(className = "header_user_info")
+  private WebElement headerUserInfo;
+
+  @FindBy(id = "contact-link")
+  private WebElement contactLink;
+  @Override
+  protected boolean isCurrent() {
+    return areVisible(carousel, headerUserInfo, contactLink);
+>>>>>>> Second commit
   }
 
   @Override
   protected boolean isValid() {
+<<<<<<< HEAD
     return areVisible(carousel, editorialBlockCenter);
+=======
+    return areVisible(carousel, headerUserInfo, contactLink);
+>>>>>>> Second commit
   }
 
   public DashboardPage(WebDriver driver){
