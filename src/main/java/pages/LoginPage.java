@@ -18,6 +18,9 @@ public class LoginPage extends BasePage {
   @FindBy(id = "SubmitLogin")
   private WebElement logInButton;
 
+  @FindBy(className = "alert-danger")
+  private WebElement errorAlert;
+
   public LoginPage(WebDriver driver) {
     super(driver);
   }
@@ -45,4 +48,9 @@ public class LoginPage extends BasePage {
   private void fillInPassword(String password){
     setFieldValue(passField, password);
   }
+
+  public WebElement errorMessage(){
+    return errorAlert;
+  }
+
 }
