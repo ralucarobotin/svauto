@@ -49,6 +49,10 @@ public class LoginPage extends BasePage {
       return this.signInError.getText();
   }
 
+  public WebElement errorBanner(){
+      return signInError;
+  }
+
   private void fillInEmail(String email){
     setFieldValue(emailField, email);
   }

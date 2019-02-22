@@ -87,6 +87,6 @@ public class NewAccountPage extends BasePage{
 
     @Override
     protected boolean isValid() {
-        return areVisible(createEmailField, gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField,  passwordField, birthDate_day, birthDate_month, registerButton);
+        return areVisible(createEmailField, gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField,  passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, registerButton);
     }
 }

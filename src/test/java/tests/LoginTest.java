@@ -53,7 +53,8 @@ public class LoginTest extends BaseTest {
     this.loginPage.login("", password);
 
     this.loginPage.verify();
-    Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.EMPTY_EMAIL_ERROR);
+    Assert.assertTrue(loginPage.errorBanner().isDisplayed(), "The error message is displayed.");
+    Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.EMPTY_EMAIL_ERROR, "The email required error text did not match.");
   }
 
     @Test (priority = 1)
@@ -66,7 +67,8 @@ public class LoginTest extends BaseTest {
         this.loginPage.login(email, "");
 
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.EMPTY_PASSWORD_ERROR);
+        Assert.assertTrue(loginPage.errorBanner().isDisplayed(), "The error message is displayed.");
+        Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.EMPTY_PASSWORD_ERROR, "The password required error text did not match.");
     }
 
     @Test (priority = 2)
@@ -79,6 +81,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.login("invalid@email.com", "badpassword");
 
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.FAILED_AUTHENTICATION_ERROR);
+        Assert.assertTrue(loginPage.errorBanner().isDisplayed(), "The error message is displayed.");
+        Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.FAILED_AUTHENTICATION_ERROR,"The authentication failed error text did not match." );
     }
 }
