@@ -4,9 +4,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+<<<<<<< HEAD
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+=======
+import org.testng.annotations.AfterMethod;
+
+>>>>>>> Second commit
 
 import java.util.Optional;
 
