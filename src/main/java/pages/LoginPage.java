@@ -18,6 +18,13 @@ public class LoginPage extends BasePage {
   @FindBy(id = "SubmitLogin")
   private WebElement logInButton;
 
+  @FindBy (css = "#center_column > div.alert.alert-danger > ol > li")
+  private WebElement signInError;
+
+  public static String EMPTY_EMAIL_ERROR = "An email address required.";
+  public static String EMPTY_PASSWORD_ERROR = "Password is required.";
+  public static String FAILED_AUTHENTICATION_ERROR = "Authentication failed.";
+
   public LoginPage(WebDriver driver) {
     super(driver);
   }
@@ -38,6 +45,10 @@ public class LoginPage extends BasePage {
     logInButton.click();
   }
 
+  public String getSignInErrorText(){
+      return this.signInError.getText();
+  }
+
   private void fillInEmail(String email){
     setFieldValue(emailField, email);
   }
@@ -45,4 +56,6 @@ public class LoginPage extends BasePage {
   private void fillInPassword(String password){
     setFieldValue(passField, password);
   }
+
+
 }
