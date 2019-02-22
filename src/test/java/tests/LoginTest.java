@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,16 +11,18 @@ import pages.MyAccountPage;
 import static helpers.Utilities.getPropertyFromAppProp;
 
 public class LoginTest extends BaseTest {
-
   private DashboardPage dashboardPage = null;
   private LoginPage loginPage = null;
   private MyAccountPage myAccountPage = null;
 
-  private String email;
-  private String password;
+  private String email = "";
+  private String password = "";
+
+  private static final String INVALID_EMAIL_ERROR = "Invalid email address.";
+  private static final String EMPTY_EMAIL_ERROR   = "An email address required.";
+  private static final String AUTHENTIFICATION_FAILED_ERROR = "Authentication failed.";
 
   public LoginTest(){
-
   }
 
   public void setEmail(String email){
@@ -73,8 +76,8 @@ public class LoginTest extends BaseTest {
     this.loginPage.login(email, password);
 
     this.loginPage.verify();
+    Assert.assertEquals(this.loginPage.getLoginError().getText(), INVALID_EMAIL_ERROR);
 
-    //Add assertion for the error message
   }
 
   @Test
@@ -90,8 +93,7 @@ public class LoginTest extends BaseTest {
     this.loginPage.login(email, password);
 
     this.loginPage.verify();
-
-    //Add assertion for the error message
+    Assert.assertEquals(this.loginPage.getLoginError().getText(), EMPTY_EMAIL_ERROR);
   }
 
   @Test void testLoginWrongEmailWrongPassword(){
@@ -106,7 +108,6 @@ public class LoginTest extends BaseTest {
     this.loginPage.login(email, password);
 
     this.loginPage.verify();
-
-  //Add assertion for the error message
+    Assert.assertEquals(this.loginPage.getLoginError().getText(), AUTHENTIFICATION_FAILED_ERROR);
 }
 }

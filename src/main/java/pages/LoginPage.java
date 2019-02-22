@@ -18,6 +18,9 @@ public class LoginPage extends BasePage {
   @FindBy(id = "SubmitLogin")
   private WebElement logInButton;
 
+  @FindBy(css = "#center_column div ol li")
+  private WebElement loginError;
+
   public LoginPage(WebDriver driver) {
     super(driver);
   }
@@ -44,5 +47,9 @@ public class LoginPage extends BasePage {
 
   private void fillInPassword(String password){
     setFieldValue(passField, password);
+  }
+
+  public WebElement getLoginError(){
+    return loginError;
   }
 }
