@@ -1,5 +1,6 @@
 package tests;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -39,7 +40,7 @@ public class LoginTest extends BaseTest {
     this.myAccountPage = new MyAccountPage(getDriver());
   }
   //Happy flow login
-  @Test(priority = 5)
+  @Test
   public void testLogin(){
     this.dashboardPage.open();
     this.dashboardPage.verify();
@@ -47,11 +48,10 @@ public class LoginTest extends BaseTest {
 
     this.loginPage.verify();
     this.loginPage.login(email, password);
-
     this.myAccountPage.verify();
   }
   //Negative testing flow
-  @Test(priority = 3)
+  @Test
   public void testInvalidEmail(){
     this.dashboardPage.open();
     this.dashboardPage.verify();
@@ -59,12 +59,11 @@ public class LoginTest extends BaseTest {
 
     this.loginPage.verify();
     this.loginPage.login(invalidEmail, password);
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
-
     this.loginPage.verify();
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
   }
 
-  @Test(priority = 4)
+  @Test
   public void testInvalidPassword(){
     this.dashboardPage.open();
     this.dashboardPage.verify();
@@ -72,12 +71,11 @@ public class LoginTest extends BaseTest {
 
     this.loginPage.verify();
     this.loginPage.login(email, invalidPassword);
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
-
     this.loginPage.verify();
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
   }
 
-  @Test(priority = 1)
+  @Test
   public void testEmptyEmail(){
     this.dashboardPage.open();
     this.dashboardPage.verify();
@@ -85,12 +83,11 @@ public class LoginTest extends BaseTest {
 
     this.loginPage.verify();
     this.loginPage.login(emptyEmail, password);
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
-
     this.loginPage.verify();
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
   }
 
-  @Test(priority = 2)
+  @Test
   public void testEmptyPassword(){
     this.dashboardPage.open();
     this.dashboardPage.verify();
@@ -98,8 +95,7 @@ public class LoginTest extends BaseTest {
 
     this.loginPage.verify();
     this.loginPage.login(email, emptyPassword);
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
-
     this.loginPage.verify();
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
   }
 }
