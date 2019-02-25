@@ -29,8 +29,8 @@ public class LoginTest extends BaseTest {
     this.password = getPropertyFromAppProp("password");
     this.invalidEmail = getPropertyFromAppProp("invalidEmail");
     this.invalidPassword = getPropertyFromAppProp("invalidPassword");
-    this.emptyEmail = "";
-    this.emptyPassword = "";
+    this.emptyEmail = StringUtils.EMPTY;
+    this.emptyPassword = StringUtils.EMPTY;
   }
 
   @BeforeMethod

@@ -18,12 +18,12 @@ public class DashboardPage extends BasePage {
 
   @Override
   protected boolean isCurrent() {
-    return areVisible(carousel);
+    return areVisible(carousel, editorialBlockCenter);
   }
 
   @Override
   protected boolean isValid() {
-    return areVisible(carousel);
+    return areVisible(carousel, editorialBlockCenter);
   }
 
   public DashboardPage(WebDriver driver){
