@@ -37,12 +37,17 @@ public class LoginTest extends BaseTest {
     this.invalidEmail = getPropertyFromAppProp("invalidEmail");
     this.invalidPassword = getPropertyFromAppProp("invalidPassword");
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.emptyEmail = StringUtils.EMPTY;
     this.emptyPassword = StringUtils.EMPTY;
 =======
     this.emptyEmail = "";
     this.emptyPassword = "";
 >>>>>>> First commit
+=======
+    this.emptyEmail = StringUtils.EMPTY;
+    this.emptyPassword = StringUtils.EMPTY;
+>>>>>>> Added StringUtils.EMPTY in LoginTest and new element in DashboardPage
   }
 
   @BeforeMethod

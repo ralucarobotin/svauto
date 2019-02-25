@@ -21,6 +21,7 @@ public class DashboardPage extends BasePage {
   @Override
   protected boolean isCurrent() {
     return areVisible(carousel, editorialBlockCenter);
+<<<<<<< HEAD
 =======
   @FindBy(className = "header_user_info")
   private WebElement headerUserInfo;
@@ -37,10 +38,13 @@ public class DashboardPage extends BasePage {
 =======
     return areVisible(carousel);
 >>>>>>> Updated LoginTest loginPage.verify() position and DashboardPage
+=======
+>>>>>>> Added StringUtils.EMPTY in LoginTest and new element in DashboardPage
   }
 
   @Override
   protected boolean isValid() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     return areVisible(carousel, editorialBlockCenter);
@@ -50,6 +54,9 @@ public class DashboardPage extends BasePage {
 =======
     return areVisible(carousel);
 >>>>>>> Updated LoginTest loginPage.verify() position and DashboardPage
+=======
+    return areVisible(carousel, editorialBlockCenter);
+>>>>>>> Added StringUtils.EMPTY in LoginTest and new element in DashboardPage
   }
 
   public DashboardPage(WebDriver driver){
