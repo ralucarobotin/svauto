@@ -28,14 +28,16 @@ public class LoginTest extends BaseTest {
   private String password;
   private String invalidEmail;
   private String invalidPassword;
-  private String emptyEmail;
-  private String emptyPassword;
+  public static final String EMPTY_EMAIL_MESSAGE = "An email address required.";
+  public static final String EMPTY_PASSWORD_MESSAGE = "Password is required.";
+  public static final String FAILED_AUTHENTICATION_MESSAGE = "Authentication failed.";
 
   public LoginTest(){
     this.email = getPropertyFromAppProp("email");
     this.password = getPropertyFromAppProp("password");
     this.invalidEmail = getPropertyFromAppProp("invalidEmail");
     this.invalidPassword = getPropertyFromAppProp("invalidPassword");
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     this.emptyEmail = StringUtils.EMPTY;
@@ -48,6 +50,8 @@ public class LoginTest extends BaseTest {
     this.emptyEmail = StringUtils.EMPTY;
     this.emptyPassword = StringUtils.EMPTY;
 >>>>>>> Added StringUtils.EMPTY in LoginTest and new element in DashboardPage
+=======
+>>>>>>> LoginTest update with constants,
   }
 
   @BeforeMethod
@@ -105,7 +109,7 @@ public class LoginTest extends BaseTest {
 =======
 >>>>>>> Updated LoginTest loginPage.verify() position and DashboardPage
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(), FAILED_AUTHENTICATION_MESSAGE);
   }
 
 <<<<<<< HEAD
@@ -124,7 +128,7 @@ public class LoginTest extends BaseTest {
 <<<<<<< HEAD
 <<<<<<< HEAD
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(),FAILED_AUTHENTICATION_MESSAGE);
   }
 
   @Test
@@ -149,11 +153,15 @@ public class LoginTest extends BaseTest {
     this.dashboardPage.clickLoginButton();
 
     this.loginPage.verify();
+<<<<<<< HEAD
     this.loginPage.login(emptyEmail, password);
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+    this.loginPage.login(StringUtils.EMPTY, password);
+>>>>>>> LoginTest update with constants,
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(), EMPTY_EMAIL_MESSAGE );
   }
 
   @Test
@@ -178,6 +186,7 @@ public class LoginTest extends BaseTest {
     this.dashboardPage.clickLoginButton();
 
     this.loginPage.verify();
+<<<<<<< HEAD
     this.loginPage.login(email, emptyPassword);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -192,5 +201,10 @@ public class LoginTest extends BaseTest {
     this.loginPage.verify();
     Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
 >>>>>>> Updated LoginTest loginPage.verify() position and DashboardPage
+=======
+    this.loginPage.login(email, StringUtils.EMPTY);
+    this.loginPage.verify();
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(), EMPTY_PASSWORD_MESSAGE);
+>>>>>>> LoginTest update with constants,
   }
 }
