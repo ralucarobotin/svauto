@@ -1,5 +1,6 @@
 package tests;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,10 +19,15 @@ public class LoginTest extends BaseTest {
 
   private String email;
   private String password;
+  private String invalidEmail;
+  private String invalidPassword;
 
   public LoginTest(){
     this.email = getPropertyFromAppProp("email");
     this.password = getPropertyFromAppProp("password");
+    this.invalidEmail = getPropertyFromAppProp("invalidEmail");
+    this.invalidPassword = getPropertyFromAppProp("invalidPassword");
+
   }
 
   @BeforeMethod
@@ -50,10 +56,10 @@ public class LoginTest extends BaseTest {
     this.dashboardPage.clickLoginButton();
 
     this.loginPage.verify();
-    this.loginPage.login("", password);
+    this.loginPage.login(StringUtils.EMPTY, password);
 
     this.loginPage.verify();
-    Assert.assertTrue(loginPage.errorBanner().isDisplayed(), "The error message is displayed.");
+    Assert.assertTrue(loginPage.getErrorBanner().isDisplayed(), "The error message is displayed.");
     Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.EMPTY_EMAIL_ERROR, "The email required error text did not match.");
   }
 
@@ -64,10 +70,10 @@ public class LoginTest extends BaseTest {
         this.dashboardPage.clickLoginButton();
 
         this.loginPage.verify();
-        this.loginPage.login(email, "");
+        this.loginPage.login(email, StringUtils.EMPTY);
 
         this.loginPage.verify();
-        Assert.assertTrue(loginPage.errorBanner().isDisplayed(), "The error message is displayed.");
+        Assert.assertTrue(loginPage.getErrorBanner().isDisplayed(), "The error message is displayed.");
         Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.EMPTY_PASSWORD_ERROR, "The password required error text did not match.");
     }
 
@@ -78,10 +84,10 @@ public class LoginTest extends BaseTest {
         this.dashboardPage.clickLoginButton();
 
         this.loginPage.verify();
-        this.loginPage.login("invalid@email.com", "badpassword");
+        this.loginPage.login(invalidEmail, invalidPassword);
 
         this.loginPage.verify();
-        Assert.assertTrue(loginPage.errorBanner().isDisplayed(), "The error message is displayed.");
+        Assert.assertTrue(loginPage.getErrorBanner().isDisplayed(), "The error message is displayed.");
         Assert.assertEquals(this.loginPage.getSignInErrorText(), LoginPage.FAILED_AUTHENTICATION_ERROR,"The authentication failed error text did not match." );
     }
 }
