@@ -21,16 +21,15 @@ public class LoginTest extends BaseTest {
   private String password;
   private String invalidEmail;
   private String invalidPassword;
-  private String emptyEmail;
-  private String emptyPassword;
+  public static final String EMPTY_EMAIL_MESSAGE = "An email address required.";
+  public static final String EMPTY_PASSWORD_MESSAGE = "Password is required.";
+  public static final String FAILED_AUTHENTICATION_MESSAGE = "Authentication failed.";
 
   public LoginTest(){
     this.email = getPropertyFromAppProp("email");
     this.password = getPropertyFromAppProp("password");
     this.invalidEmail = getPropertyFromAppProp("invalidEmail");
     this.invalidPassword = getPropertyFromAppProp("invalidPassword");
-    this.emptyEmail = StringUtils.EMPTY;
-    this.emptyPassword = StringUtils.EMPTY;
   }
 
   @BeforeMethod
@@ -60,7 +59,7 @@ public class LoginTest extends BaseTest {
     this.loginPage.verify();
     this.loginPage.login(invalidEmail, password);
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(), FAILED_AUTHENTICATION_MESSAGE);
   }
 
   @Test
@@ -72,7 +71,7 @@ public class LoginTest extends BaseTest {
     this.loginPage.verify();
     this.loginPage.login(email, invalidPassword);
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(),FAILED_AUTHENTICATION_MESSAGE);
   }
 
   @Test
@@ -82,9 +81,9 @@ public class LoginTest extends BaseTest {
     this.dashboardPage.clickLoginButton();
 
     this.loginPage.verify();
-    this.loginPage.login(emptyEmail, password);
+    this.loginPage.login(StringUtils.EMPTY, password);
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(), EMPTY_EMAIL_MESSAGE );
   }
 
   @Test
@@ -94,8 +93,8 @@ public class LoginTest extends BaseTest {
     this.dashboardPage.clickLoginButton();
 
     this.loginPage.verify();
-    this.loginPage.login(email, emptyPassword);
+    this.loginPage.login(email, StringUtils.EMPTY);
     this.loginPage.verify();
-    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed());
+    Assert.assertTrue(this.loginPage.errorMessage().isDisplayed(), EMPTY_PASSWORD_MESSAGE);
   }
 }
