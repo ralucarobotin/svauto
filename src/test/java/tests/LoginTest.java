@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.MyAccountPage;

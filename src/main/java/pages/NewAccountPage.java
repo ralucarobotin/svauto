@@ -1,11 +1,9 @@
 package pages;
 
-import com.sun.tools.javac.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
@@ -14,6 +12,9 @@ public class NewAccountPage extends BasePage{
 
     @FindBy(id = "email_create")
     private WebElement createEmailField;
+
+    @FindBy(css="button #SubmitCreate")
+    private WebElement createAccountButton;
 
     @FindBy (id = "id_gender1")
     private WebElement gender_male;
@@ -33,13 +34,13 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "passwd")
     private WebElement passwordField;
 
-    @FindBy (id = "days")
+    @FindBy (css = "select#days.form-control")
     private WebElement birthDate_day;
 
-    @FindBy (id = "months")
+    @FindBy (id = "select#months.form-control")
     private WebElement birthDate_month;
 
-    @FindBy (id = "years")
+    @FindBy (id = "select#years.form-control")
     private WebElement birthDate_year;
 
     @FindBy (id = "firstname")
@@ -52,7 +53,7 @@ public class NewAccountPage extends BasePage{
     private WebElement address_company;
 
     @FindBy (id = "address1")
-    private WebElement address_address;
+    private WebElement address_streetAddress;
 
     @FindBy (id = "city")
     private WebElement address_city;
@@ -67,7 +68,7 @@ public class NewAccountPage extends BasePage{
     private WebElement address_country;
 
     @FindBy (id = "phone")
-    private WebElement address_phone;
+    private WebElement address_mobilePhone;
 
     @FindBy (id = "alias")
     private WebElement address_alias;
@@ -93,7 +94,7 @@ public class NewAccountPage extends BasePage{
     public static final String CITY_REQUIRED_ERROR = "city is required.";
     public static final String ZIP_INVALID_ERROR = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
     public static final String STATE_REQUIRED_ERROR = "This country requires you to choose a State.";
-    public static final String PHONE_REQUIRED_ERROR = "You must register at least one phone number.";
+    public static final String PHONE_REQUIRED_TIP = "You must register at least one phone number.";
     public static final String COUNTRY_REQUIRED_ERROR = "Country is invalid";
     public static final String INVALID_LAST_NAME_ERROR = "lastname is invalid.";
     public static final String INVALID_FIRST_NAME_ERROR = "firstname is invalid.";
@@ -108,19 +109,27 @@ public class NewAccountPage extends BasePage{
 
     @Override
     protected boolean isValid() {
-        return areVisible(createEmailField, gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField,  passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_address, address_city, address_state, address_postcode, address_country, address_phone, address_alias, registerButton);
+        return areVisible(createEmailField, gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField,  passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_streetAddress, address_city, address_state, address_postcode, address_country, address_mobilePhone, address_alias, registerButton);
+    }
+
+    public void clickCreateAccount(){
+        this.createAccountButton.click();
+    }
+
+    public String getCreateAccountErrorText(){
+        return this.createAccountError.getText();
     }
 
     public String getAccountFormErrorText(){
         return accountFormError.getText();
     }
 
-    public WebElement getErrorBanner(){
+    public WebElement getErrorBannerElement(){
         return accountFormError;
     }
 
-    public String getCreateAccountErrorText(){
-        return this.createAccountError.getText();
+    public String getPhoneRequiredTooltipText() {
+        return this.inlineInfo.getText();
     }
 
     public boolean verifyEmailAutofill(){
@@ -153,23 +162,25 @@ public class NewAccountPage extends BasePage{
         setFieldValue(passwordField, password);
     }
 
-    private Select birth_day = new Select(this.birthDate_day);
 
-    public void setBirth_day(String value) {
-        this.birth_day.selectByValue(value);
+    private Select birthDay_dropdown = new Select(this.birthDate_day);
+
+    public void setBirthDay_dropdown(String value) {
+        this.birthDay_dropdown.selectByValue(value);
     }
 
-    private Select birth_month = new Select(this.birthDate_month);
+    private Select birthMonth_dropdown = new Select(this.birthDate_month);
 
     public void setBirthDate_month(String value){
-        this.birth_month.selectByValue(value);
+        this.birthMonth_dropdown.selectByValue(value);
     }
 
-    private Select birth_year = new Select(this.birthDate_year);
+    private Select birthYear_dropdown = new Select(this.birthDate_year);
 
     public void setBirthDate_year(String value){
-        this.birth_year.selectByValue(value);
+        this.birthYear_dropdown.selectByValue(value);
     }
+
 
     public boolean verifyFirstNameAutofill(){
         if(this.address_firstName.getText().equals(this.personalInfo_firstName.getText())) {
@@ -178,8 +189,41 @@ public class NewAccountPage extends BasePage{
     }
 
     public boolean verifyLastNameAutofill(){
-        if(this.address_lastName.getText().equals(this.personalInfo_lastName.getText())) {
-            return true;
-        } else return false;
+        return this.address_lastName.getText().equals(this.personalInfo_lastName.getText());
     }
+
+    public void fillCompanyAddress(String company) {
+        setFieldValue(address_company, company);
+    }
+
+    public void fillAddress(String address) {
+        setFieldValue(address_streetAddress, address);
+    }
+
+    public void fillCity(String cityName) {
+        setFieldValue(address_city, cityName);
+    }
+
+
+    private Select country_dropdown = new Select(this.address_country);
+
+    public void setCountry_dropdown(String countryName) {
+        this.country_dropdown.deselectByVisibleText(countryName);
+    }
+
+
+    public void fillPhoneNumber(String phoneNumber){
+        setFieldValue(this.address_mobilePhone, phoneNumber);
+    }
+
+    public void fillAliasAddress(String aliasAddress){
+        setFieldValue(this.address_alias, aliasAddress);
+    }
+
+    public void clickRegisterButton(){
+        this.registerButton.click();
+    }
+
+
+
 }
