@@ -15,6 +15,7 @@ public class DashboardPage extends BasePage {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   @FindBy(id = "editorial_block_center")
   private WebElement editorialBlockCenter;
 
@@ -40,10 +41,19 @@ public class DashboardPage extends BasePage {
 >>>>>>> Updated LoginTest loginPage.verify() position and DashboardPage
 =======
 >>>>>>> Added StringUtils.EMPTY in LoginTest and new element in DashboardPage
+=======
+  @FindBy(id = "editorial_block_center")
+  private WebElement editorialBlockCenter;
+
+  @Override
+  protected boolean isCurrent() {
+    return areVisible(carousel, editorialBlockCenter);
+>>>>>>> 013c7945306b0c9c9de8e767e8db21be127b59db
   }
 
   @Override
   protected boolean isValid() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,6 +67,9 @@ public class DashboardPage extends BasePage {
 =======
     return areVisible(carousel, editorialBlockCenter);
 >>>>>>> Added StringUtils.EMPTY in LoginTest and new element in DashboardPage
+=======
+    return areVisible(carousel, editorialBlockCenter);
+>>>>>>> 013c7945306b0c9c9de8e767e8db21be127b59db
   }
 
   public DashboardPage(WebDriver driver){
