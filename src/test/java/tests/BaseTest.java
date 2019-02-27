@@ -4,24 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-=======
-import org.testng.annotations.AfterMethod;
-
->>>>>>> Second commit
-=======
-import org.testng.annotations.AfterMethod;
-
->>>>>>> Second commit
-=======
-import org.testng.annotations.AfterMethod;
-
->>>>>>> 013c7945306b0c9c9de8e767e8db21be127b59db
 
 import java.util.Optional;
 
