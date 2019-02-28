@@ -19,12 +19,6 @@ public class WebElementHelper {
     element.sendKeys(text);
   }
 
-  public static void setFieldNumeric(WebElement element, Integer number){
-    element.click();
-    element.clear();
-    element.sendKeys(String.valueOf(number));
-  }
-
   public static boolean isElementDisplayed(WebElement element) {
     try {
       if (element != null && element.isDisplayed()) {

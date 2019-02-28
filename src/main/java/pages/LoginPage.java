@@ -4,52 +4,63 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static helpers.WebElementHelper.areVisible;
-import static helpers.WebElementHelper.setFieldValue;
+import static helpers.WebElementHelper.*;
 
 public class LoginPage extends BasePage {
+    @FindBy(css = "#center_column > h1")
+    private WebElement pageHeadingLogin;
 
-  @FindBy(id = "email")
-  private WebElement emailField;
+    @FindBy(id = "email")
+    private WebElement emailField;
 
-  @FindBy(id = "passwd")
-  private WebElement passField;
+    @FindBy(id = "passwd")
+    private WebElement passField;
 
-  @FindBy(id = "SubmitLogin")
-  private WebElement logInButton;
+    @FindBy(id = "SubmitLogin")
+    private WebElement logInButton;
 
-  @FindBy(css= "#center_column div ol li")
-  private WebElement loginError;
+    @FindBy(css = "#center_column > div.alert.alert-danger > ol > li")
+    private WebElement loginError;
 
-  public LoginPage(WebDriver driver) {
-    super(driver);
-  }
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-  @Override
-  protected boolean isCurrent() {
-    return areVisible(emailField);
-  }
+    @Override
+    protected boolean isCurrent() {
+        return areVisible(emailField);
+    }
 
-  @Override
-  protected boolean isValid() {
-    return areVisible(emailField, passField, logInButton);
-  }
+    @Override
+    protected boolean isValid() {
+        return areVisible(emailField, passField, logInButton);
+    }
 
-  public void login(String email, String password) {
-    fillInEmail(email);
-    fillInPassword(password);
-    logInButton.click();
-  }
+    public void login(String email, String password) {
+        fillInEmail(email);
+        fillInPassword(password);
+        logInButton.click();
+    }
 
-  private void fillInEmail(String email){
-    setFieldValue(emailField, email);
-  }
+    private void fillInEmail(String email) {
+        setFieldValue(emailField, email);
+    }
 
-  private void fillInPassword(String password){
-    setFieldValue(passField, password);
-  }
+    private void fillInPassword(String password) {
+        setFieldValue(passField, password);
+    }
 
-  public WebElement viewError(){
-    return loginError;
-  }
+    public WebElement getLoginError() {
+        return loginError;
+    }
+
+    public String getLoginErrorMsg() {
+        return loginError.getText();
+    }
+
+    public WebElement getPageHeadingLogin() {
+        return pageHeadingLogin;
+    }
+
+
 }

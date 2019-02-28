@@ -35,8 +35,8 @@ public class DashboardPage extends BasePage {
         headerLogo.click();
     }
 
-    public void clickSearchField(String text) {
-        headerSearchField.sendKeys(text);
+    public void clickSearchField() {
+        headerSearchField.click();
     }
 
     public void typeSearch(String text) {

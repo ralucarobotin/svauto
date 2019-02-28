@@ -8,39 +8,54 @@ import static helpers.WebElementHelper.areVisible;
 
 public class MyAccountPage extends BasePage {
 
-  @FindBy(className = "info-account")
-  private WebElement accountContainer;
+    @FindBy(className = "logout")
+    private WebElement logoutButton;
 
-  @FindBy(css = "a[href*='history']")
-  private WebElement orderHistoryAdnDetailsButton;
+    @FindBy(css = "#center_column > h1")
+    private WebElement pageHeadingMyAccount;
 
-  @FindBy(css = "a[href*='order-slip']")
-  private WebElement myCreditSlipsButton;
+    @FindBy(className = "info-account")
+    private WebElement accountContainer;
 
-  @FindBy(css = "a[href*='addresses']")
-  private WebElement myAddressesButton;
+    @FindBy(css = "a[href*='history']")
+    private WebElement orderHistoryAdnDetailsButton;
 
-  @FindBy(css = "a[href*='identity']")
-  private WebElement myPersonalInformationButton;
+    @FindBy(css = "a[href*='order-slip']")
+    private WebElement myCreditSlipsButton;
 
-  @FindBy(css = "a[href*='mywishlist']")
-  private WebElement myWishlistButton;
+    @FindBy(css = "a[href*='addresses']")
+    private WebElement myAddressesButton;
 
-  public MyAccountPage(WebDriver driver){
-    super(driver);
-  }
+    @FindBy(css = "a[href*='identity']")
+    private WebElement myPersonalInformationButton;
 
-  @Override
-  protected boolean isCurrent() {
-    return areVisible(accountContainer);
-  }
+    @FindBy(css = "a[href*='mywishlist']")
+    private WebElement myWishlistButton;
 
-  @Override
-  protected boolean isValid() {
-    return areVisible(orderHistoryAdnDetailsButton,
-                      myCreditSlipsButton,
-                      myAddressesButton,
-                      myPersonalInformationButton,
-                      myWishlistButton);
-  }
+    public MyAccountPage(WebDriver driver) {
+        super(driver);
+    }
+
+    @Override
+    protected boolean isCurrent() {
+        return areVisible(accountContainer);
+    }
+
+    @Override
+    protected boolean isValid() {
+        return areVisible(logoutButton,
+                orderHistoryAdnDetailsButton,
+                myCreditSlipsButton,
+                myAddressesButton,
+                myPersonalInformationButton,
+                myWishlistButton);
+    }
+
+    public void clickLogoutButton() {
+        logoutButton.click();
+    }
+
+    public WebElement getPageHeadingMyAccount() {
+        return pageHeadingMyAccount;
+    }
 }

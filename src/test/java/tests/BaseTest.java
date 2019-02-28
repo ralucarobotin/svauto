@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.Optional;
 
@@ -17,7 +17,7 @@ public class BaseTest {
   private final static String BROWSER_SYSTEM_VAR = "browser";
 
 
-  @BeforeClass(alwaysRun = true)
+  @BeforeMethod(alwaysRun = true)
   public void setUpClass(){
     if (StringUtils.isBlank(System.getProperty(BROWSER_SYSTEM_VAR))){
       throw new IllegalArgumentException("Browser name is not set in VM options. " +
@@ -42,7 +42,7 @@ public class BaseTest {
 
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void tearDownClass(){
     if (driver != null) {
       driver.quit();

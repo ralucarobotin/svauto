@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import helpers.WebElementHelper;
 
-
 public class BasePage extends WebUiPage {
 
     protected WebDriver driver;
@@ -46,9 +45,6 @@ public class BasePage extends WebUiPage {
     @FindBy(id = "#block_top_menu.nth(2) ul li")
     protected WebElement headerCategoryTShirts;
 
-    @FindBy(id = "newsletter-input")
-    protected WebElement headerNewsletter;
-
     @FindBy(id = "footer")
     protected WebElement footerContainer;
 
@@ -58,16 +54,16 @@ public class BasePage extends WebUiPage {
     @FindBy(css = "#newsletter_block_left div form div button")
     protected WebElement footerNewsletterSubmit;
 
-    @FindBy(css = "#social_block.nth(0) ul li a")
+    @FindBy(css = "#social_block.nth(0) > ul > li > a")
     protected WebElement footerFacebookFollow;
 
-    @FindBy(css = "#social_block.nth(1) ul li a")
+    @FindBy(css = "#social_block.nth(1) > ul > li > a")
     protected WebElement footerTwitterFollow;
 
-    @FindBy(css = "#social_block.nth(2) ul li a")
+    @FindBy(css = "#social_block.nth(2) > ul > li > a")
     protected WebElement footerYouTubeFollow;
 
-    @FindBy(css = "#social_block.nth(3) ul li a")
+    @FindBy(css = "#social_block.nth(3) > ul > li > a")
     protected WebElement footerGooglePlusFollow;
 
     public BasePage(WebDriver driver) {
@@ -78,11 +74,14 @@ public class BasePage extends WebUiPage {
 
     @Override
     protected boolean isCurrent() {
-        return WebElementHelper.areVisible(headerContainer);
+        return WebElementHelper.areVisible(headerContainer, footerContainer);
     }
 
     @Override
     protected boolean isValid() {
-        return true;
+        return WebElementHelper.areVisible(headerShopPhone, headerContactButton, headerLoginButton, headerLogo,
+                headerSearchField, headerSearchSubmit, headerShoppingCart, headerCategoryWomen, headerCategoryDresses,
+                headerCategoryTShirts, footerNewsletter, footerNewsletterSubmit, footerFacebookFollow, footerTwitterFollow,
+                footerYouTubeFollow, footerGooglePlusFollow);
     }
 }
