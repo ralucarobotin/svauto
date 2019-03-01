@@ -8,6 +8,8 @@ import static helpers.WebElementHelper.areVisible;
 
 public class MyAccountPage extends BasePage {
 
+  private final static String URL = "http://automationpractice.com/index.php?controller=my-account";
+
   @FindBy(className = "info-account")
   private WebElement accountContainer;
 
@@ -28,6 +30,10 @@ public class MyAccountPage extends BasePage {
 
   public MyAccountPage(WebDriver driver){
     super(driver);
+  }
+
+  public void open(){
+    openUrl(URL);
   }
 
   @Override

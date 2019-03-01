@@ -9,6 +9,8 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class LoginPage extends BasePage {
 
+  private final static String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+
   @FindBy(id = "email")
   private WebElement emailField;
 
@@ -29,6 +31,10 @@ public class LoginPage extends BasePage {
 
   public LoginPage(WebDriver driver) {
     super(driver);
+  }
+
+  public void open(){
+    openUrl(URL);
   }
 
   @Override

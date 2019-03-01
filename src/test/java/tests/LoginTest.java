@@ -69,16 +69,13 @@ public class LoginTest extends BaseTest {
     setEmail("invalidEmail");
     setPassword("invalidPassword");
 
-    this.dashboardPage.open();
-    this.dashboardPage.verify();
-    this.dashboardPage.clickLoginButton();
-
+    this.loginPage.open();
     this.loginPage.verify();
+
     this.loginPage.login(email, password);
-
     this.loginPage.verify();
-    Assert.assertEquals(this.loginPage.getLoginErrorText(), INVALID_EMAIL_ERROR);
 
+    Assert.assertEquals(this.loginPage.getLoginErrorText(), INVALID_EMAIL_ERROR);
   }
 
   @Test
@@ -86,14 +83,12 @@ public class LoginTest extends BaseTest {
     setEmail();
     setPassword();
 
-    this.dashboardPage.open();
-    this.dashboardPage.verify();
-    this.dashboardPage.clickLoginButton();
-
+    this.loginPage.open();
     this.loginPage.verify();
+
     this.loginPage.login(email, password);
-
     this.loginPage.verify();
+
     Assert.assertEquals(this.loginPage.getLoginErrorText(), EMPTY_EMAIL_ERROR);
   }
 
@@ -102,15 +97,12 @@ public class LoginTest extends BaseTest {
     setEmail("wrongEmail");
     setPassword("wrongPassword");
 
-    this.dashboardPage.open();
-    this.dashboardPage.verify();
-    this.dashboardPage.clickLoginButton();
-
+    this.loginPage.open();
     this.loginPage.verify();
+
     this.loginPage.login(email, password);
-
     this.loginPage.verify();
+
     Assert.assertEquals(this.loginPage.getLoginErrorText(), AUTHENTIFICATION_FAILED_ERROR);
 }
-
 }
