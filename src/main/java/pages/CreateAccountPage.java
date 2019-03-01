@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static helpers.WebElementHelper.areVisible;
-import static helpers.WebElementHelper.setFieldValue;
 
 public class CreateAccountPage extends BasePage {
 
@@ -23,6 +22,4 @@ public class CreateAccountPage extends BasePage {
     protected boolean isValid() {
         return areVisible(pageHeader);
     }
-
-
 }
