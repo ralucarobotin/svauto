@@ -13,7 +13,7 @@ public class CreateAccountTest extends BaseTest {
 
     private static final String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
     private static final String UNIQUE_EMAIL_FOR_REGISTRATION = RandomStringUtils.random(10, allowedChars) + "@test.com";
-    private static final String EMPTY_INVALID_EMAIL_ERROR = "Invalid email address."
+    private static final String EMPTY_INVALID_EMAIL_ERROR = "Invalid email address.";
 
     public CreateAccountTest() {
     }
