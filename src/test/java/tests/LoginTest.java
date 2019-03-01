@@ -1,6 +1,5 @@
 package tests;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,19 +26,19 @@ public class LoginTest extends BaseTest {
   public LoginTest(){
   }
 
-  public void setEmail(String email){
+  private void setEmail(String email){
     this.email = getPropertyFromAppProp(email);
   }
 
-  public void setPassword(String password) {
+  private void setPassword(String password) {
     this.password = getPropertyFromAppProp(password);
   }
 
-  public void setEmail(){
+  private void setEmail(){
     this.email = "";
   }
 
-  public void setPassword(){
+  private void setPassword(){
     this.password = "";
   }
 
@@ -78,7 +77,7 @@ public class LoginTest extends BaseTest {
     this.loginPage.login(email, password);
 
     this.loginPage.verify();
-    Assert.assertEquals(this.loginPage.getLoginError().getText(), INVALID_EMAIL_ERROR);
+    Assert.assertEquals(this.loginPage.getLoginErrorText(), INVALID_EMAIL_ERROR);
 
   }
 
@@ -95,7 +94,7 @@ public class LoginTest extends BaseTest {
     this.loginPage.login(email, password);
 
     this.loginPage.verify();
-    Assert.assertEquals(this.loginPage.getLoginError().getText(), EMPTY_EMAIL_ERROR);
+    Assert.assertEquals(this.loginPage.getLoginErrorText(), EMPTY_EMAIL_ERROR);
   }
 
   @Test
@@ -111,7 +110,7 @@ public class LoginTest extends BaseTest {
     this.loginPage.login(email, password);
 
     this.loginPage.verify();
-    Assert.assertEquals(this.loginPage.getLoginError().getText(), AUTHENTIFICATION_FAILED_ERROR);
+    Assert.assertEquals(this.loginPage.getLoginErrorText(), AUTHENTIFICATION_FAILED_ERROR);
 }
 
 }

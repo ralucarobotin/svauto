@@ -64,7 +64,7 @@ public class LoginPage extends BasePage {
     createAccountButton.click();
   }
 
-  public WebElement getLoginError(){
-    return loginError;
+  public String getLoginErrorText(){
+    return loginError.getText();
   }
 }
