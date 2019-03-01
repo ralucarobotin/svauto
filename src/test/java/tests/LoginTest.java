@@ -1,5 +1,6 @@
 package tests;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class LoginTest extends BaseTest {
   private static final String INVALID_EMAIL_ERROR = "Invalid email address.";
   private static final String EMPTY_EMAIL_ERROR   = "An email address required.";
   private static final String AUTHENTIFICATION_FAILED_ERROR = "Authentication failed.";
+
 
   public LoginTest(){
   }
@@ -96,7 +98,8 @@ public class LoginTest extends BaseTest {
     Assert.assertEquals(this.loginPage.getLoginError().getText(), EMPTY_EMAIL_ERROR);
   }
 
-  @Test void testLoginWrongEmailWrongPassword(){
+  @Test
+  void testLoginWrongEmailWrongPassword(){
     setEmail("wrongEmail");
     setPassword("wrongPassword");
 
@@ -110,4 +113,5 @@ public class LoginTest extends BaseTest {
     this.loginPage.verify();
     Assert.assertEquals(this.loginPage.getLoginError().getText(), AUTHENTIFICATION_FAILED_ERROR);
 }
+
 }
