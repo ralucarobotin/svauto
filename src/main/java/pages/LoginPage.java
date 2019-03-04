@@ -51,8 +51,8 @@ public class LoginPage extends BasePage {
         setFieldValue(passField, password);
     }
 
-    public WebElement getLoginPageErrorMessage() {
-        return loginErrorMessage;
+    public String getLoginPageErrorMessage() {
+        return loginErrorMessage.getText();
     }
 
     public void openLoginPage(){

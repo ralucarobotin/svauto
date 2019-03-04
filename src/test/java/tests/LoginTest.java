@@ -75,7 +75,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(invalidEmail, password);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), failedAuthenticationMessage, "Invalid Email test has failed on LoginTest page");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage(), failedAuthenticationMessage, "Test for invalid input in the email field, has failed");
     }
 
     @Test(description = "Test login with invalid password:\n " +
@@ -91,7 +91,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, invalidPassword);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), failedAuthenticationMessage, "Invalid Password test has failed on LoginTest page");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage(), failedAuthenticationMessage, "Test for invalid input in the password field, has failed");
     }
 
     @Test(description = "Test login with empty email:\n " +
@@ -107,7 +107,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(StringUtils.EMPTY, password);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), emptyEmailMessage, "Empty Email test has failed on LoginTest page");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage(), emptyEmailMessage, "Test for empty input in the email field, has failed");
     }
 
     @Test(description = "Test login with empty email:\n " +
@@ -123,6 +123,6 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, StringUtils.EMPTY);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), emptyPasswordMessage, "Empty Password test failed on LoginTest page");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage(), emptyPasswordMessage, "Test for empty input in the password field, has failed");
     }
 }
