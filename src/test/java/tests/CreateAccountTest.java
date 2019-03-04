@@ -11,9 +11,12 @@ public class CreateAccountTest extends BaseTest {
     private LoginPage loginPage = null;
     private CreateAccountPage createAccountPage = null;
 
-    private static final String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
-    private static final String UNIQUE_EMAIL_FOR_REGISTRATION = RandomStringUtils.random(10, allowedChars) + "@test.com";
+    private static final String ALLOWERCHARS = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
+    private static final String UNIQUE_EMAIL_FOR_REGISTRATION = RandomStringUtils.random(10, ALLOWERCHARS) + "@test.com";
+    private static final String DUPLICATE_EMAIL = "test@test.com";
+
     private static final String EMPTY_INVALID_EMAIL_ERROR = "Invalid email address.";
+    private static final String DUPLICATE_EMAIL_ERROR = "An account using this email address has already been registered. Please enter a valid password or request a new one.";
 
     public CreateAccountTest() {
     }
@@ -41,6 +44,17 @@ public class CreateAccountTest extends BaseTest {
         this.loginPage.submitEmailAccountCreation("");
         this.loginPage.verify();
 
-        Assert.assertEquals(loginPage.getAccountCreateEmailError(), EMPTY_INVALID_EMAIL_ERROR);
+        Assert.assertEquals(this.loginPage.getCreateAccountErrorText(), EMPTY_INVALID_EMAIL_ERROR);
+    }
+
+    @Test
+    void accessCreateAccountPageWithDuplicateEmail(){
+        this.loginPage.open();;
+        this.loginPage.verify();
+
+        this.loginPage.submitEmailAccountCreation(DUPLICATE_EMAIL);
+        this.loginPage.verify();
+
+        Assert.assertEquals(this.loginPage.getCreateAccountErrorText(), DUPLICATE_EMAIL_ERROR);
     }
 }

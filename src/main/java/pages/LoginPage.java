@@ -29,8 +29,8 @@ public class LoginPage extends BasePage {
   @FindBy(id = "SubmitCreate")
   private WebElement createAccountButton;
 
-  @FindBy(xpath = "//li[contains(text(),'Invalid email address.')]")
-  private WebElement createAccountEmailError;
+  @FindBy(xpath = "//div[@class='form_content clearfix']//div[@class='alert alert-danger']")
+  private WebElement createAccountError;
 
   public LoginPage(WebDriver driver) {
     super(driver);
@@ -77,8 +77,9 @@ public class LoginPage extends BasePage {
     return loginError.getText();
   }
 
-  public String getAccountCreateEmailError(){
-    return createAccountEmailError.getText();
+  public String getCreateAccountErrorText(){
+    waitForElementToAppear(createAccountError);
+    return createAccountError.getText();
   }
 }
 
