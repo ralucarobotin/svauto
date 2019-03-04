@@ -9,48 +9,54 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class LoginPage extends BasePage {
 
-  @FindBy(id = "email")
-  private WebElement emailField;
+    private static final String  openLoginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
-  @FindBy(id = "passwd")
-  private WebElement passField;
+    @FindBy(id = "email")
+    private WebElement emailField;
 
-  @FindBy(id = "SubmitLogin")
-  private WebElement logInButton;
+    @FindBy(id = "passwd")
+    private WebElement passField;
 
-  @FindBy(className = "alert-danger")
-  private WebElement errorAlert;
+    @FindBy(id = "SubmitLogin")
+    private WebElement logInButton;
 
-  public LoginPage(WebDriver driver) {
-    super(driver);
-  }
+    @FindBy(css = "#center_column div ol li")
+    private WebElement errorMessage;
 
-  @Override
-  protected boolean isCurrent() {
-    return areVisible(emailField);
-  }
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-  @Override
-  protected boolean isValid() {
-    return areVisible(emailField, passField, logInButton);
-  }
+    @Override
+    protected boolean isCurrent() {
+        return areVisible(emailField, passField, logInButton);
+    }
 
-  public void login(String email, String password) {
-    fillInEmail(email);
-    fillInPassword(password);
-    logInButton.click();
-  }
+    @Override
+    protected boolean isValid() {
+        return areVisible(emailField, passField, logInButton);
+    }
 
-  private void fillInEmail(String email){
-    setFieldValue(emailField, email);
-  }
+    public void login(String email, String password) {
+        fillInEmail(email);
+        fillInPassword(password);
+        logInButton.click();
+    }
 
-  private void fillInPassword(String password){
-    setFieldValue(passField, password);
-  }
+    private void fillInEmail(String email) {
+        setFieldValue(emailField, email);
+    }
 
-  public WebElement errorMessage(){
-    return errorAlert;
-  }
+    private void fillInPassword(String password) {
+        setFieldValue(passField, password);
+    }
+
+    public WebElement errorMessage() {
+        return errorMessage;
+    }
+
+    public void openLoginUrl(){
+        openUrl(openLoginUrl);
+    }
 
 }
