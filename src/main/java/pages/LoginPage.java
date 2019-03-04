@@ -9,7 +9,7 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class LoginPage extends BasePage {
 
-    private static final String  openLoginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    private static final String openLoginPageUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
     @FindBy(id = "email")
     private WebElement emailField;
@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
     private WebElement logInButton;
 
     @FindBy(css = "#center_column div ol li")
-    private WebElement errorMessage;
+    private WebElement loginErrorMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -51,12 +51,11 @@ public class LoginPage extends BasePage {
         setFieldValue(passField, password);
     }
 
-    public WebElement errorMessage() {
-        return errorMessage;
+    public WebElement getLoginPageErrorMessage() {
+        return loginErrorMessage;
     }
 
-    public void openLoginUrl(){
-        openUrl(openLoginUrl);
+    public void openLoginPage(){
+        openUrl(openLoginPageUrl);
     }
-
 }

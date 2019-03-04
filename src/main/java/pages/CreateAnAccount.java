@@ -8,7 +8,7 @@ import static helpers.WebElementHelper.areVisible;
 
 public class CreateAnAccount extends BasePage {
 
-    //User's personal information
+    //YOUR PERSONAL INFORMATION
     @FindBy(id = "id_gender1")
     private WebElement genderMale;
 
@@ -42,7 +42,7 @@ public class CreateAnAccount extends BasePage {
     @FindBy(id = "optin")
     private WebElement optin;
 
-    //User's Address
+    //YOUR ADDRESS
     @FindBy(id = "firstname")
     private WebElement firstName;
 

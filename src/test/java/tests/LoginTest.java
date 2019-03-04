@@ -21,15 +21,18 @@ public class LoginTest extends BaseTest {
     private String password;
     private String invalidEmail;
     private String invalidPassword;
-    private static final String EMPTY_EMAIL_MESSAGE = "An email address required.";
-    private static final String EMPTY_PASSWORD_MESSAGE = "Password is required.";
-    private static final String FAILED_AUTHENTICATION_MESSAGE = "Authentication failed.";
+    private String emptyEmailMessage;
+    private String emptyPasswordMessage;
+    private String failedAuthenticationMessage;
 
     public LoginTest() {
         this.email = getPropertyFromAppProp("email");
         this.password = getPropertyFromAppProp("password");
         this.invalidEmail = getPropertyFromAppProp("invalidEmail");
         this.invalidPassword = getPropertyFromAppProp("invalidPassword");
+        this.emptyEmailMessage = "An email address required.";
+        this.emptyPasswordMessage = "Password is required.";
+        this.failedAuthenticationMessage = "Authentication failed.";
     }
 
     @BeforeMethod
@@ -39,7 +42,17 @@ public class LoginTest extends BaseTest {
         this.myAccountPage = new MyAccountPage(getDriver());
     }
     //Happy flow login
-    @Test
+    @Test(description = "Test login with valid credentials:\n " +
+                        "Steps:\n" +
+                        "1. Navigate to the Dashboard page with URL: http://automationpractice.com/index.php\n" +
+                        "2. Verify that the Dashboard page is loaded correctly.\n" +
+                        "3. Click on the Sign in button.\n" +
+                        "4. Verify that the Login page is loaded correctly.\n" +
+                        "5. Add valid credentials into the email and password fields.\n" +
+                        "6. Verify that the introduced credentials are valid.\n" +
+                        "7. Click on the Sign in button.\n" +
+                        "8. Verify that the user is redirected correctly to the MyAccount page.\n"
+    )
     public void testLogin() {
         this.dashboardPage.open();
         this.dashboardPage.verify();
@@ -49,43 +62,67 @@ public class LoginTest extends BaseTest {
         this.myAccountPage.verify();
     }
     //Negative testing flow
-    @Test
+    @Test(description = "Test login with invalid email:\n " +
+                        "Steps:\n" +
+                        "1. Navigate to the Login page with URL: http://automationpractice.com/index.php?controller=authentication&back=my-account\n" +
+                        "2. Verify that the Login page is loaded correctly.\n" +
+                        "3. Add valid credential for password and invalid credential into the email field.\n" +
+                        "4. Click on the Sign in button.\n" +
+                        "5. Verify that the expected error message is displayed.\n"
+    )
     public void testInvalidEmail() {
-        this.loginPage.openLoginUrl();
-        this.loginPage.verify();
+        this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.login(invalidEmail, password);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.errorMessage().getText(), FAILED_AUTHENTICATION_MESSAGE, "Invalid Email test has failed");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), failedAuthenticationMessage, "Invalid Email test has failed on LoginTest page");
     }
 
-    @Test
+    @Test(description = "Test login with invalid password:\n " +
+                        "Steps:\n" +
+                        "1. Navigate to the Login page with URL: http://automationpractice.com/index.php?controller=authentication&back=my-account\n" +
+                        "2. Verify that the Login page is loaded correctly.\n" +
+                        "3. Add valid credential for email and invalid credential into the password field.\n" +
+                        "4. Click on the Sign in button.\n" +
+                        "5. Verify that the expected error message is displayed.\n"
+    )
     public void testInvalidPassword() {
-        this.loginPage.openLoginUrl();
-        this.loginPage.verify();
+        this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.login(email, invalidPassword);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.errorMessage().getText(), FAILED_AUTHENTICATION_MESSAGE, "Invalid Password test has failed");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), failedAuthenticationMessage, "Invalid Password test has failed on LoginTest page");
     }
 
-    @Test
+    @Test(description = "Test login with empty email:\n " +
+                        "Steps:\n" +
+                        "1. Navigate to the Login page with URL: http://automationpractice.com/index.php?controller=authentication&back=my-account\n" +
+                        "2. Verify that the Login page is loaded correctly.\n" +
+                        "3. Leave the field for email empty and add valid credential into the password field.\n" +
+                        "4. Click on the Sign in button.\n" +
+                        "5. Verify that the expected error message is displayed.\n"
+    )
     public void testEmptyEmail() {
-        this.loginPage.openLoginUrl();
-        this.loginPage.verify();
+        this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.login(StringUtils.EMPTY, password);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.errorMessage().getText(), EMPTY_EMAIL_MESSAGE, "Empty Email test has failed");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), emptyEmailMessage, "Empty Email test has failed on LoginTest page");
     }
 
-    @Test
+    @Test(description = "Test login with empty email:\n " +
+                        "Steps:\n" +
+                        "1. Navigate to the Login page with URL: http://automationpractice.com/index.php?controller=authentication&back=my-account\n" +
+                        "2. Verify that the Login page is loaded correctly.\n" +
+                        "3. Leave the field for password empty and add valid credential into the email field.\n" +
+                        "4. Click on the Sign in button.\n" +
+                        "5. Verify that the expected error message is displayed.\n"
+    )
     public void testEmptyPassword() {
-        this.loginPage.openLoginUrl();
-        this.loginPage.verify();
+        this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.login(email, StringUtils.EMPTY);
         this.loginPage.verify();
-        Assert.assertEquals(this.loginPage.errorMessage().getText(), EMPTY_PASSWORD_MESSAGE, "Empty Password test failed");
+        Assert.assertEquals(this.loginPage.getLoginPageErrorMessage().getText(), emptyPasswordMessage, "Empty Password test failed on LoginTest page");
     }
 }
