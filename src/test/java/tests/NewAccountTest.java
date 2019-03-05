@@ -2,7 +2,6 @@ package tests;
 
 import helpers.Utilities;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
