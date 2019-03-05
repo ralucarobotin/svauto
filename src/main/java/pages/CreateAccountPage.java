@@ -1,10 +1,14 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
 
 import static helpers.WebElementHelper.areVisible;
+import static helpers.WebElementHelper.setFieldValue;
 
 public class CreateAccountPage extends BasePage {
 
@@ -65,7 +69,7 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "city")
     private WebElement cityAddressField;
 
-    @FindBy(id = "uniform-id_state")
+    @FindBy(id = "id_state")
     private WebElement stateAddressField;
 
     @FindBy(id = "postcode")
@@ -102,9 +106,55 @@ public class CreateAccountPage extends BasePage {
     protected boolean isValid() {
         waitForElementToAppear(firstNameField);
         waitForElementToAppear(postcodeAddressField);
-        return areVisible(pageHeader, registerButton, mobilePhoneField, homePhoneField, otherField,countryAddressField, postcodeAddressField, stateAddressField, cityAddressField, address1AddressField,
+        return areVisible(pageHeader, registerButton, mobilePhoneField, homePhoneField, otherField, countryAddressField, postcodeAddressField, cityAddressField, address1AddressField,
                 address2AddressField, companyAddressField, lastNameAddressField, firstNameAddressField, offersCheckbox,
                 newsletterCheckbox, yearsField, monthsField, daysField, passwordField, emailFiled, lastNameField,
-                firstNameField, genderFemaleOption, genderMaleOption, formHeader,aliasField );
+                firstNameField, genderFemaleOption, genderMaleOption, formHeader, aliasField);
+    }
+
+    public void fillFirstNameField(String firstName) {
+        setFieldValue(firstNameField, firstName);
+    }
+
+    public void fillLastNameField(String lastName) {
+        setFieldValue(lastNameField, lastName);
+    }
+
+    public void fillPasswordField(String password) {
+        setFieldValue(passwordField, password);
+    }
+
+    public void fillHomePhoneField(String phone) {
+        setFieldValue(homePhoneField, phone);
+    }
+
+    public void fillMobilePhoneField(String phone) {
+        setFieldValue(mobilePhoneField, phone);
+    }
+
+    public void fillAddress1Field(String address) {
+        setFieldValue(address1AddressField, address);
+    }
+
+    public void fillCityField(String city){
+        setFieldValue(cityAddressField, city);;
+    }
+
+    public void fillZipCodeField(String zip){
+        setFieldValue(postcodeAddressField, zip);
+    }
+
+    public void fillCountryField(String country){
+        Select countrySelectElemenet = new Select(countryAddressField);
+        countrySelectElemenet.selectByVisibleText(country);
+    }
+
+    public void fillStateField(String state){
+        Select stateOption  = new Select(stateAddressField);
+        stateOption.selectByVisibleText("Alabama");
+    }
+
+    public void register() {
+        registerButton.click();
     }
 }
