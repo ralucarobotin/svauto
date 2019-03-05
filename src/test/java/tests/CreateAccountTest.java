@@ -5,12 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CreateAccountPage;
 import pages.LoginPage;
+import pages.MyAccountPage;
 
 import static testHelpers.Utilities.*;
 
 public class CreateAccountTest extends BaseTest {
     private LoginPage loginPage = null;
     private CreateAccountPage createAccountPage = null;
+    private MyAccountPage myAccountPage = null;
 
     private static final String DUPLICATE_EMAIL = "test@test.com";
 
@@ -24,6 +26,7 @@ public class CreateAccountTest extends BaseTest {
     void beforeMethod() {
         this.loginPage = new LoginPage(getDriver());
         this.createAccountPage = new CreateAccountPage(getDriver());
+        this.myAccountPage = new MyAccountPage(getDriver());
     }
 
     @Test
@@ -89,7 +92,8 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.fillStateField(account.getStateOptionAddress());
         this.createAccountPage.register();
 
-        System.out.println("test");
+        this.myAccountPage.verify();
 
+        Assert.assertEquals(this.myAccountPage.getUsernameText(), account.getFirstName() + " " + account.getLastName());
     }
 }

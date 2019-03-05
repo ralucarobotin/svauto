@@ -28,6 +28,9 @@ public class MyAccountPage extends BasePage {
   @FindBy(css = "a[href*='mywishlist']")
   private WebElement myWishlistButton;
 
+  @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/header[1]/div[2]/div[1]/div[1]/nav[1]/div[1]/a[1]/span[1]")
+  private  WebElement username;
+
   public MyAccountPage(WebDriver driver){
     super(driver);
   }
@@ -48,5 +51,9 @@ public class MyAccountPage extends BasePage {
                       myAddressesButton,
                       myPersonalInformationButton,
                       myWishlistButton);
+  }
+
+  public String getUsernameText(){
+    return username.getText();
   }
 }
