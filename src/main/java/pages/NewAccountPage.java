@@ -1,5 +1,9 @@
 package pages;
 
+import helpers.Utilities;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,12 +14,10 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class NewAccountPage extends BasePage{
 
-    @FindBy(id = "email_create")
-    private WebElement createEmailField;
+    private LoginPage loginPage = null;
+    private DashboardPage dashboardPage = null;
 
-    @FindBy(css="button #SubmitCreate")
-    private WebElement createAccountButton;
-
+    //YOUR PERSONAL INFORMATION
     @FindBy (id = "id_gender1")
     private WebElement gender_male;
 
@@ -34,15 +36,19 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "passwd")
     private WebElement passwordField;
 
-    @FindBy (css = "select#days.form-control")
+    @FindBy (id = "days")
     private WebElement birthDate_day;
+    private Select birthDay_dropdown = new Select(birthDate_day);
 
-    @FindBy (id = "select#months.form-control")
+    @FindBy (id = "months")
     private WebElement birthDate_month;
+    private Select birthMonth_dropdown = new Select(birthDate_month);
 
-    @FindBy (id = "select#years.form-control")
+    @FindBy (id = "years")
     private WebElement birthDate_year;
+    private Select birthYear_dropdown = new Select(birthDate_year);
 
+    //YOUR ADDRESS
     @FindBy (id = "firstname")
     private WebElement address_firstName;
 
@@ -58,14 +64,16 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "city")
     private WebElement address_city;
 
-    @FindBy (id = "id_state")
-    private WebElement address_state;
+    //@FindBy (id = "id_state")
+    //private WebElement address_state;
+    private Select state_dropdown = new Select(driver.findElement(By.id("id_state")));
 
     @FindBy (id = "postcode")
     private WebElement address_postcode;
 
-    @FindBy (id = "id_country")
-    private WebElement address_country;
+    //@FindBy (id = "id_country")
+    //private WebElement address_country;
+    private Select country_dropdown = new Select(driver.findElement(By.id("id_country")));
 
     @FindBy (id = "phone")
     private WebElement address_mobilePhone;
@@ -75,9 +83,6 @@ public class NewAccountPage extends BasePage{
 
     @FindBy (id = "submitAccount")
     private WebElement registerButton;
-
-    @FindBy (id = "create_account_error")
-    private WebElement createAccountError;
 
     @FindBy (css = "#center_column > div.alert.alert-danger > ol > li")
     private WebElement accountFormError;
@@ -109,15 +114,16 @@ public class NewAccountPage extends BasePage{
 
     @Override
     protected boolean isValid() {
-        return areVisible(createEmailField, gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField,  passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_streetAddress, address_city, address_state, address_postcode, address_country, address_mobilePhone, address_alias, registerButton);
+        return areVisible(gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField, passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_streetAddress, address_city, address_state, address_postcode, address_country, address_mobilePhone, address_alias, registerButton);
     }
 
-    public void clickCreateAccount(){
-        this.createAccountButton.click();
-    }
-
-    public String getCreateAccountErrorText(){
-        return this.createAccountError.getText();
+    public void openNewAccountPage() {
+        dashboardPage.verify();
+        dashboardPage.clickLoginButton();
+        loginPage.verify();
+        loginPage.fillEmailAddress(Utilities.generateNewEmail("mailinator"));
+        loginPage.clickCreateAccount();
+        this.verify();
     }
 
     public String getAccountFormErrorText(){
@@ -133,7 +139,7 @@ public class NewAccountPage extends BasePage{
     }
 
     public boolean verifyEmailAutofill(){
-        if(this.personalInfo_emailField.getText().equals(this.createEmailField.getText())) {
+        if (!this.personalInfo_emailField.getText().equals(StringUtils.EMPTY)) {
             return true;
         } else return false;
     }
@@ -146,71 +152,61 @@ public class NewAccountPage extends BasePage{
         gender_male.click();
     }
 
-    public void fillEmailAddress(String email){
-        setFieldValue(createEmailField,email);
+    public void fillFirstName(){
+        setFieldValue(personalInfo_firstName, RandomStringUtils.randomAlphabetic(5));
     }
 
-    public void fillFirstName(String firstName){
-        setFieldValue(personalInfo_firstName, firstName);
+    public void fillLastName(){
+        setFieldValue(personalInfo_firstName, RandomStringUtils.randomAlphabetic(5));
     }
 
-    public void fillLastName(String lastName){
-        setFieldValue(personalInfo_firstName, lastName);
+    public void fillPassword(){
+        setFieldValue(passwordField, RandomStringUtils.randomAlphanumeric(10));
     }
-
-    public void fillPassword(String password){
-        setFieldValue(passwordField, password);
-    }
-
-
-    private Select birthDay_dropdown = new Select(this.birthDate_day);
 
     public void setBirthDay_dropdown(String value) {
         this.birthDay_dropdown.selectByValue(value);
     }
 
-    private Select birthMonth_dropdown = new Select(this.birthDate_month);
-
     public void setBirthDate_month(String value){
         this.birthMonth_dropdown.selectByValue(value);
     }
-
-    private Select birthYear_dropdown = new Select(this.birthDate_year);
 
     public void setBirthDate_year(String value){
         this.birthYear_dropdown.selectByValue(value);
     }
 
-
     public boolean verifyFirstNameAutofill(){
-        if(this.address_firstName.getText().equals(this.personalInfo_firstName.getText())) {
-            return true;
-        } else return false;
+       return this.address_firstName.getText().equals(this.personalInfo_firstName.getText());
     }
 
     public boolean verifyLastNameAutofill(){
         return this.address_lastName.getText().equals(this.personalInfo_lastName.getText());
     }
 
-    public void fillCompanyAddress(String company) {
-        setFieldValue(address_company, company);
+    public void fillCompanyAddress() {
+        setFieldValue(address_company, RandomStringUtils.randomAlphabetic(5));
     }
 
-    public void fillAddress(String address) {
-        setFieldValue(address_streetAddress, address);
+    public void fillAddress() {
+        setFieldValue(address_streetAddress, RandomStringUtils.randomAlphabetic(10));
     }
 
-    public void fillCity(String cityName) {
-        setFieldValue(address_city, cityName);
+    public void fillCity() {
+        setFieldValue(address_city, RandomStringUtils.randomAlphabetic(10));
     }
 
+    public void setState_dropdown(String stateName) {
+        this.state_dropdown.selectByVisibleText(stateName);
+    }
 
-    private Select country_dropdown = new Select(this.address_country);
+    public void fillZipCode(){
+        setFieldValue(address_postcode, RandomStringUtils.randomNumeric(5,5));
+    }
 
     public void setCountry_dropdown(String countryName) {
-        this.country_dropdown.deselectByVisibleText(countryName);
+        this.country_dropdown.selectByVisibleText(countryName);
     }
-
 
     public void fillPhoneNumber(String phoneNumber){
         setFieldValue(this.address_mobilePhone, phoneNumber);

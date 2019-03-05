@@ -21,6 +21,16 @@ public class LoginPage extends BasePage {
   @FindBy (css = "#center_column > div.alert.alert-danger > ol > li")
   private WebElement signInError;
 
+  //Create an account form
+  @FindBy(id = "email_create")
+  private WebElement createEmailField;
+
+  @FindBy(css="button #SubmitCreate")
+  private WebElement createAccountButton;
+
+  @FindBy (id = "create_account_error")
+  private WebElement createAccountError;
+
   public static final String EMPTY_EMAIL_ERROR = "An email address required.";
   public static final String EMPTY_PASSWORD_ERROR = "Password is required.";
   public static final String FAILED_AUTHENTICATION_ERROR = "Authentication failed.";
@@ -45,14 +55,6 @@ public class LoginPage extends BasePage {
     logInButton.click();
   }
 
-  public String getSignInErrorText(){
-    return this.signInError.getText();
-  }
-
-  public WebElement getErrorBanner(){
-      return signInError;
-  }
-
   private void fillInEmail(String email){
     setFieldValue(emailField, email);
   }
@@ -61,5 +63,31 @@ public class LoginPage extends BasePage {
     setFieldValue(passField, password);
   }
 
+  public String getSignInErrorText(){
+    return this.signInError.getText();
+  }
 
+  public WebElement getErrorBanner(){
+    return signInError;
+  }
+
+  //create new account
+  public void fillEmailAddress(String email){
+    setFieldValue(createEmailField,email);
+  }
+
+  public void clickCreateAccount(){
+    this.createAccountButton.click();
+  }
+
+  public String getCreateAccountErrorText(){
+    return this.createAccountError.getText();
+  }
+
+  public void openLoginPage(){
+    DashboardPage dashboardPage = null;
+    dashboardPage.verify();
+    dashboardPage.clickLoginButton();
+    this.verify();
+  }
 }

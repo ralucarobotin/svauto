@@ -64,6 +64,6 @@ public class Utilities {
   }
 
   public static String generateNewEmail(String domain){
-      return RandomStringUtils.randomAlphabetic(10) + domain;
+      return RandomStringUtils.randomAlphabetic(10) + "@" + domain;
   }
 }
