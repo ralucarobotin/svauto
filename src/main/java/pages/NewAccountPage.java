@@ -36,15 +36,15 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "passwd")
     private WebElement passwordField;
 
-    @FindBy (id = "days")
+    @FindBy (css = "select#days")
     private WebElement birthDate_day;
     private Select birthDay_dropdown = new Select(birthDate_day);
 
-    @FindBy (id = "months")
+    @FindBy (css = "select#months")
     private WebElement birthDate_month;
     private Select birthMonth_dropdown = new Select(birthDate_month);
 
-    @FindBy (id = "years")
+    @FindBy (css = "select#years")
     private WebElement birthDate_year;
     private Select birthYear_dropdown = new Select(birthDate_year);
 
@@ -64,16 +64,16 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "city")
     private WebElement address_city;
 
-    //@FindBy (id = "id_state")
-    //private WebElement address_state;
-    private Select state_dropdown = new Select(driver.findElement(By.id("id_state")));
+    @FindBy (id = "id_state")
+    private WebElement address_state;
+    private Select state_dropdown = new Select(address_state);
 
     @FindBy (id = "postcode")
     private WebElement address_postcode;
 
-    //@FindBy (id = "id_country")
-    //private WebElement address_country;
-    private Select country_dropdown = new Select(driver.findElement(By.id("id_country")));
+    @FindBy (id = "id_country")
+    private WebElement address_country;
+    private Select country_dropdown = new Select(address_country);
 
     @FindBy (id = "phone")
     private WebElement address_mobilePhone;
