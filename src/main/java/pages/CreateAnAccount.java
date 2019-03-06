@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static helpers.WebElementHelper.areVisible;
+import static helpers.WebElementHelper.inputLetters;
+import static helpers.WebElementHelper.inputNumbers;
 
 public class CreateAnAccount extends BasePage {
 
@@ -15,7 +17,7 @@ public class CreateAnAccount extends BasePage {
     @FindBy(id = "id_gender2")
     private WebElement genderFemale;
 
-    @FindBy(id = "customer_firstname")
+    @FindBy(css = "#customer_firstname")
     private WebElement customerFirstName;
 
     @FindBy(id = "customer_lastname")
@@ -40,7 +42,7 @@ public class CreateAnAccount extends BasePage {
     private WebElement newsletter;
 
     @FindBy(id = "optin")
-    private WebElement optin;
+    private WebElement optIn;
 
     //YOUR ADDRESS
     @FindBy(id = "firstname")
@@ -79,6 +81,9 @@ public class CreateAnAccount extends BasePage {
     @FindBy(id = "phone_mobile")
     private WebElement mobilePhone;
 
+    @FindBy(id = "alias")
+    private WebElement alias;
+
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
@@ -88,12 +93,24 @@ public class CreateAnAccount extends BasePage {
 
     @Override
     protected boolean isCurrent() {
-        return areVisible(genderMale);
+        return areVisible(customerFirstName, customerLastName, email, registerButton);
     }
 
     @Override
     protected boolean isValid() {
-        return areVisible(genderMale);
+        return areVisible(customerFirstName, customerLastName, email, registerButton);
+    }
+
+    public void inputCustomerFirstName(){
+        inputLetters(customerFirstName);
+    }
+
+    public void inputCustomerLastName(){
+        inputLetters(customerLastName);
+    }
+
+    public void inputHomePhone(){
+        inputNumbers(phone);
     }
 
 }

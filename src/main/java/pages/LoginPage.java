@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
+import static helpers.WebElementHelper.inputEmail;
 
 public class LoginPage extends BasePage {
 
@@ -22,6 +23,13 @@ public class LoginPage extends BasePage {
 
     @FindBy(css = "#center_column div ol li")
     private WebElement loginErrorMessage;
+
+    @FindBy(css = "#email_create")
+    private WebElement inputEmailCreateAccount;
+
+    @FindBy(id = "SubmitCreate")
+    protected WebElement createAnAccount;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -57,5 +65,13 @@ public class LoginPage extends BasePage {
 
     public void openLoginPage(){
         openUrl(openLoginPageUrl);
+    }
+
+    public void fillInAccountEmail(){
+        inputEmail(inputEmailCreateAccount);
+    }
+
+    public void clickCreateAccountButton(){
+        createAnAccount.click();
     }
 }
