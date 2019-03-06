@@ -109,7 +109,6 @@ public class CreateAccountPage extends BasePage {
     protected boolean isValid() {
         waitForElementToAppear(firstNameField);
         waitForElementToAppear(postcodeAddressField);
-        waitForElementToAppear(address2AddressField);
         return areVisible(pageHeader, registerButton, mobilePhoneField, homePhoneField, otherField, countryAddressField, postcodeAddressField, cityAddressField, address1AddressField,
                 address2AddressField, companyAddressField, lastNameAddressField, firstNameAddressField, offersCheckbox,
                 newsletterCheckbox, yearsField, monthsField, daysField, passwordField, emailFiled, lastNameField,
@@ -160,7 +159,7 @@ public class CreateAccountPage extends BasePage {
 
     public void fillStateField(String state) {
         Select stateOption = new Select(stateAddressField);
-        stateOption.selectByVisibleText("Alabama");
+        stateOption.selectByVisibleText(state);
     }
 
     public void register() {
