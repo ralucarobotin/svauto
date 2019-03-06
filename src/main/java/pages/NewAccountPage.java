@@ -3,12 +3,10 @@ package pages;
 import helpers.Utilities;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
 
@@ -117,14 +115,14 @@ public class NewAccountPage extends BasePage{
         return areVisible(gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField, passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_streetAddress, address_city, address_state, address_postcode, address_country, address_mobilePhone, address_alias, registerButton);
     }
 
-    public void openNewAccountPage() {
-        dashboardPage.verify();
-        dashboardPage.clickLoginButton();
-        loginPage.verify();
-        loginPage.fillEmailAddress(Utilities.generateNewEmail("mailinator"));
-        loginPage.clickCreateAccount();
-        this.verify();
-    }
+//    public void openNewAccountPage() {
+//        dashboardPage.verify();
+//        dashboardPage.clickLoginButton();
+//        loginPage.verify();
+//        loginPage.fillEmailAddress(Utilities.generateNewEmail("mailinator"));
+//        loginPage.clickCreateAccount();
+//        this.verify();
+//    }
 
     public String getAccountFormErrorText(){
         return accountFormError.getText();
@@ -139,9 +137,7 @@ public class NewAccountPage extends BasePage{
     }
 
     public boolean verifyEmailAutofill(){
-        if (!this.personalInfo_emailField.getText().equals(StringUtils.EMPTY)) {
-            return true;
-        } else return false;
+        return !this.personalInfo_emailField.getText().equals(StringUtils.EMPTY);
     }
 
     public void selectFemaleGender(){
@@ -165,14 +161,17 @@ public class NewAccountPage extends BasePage{
     }
 
     public void setBirthDay_dropdown(String value) {
+        waitForElementToAppear(birthDate_day);
         this.birthDay_dropdown.selectByValue(value);
     }
 
     public void setBirthDate_month(String value){
+        waitForElementToAppear(birthDate_month);
         this.birthMonth_dropdown.selectByValue(value);
     }
 
     public void setBirthDate_year(String value){
+        waitForElementToAppear(birthDate_year);
         this.birthYear_dropdown.selectByValue(value);
     }
 
@@ -197,23 +196,25 @@ public class NewAccountPage extends BasePage{
     }
 
     public void setState_dropdown(String stateName) {
+        waitForElementToAppear(address_state);
         this.state_dropdown.selectByVisibleText(stateName);
     }
 
     public void fillZipCode(){
-        setFieldValue(address_postcode, RandomStringUtils.randomNumeric(5,5));
+        setFieldValue(address_postcode, RandomStringUtils.randomNumeric(5));
     }
 
     public void setCountry_dropdown(String countryName) {
+        waitForElementToAppear(address_country);
         this.country_dropdown.selectByVisibleText(countryName);
     }
 
-    public void fillPhoneNumber(String phoneNumber){
-        setFieldValue(this.address_mobilePhone, phoneNumber);
+    public void fillPhoneNumber(){
+        setFieldValue(this.address_mobilePhone, RandomStringUtils.randomNumeric(10));
     }
 
-    public void fillAliasAddress(String aliasAddress){
-        setFieldValue(this.address_alias, aliasAddress);
+    public void fillAliasAddress(){
+        setFieldValue(this.address_alias, RandomStringUtils.randomAlphabetic(10));
     }
 
     public void clickRegisterButton(){

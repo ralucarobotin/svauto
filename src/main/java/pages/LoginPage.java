@@ -84,10 +84,10 @@ public class LoginPage extends BasePage {
     return this.createAccountError.getText();
   }
 
-  public void openLoginPage(){
-    DashboardPage dashboardPage = null;
-    dashboardPage.verify();
-    dashboardPage.clickLoginButton();
-    this.verify();
-  }
+//  public void openLoginPage(){
+//    DashboardPage dashboardPage = new DashboardPage(getDriver());
+//    dashboardPage.verify();
+//    dashboardPage.clickLoginButton();
+//    this.verify();
+//  }
 }
