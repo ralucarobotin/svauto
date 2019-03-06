@@ -30,7 +30,11 @@ public class CreateAccountTest extends BaseTest {
         this.myAccountPage = new MyAccountPage(getDriver());
     }
 
-    @Test
+    @Test(description = "Test navigating to create account page from the login page\n"
+            + "Steps:\n"
+            + "1. Open the login page\n"
+            + "2. Insert a unique email address and click the Create an account button\n"
+            + "3. Verify the create account page is sucesfully displayed\n")
     void navigateToAccountCreationPage() {
         this.loginPage.open();
         this.loginPage.verify();
@@ -39,7 +43,11 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.verify();
     }
 
-    @Test
+    @Test(description = "Test navigating to create account page with empty email\n"
+            + "Steps:\n"
+            + "1. Open the login page\n"
+            + "2. Leave the email address field empty and click the Create an account button\n"
+            + "3. Verify the login page is sucesfully displayed and the error message is correct\n")
     void accessCreateAccountPageWithEmptyEmail() {
         this.loginPage.open();
         this.loginPage.verify();
@@ -50,7 +58,11 @@ public class CreateAccountTest extends BaseTest {
         Assert.assertEquals(this.loginPage.getCreateAccountErrorText(), EMPTY_INVALID_EMAIL_ERROR);
     }
 
-    @Test
+    @Test(description = "Test navigating to create account page with empty email\n"
+            + "Steps:\n"
+            + "1. Open the login page\n"
+            + "2. Insert an email address already used and click the Create an account button\n"
+            + "3. Verify the login page is sucesfully displayed and the error message is correct\n")
     void accessCreateAccountPageWithDuplicateEmail() {
         this.loginPage.open();
         this.loginPage.verify();
@@ -61,7 +73,13 @@ public class CreateAccountTest extends BaseTest {
         Assert.assertEquals(this.loginPage.getCreateAccountErrorText(), DUPLICATE_EMAIL_ERROR);
     }
 
-    @Test
+    @Test(description = "Test navigating to create account page with empty email\n"
+            + "Steps:\n"
+            + "1. Open the login page\n"
+            + "2. Insert a unique email address and click the Create an account button\n"
+            + "3. Verify the create account page is sucesfully displayed\n"
+            + "4. Fill the form with valid details and click the Register button\n"
+            + "5. Verify the my account page is sucesfully displayed\n")
     void createAccountValidDetails() {
         Account account = new Account.Builder()
                 .gender(generateRandomGender())
@@ -98,7 +116,13 @@ public class CreateAccountTest extends BaseTest {
         Assert.assertEquals(this.myAccountPage.getUsernameText(), account.getFirstName() + " " + account.getLastName());
     }
 
-    @Test
+    @Test(description = "Test navigating to create account page with empty email\n"
+            + "Steps:\n"
+            + "1. Open the login page\n"
+            + "2. Insert a unique email address and click the Create an account button\n"
+            + "3. Verify the create account page is sucesfully displayed\n"
+            + "4. Leave the form empty and click the Register button\n"
+            + "5. Verify the create account page is sucesfully displayed and the error message is correct\n")
     void registerEmptyForm() {
         this.loginPage.open();
         this.loginPage.verify();
