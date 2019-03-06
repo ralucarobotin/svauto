@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pages.DashboardPage;
+import pages.HeaderPage;
 import pages.LoginPage;
 import pages.MyAccountPage;
 
@@ -14,6 +15,7 @@ public class LoginTest extends BaseTest {
   private DashboardPage dashboardPage = null;
   private LoginPage loginPage = null;
   private MyAccountPage myAccountPage = null;
+  private HeaderPage headerPage = null;
 
   private String email = "";
   private String password = "";
@@ -47,6 +49,7 @@ public class LoginTest extends BaseTest {
     this.dashboardPage = new DashboardPage(getDriver());
     this.loginPage = new LoginPage(getDriver());
     this.myAccountPage = new MyAccountPage(getDriver());
+    this.headerPage = new HeaderPage(getDriver());
   }
 
   @Test
@@ -93,7 +96,7 @@ public class LoginTest extends BaseTest {
   }
 
   @Test
-  void testLoginWrongEmailWrongPassword(){
+  public void testLoginWrongEmailWrongPassword(){
     setEmail("wrongEmail");
     setPassword("wrongPassword");
 
@@ -105,4 +108,24 @@ public class LoginTest extends BaseTest {
 
     Assert.assertEquals(this.loginPage.getLoginErrorText(), AUTHENTIFICATION_FAILED_ERROR);
 }
+
+  @Test
+  public void testLogout(){
+    setEmail("email");
+    setPassword("password");
+
+    this.dashboardPage.open();
+    this.dashboardPage.verify();
+    this.dashboardPage.clickLoginButton();
+
+    this.loginPage.verify();
+    this.loginPage.login(email, password);
+
+    this.myAccountPage.verify();
+    this.headerPage.clickLogoutButton();
+
+    this.loginPage.verify();
+  }
+
+  
 }
