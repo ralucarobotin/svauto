@@ -1,5 +1,6 @@
 package pages;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,7 @@ import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.inputLetters;
 import static helpers.WebElementHelper.inputNumbers;
 
-public class CreateAnAccount extends BasePage {
+public class CreateAccountPage extends BasePage {
 
     //YOUR PERSONAL INFORMATION
     @FindBy(id = "id_gender1")
@@ -87,7 +88,7 @@ public class CreateAnAccount extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
-    public CreateAnAccount(WebDriver driver){
+    public CreateAccountPage(WebDriver driver){
         super(driver);
     }
 
@@ -99,6 +100,11 @@ public class CreateAnAccount extends BasePage {
     @Override
     protected boolean isValid() {
         return areVisible(customerFirstName, customerLastName, email, registerButton);
+    }
+
+    public WebElement selectGender(){
+        boolean addGender = RandomUtils.nextBoolean();
+        return addGender ? genderMale : genderFemale;
     }
 
     public void inputCustomerFirstName(){

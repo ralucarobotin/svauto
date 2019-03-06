@@ -1,6 +1,7 @@
 package helpers;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;

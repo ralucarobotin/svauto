@@ -1,11 +1,11 @@
-package pages;
+package tests;
 
 
 public class Account {
 
     //YOUR PERSONAL INFORMATION
-    private int genderMale;
-    private int genderFemale;
+    private boolean genderMale;
+    private boolean genderFemale;
     private String customerFirstName;
     private String customerLastName;
     private String email;
@@ -31,11 +31,11 @@ public class Account {
     private String mobilePhone;
     private String alias;
 
-    public int getGenderMale() {
+    public boolean getGenderMale() {
         return genderMale;
     }
 
-    public int getGenderFemale() {
+    public boolean getGenderFemale() {
         return genderFemale;
     }
 
@@ -128,8 +128,8 @@ public class Account {
     }
 
     public static class Builder {
-        private int genderMale;
-        private int genderFemale;
+        private boolean genderMale;
+        private boolean genderFemale;
         private String customerFirstName;
         private String customerLastName;
         private String email;
@@ -153,122 +153,122 @@ public class Account {
         private String mobilePhone;
         private String alias;
 
-        public Builder genderMale(final int genderMale){
+        public Builder genderMale(boolean genderMale){
             this.genderMale = genderMale;
             return this;
         }
 
-        public Builder genderFemale(final int genderFemale){
+        public Builder genderFemale(boolean genderFemale){
             this.genderFemale = genderFemale;
             return this;
         }
 
-        public Builder customerFirstName(final String customerFirstName){
+        public Builder customerFirstName(String customerFirstName){
             this.customerFirstName = customerFirstName;
             return this;
         }
 
-        public Builder customerLastName(final String customerLastName){
+        public Builder customerLastName(String customerLastName){
             this.customerLastName = customerLastName;
             return this;
         }
 
-        public Builder email(final String email){
+        public Builder email(String email){
             this.email = email;
             return this;
         }
 
-        public Builder password(final String password){
+        public Builder password(String password){
             this.password = password;
             return this;
         }
 
-        public Builder days(final int days){
+        public Builder days(int days){
             this.days = days;
             return this;
         }
 
-        public Builder months(final String months){
+        public Builder months(String months){
             this.months = months;
             return this;
         }
 
-        public Builder years(final int years){
+        public Builder years(int years){
             this.years = years;
             return this;
         }
 
-        public Builder newsletter(final int newsletter){
+        public Builder newsletter(int newsletter){
             this.newsletter = newsletter;
             return this;
         }
 
-        public Builder optIn(final int optIn){
+        public Builder optIn(int optIn){
             this.optIn = optIn;
             return this;
         }
 
-        public Builder firstName(final String firstName){
+        public Builder firstName(String firstName){
             this.firstName = firstName;
             return this;
         }
 
-        public Builder lastName(final String lastName){
+        public Builder lastName(String lastName){
             this.lastName = lastName;
             return this;
         }
 
-        public Builder company(final String company){
+        public Builder company(String company){
             this.company = company;
             return this;
         }
 
-        public Builder firstAddress(final String firstAddress){
+        public Builder firstAddress(String firstAddress){
             this.firstAddress = firstAddress;
             return this;
         }
 
-        public Builder secondAddress(final String secondAddress){
+        public Builder secondAddress(String secondAddress){
             this.secondAddress = secondAddress;
             return this;
         }
 
-        public Builder city(final String city){
+        public Builder city(String city){
             this.city = city;
             return this;
         }
 
-        public Builder state(final String state){
+        public Builder state(String state){
             this.state = state;
             return this;
         }
 
-        public Builder postcode(final int postcode){
+        public Builder postcode(int postcode){
             this.postcode = postcode;
             return this;
         }
 
-        public Builder country(final String country){
+        public Builder country(String country){
             this.country = country;
             return this;
         }
 
-        public Builder otherInfo(final String otherInfo){
+        public Builder otherInfo(String otherInfo){
             this.otherInfo = otherInfo;
             return this;
         }
 
-        public Builder phone(final String phone){
+        public Builder phone(String phone){
             this.phone = phone;
             return this;
         }
 
-        public Builder mobilePhone(final String mobilePhone){
+        public Builder mobilePhone(String mobilePhone){
             this.mobilePhone = mobilePhone;
             return this;
         }
 
-        public Builder alias(final String alias){
+        public Builder alias(String alias){
             this.alias = alias;
             return this;
         }

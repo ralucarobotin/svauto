@@ -8,16 +8,13 @@ public class CreateAccountTest extends BaseTest {
 
     private DashboardPage dashboardPage = null;
     private LoginPage loginPage = null;
-    private CreateAnAccount createAnAccount = null;
-
-
+    private CreateAccountPage createAccountPage = null;
 
     @BeforeMethod
     void beforeMethod(){
         this.dashboardPage = new DashboardPage(getDriver());
         this.loginPage = new LoginPage(getDriver());
-        this.createAnAccount = new CreateAnAccount(getDriver());
-
+        this.createAccountPage = new CreateAccountPage(getDriver());
     }
 
     @Test
@@ -28,10 +25,38 @@ public class CreateAccountTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail();
         this.loginPage.clickCreateAccountButton();
-        this.createAnAccount.verify();
-        this.createAnAccount.inputCustomerFirstName();
-        this.createAnAccount.inputCustomerLastName();
-        this.createAnAccount.inputHomePhone();
-        this.createAnAccount.verify();
+        this.createAccountPage.verify();
+        Account account = Account.Builder
+                .genderMale()
+                .genderFemale()
+                .customerFirstName()
+                .customerLastName()
+                .email()
+                .password()
+                .days()
+                .months()
+                .years()
+                .newsletter()
+                .optIn()
+                .firstName()
+                .lastName()
+                .company()
+                .firstAddress()
+                .secondAddress()
+                .city()
+                .state()
+                .postcode()
+                .country()
+                .otherInfo()
+                .phone()
+                .mobilePhone()
+                .alias()
+                .build();
+
+        this.createAccountPage.selectGender(account.getGenderFemale());
+        this.createAccountPage.inputCustomerFirstName(account.getCustomerFirstName());
+//        this.createAccountPage.inputCustomerLastName();
+//        this.createAccountPage.inputHomePhone();
+//        this.createAccountPage.verify();
     }
 }
