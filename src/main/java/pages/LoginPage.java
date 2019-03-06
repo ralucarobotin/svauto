@@ -4,63 +4,72 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static helpers.WebElementHelper.*;
+import static helpers.WebElementHelper.areVisible;
+import static helpers.WebElementHelper.setFieldValue;
 
 public class LoginPage extends BasePage {
-    @FindBy(css = "#center_column > h1")
-    private WebElement pageHeadingLogin;
+  public final static String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
-    @FindBy(id = "email")
-    private WebElement emailField;
+  @FindBy(css = "#center_column > h1")
+  private WebElement pageHeadingLogin;
 
-    @FindBy(id = "passwd")
-    private WebElement passField;
+  @FindBy(id = "email")
+  private WebElement emailField;
 
-    @FindBy(id = "SubmitLogin")
-    private WebElement logInButton;
+  @FindBy(id = "passwd")
+  private WebElement passField;
 
-    @FindBy(css = "#center_column > div.alert.alert-danger > ol > li")
-    private WebElement loginError;
+  @FindBy(id = "SubmitLogin")
+  private WebElement logInButton;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
+  @FindBy(css = "#center_column > div.alert.alert-danger > ol > li")
+  private WebElement loginError;
 
-    @Override
-    protected boolean isCurrent() {
-        return areVisible(emailField);
-    }
+  public LoginPage(WebDriver driver) {
+    super(driver);
+  }
 
-    @Override
-    protected boolean isValid() {
-        return areVisible(emailField, passField, logInButton);
-    }
+  @Override
+  protected boolean isCurrent() {
+    return areVisible(emailField);
+  }
 
-    public void login(String email, String password) {
-        fillInEmail(email);
-        fillInPassword(password);
-        logInButton.click();
-    }
+  @Override
+  protected boolean isValid() {
+    return areVisible(emailField, passField, logInButton);
+  }
 
-    private void fillInEmail(String email) {
-        setFieldValue(emailField, email);
-    }
+  public void login(String email, String password) {
+    fillInEmail(email);
+    fillInPassword(password);
+    logInButton.click();
+ }
 
-    private void fillInPassword(String password) {
-        setFieldValue(passField, password);
-    }
+  public void clickSignInButton(){
+    logInButton.click();
+  }
 
-    public WebElement getLoginError() {
-        return loginError;
-    }
+  private void fillInEmail(String email){
+    setFieldValue(emailField, email);
+  }
 
-    public String getLoginErrorMsg() {
-        return loginError.getText();
-    }
+  private void fillInPassword(String password){
+    setFieldValue(passField, password);
+  }
 
-    public WebElement getPageHeadingLogin() {
-        return pageHeadingLogin;
-    }
+  public boolean getPageHeadingLogin() {
+    return areVisible(pageHeadingLogin);
+  }
 
+  public boolean getLoginError() {
+    return areVisible(loginError);
+  }
 
+  public String getLoginErrorMsg() {
+    return loginError.getText();
+  }
+
+  public void open() {
+        openUrl(URL);
+  }
 }
