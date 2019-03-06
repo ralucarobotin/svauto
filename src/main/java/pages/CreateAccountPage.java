@@ -93,6 +93,9 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/p[1]")
+    private WebElement registerError;
+
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -106,10 +109,15 @@ public class CreateAccountPage extends BasePage {
     protected boolean isValid() {
         waitForElementToAppear(firstNameField);
         waitForElementToAppear(postcodeAddressField);
+        waitForElementToAppear(address2AddressField);
         return areVisible(pageHeader, registerButton, mobilePhoneField, homePhoneField, otherField, countryAddressField, postcodeAddressField, cityAddressField, address1AddressField,
                 address2AddressField, companyAddressField, lastNameAddressField, firstNameAddressField, offersCheckbox,
                 newsletterCheckbox, yearsField, monthsField, daysField, passwordField, emailFiled, lastNameField,
                 firstNameField, genderFemaleOption, genderMaleOption, formHeader, aliasField);
+    }
+
+    public String getCreateAccountErrorText() {
+        return registerError.getText();
     }
 
     public void fillFirstNameField(String firstName) {
@@ -136,21 +144,22 @@ public class CreateAccountPage extends BasePage {
         setFieldValue(address1AddressField, address);
     }
 
-    public void fillCityField(String city){
-        setFieldValue(cityAddressField, city);;
+    public void fillCityField(String city) {
+        setFieldValue(cityAddressField, city);
+        ;
     }
 
-    public void fillZipCodeField(String zip){
+    public void fillZipCodeField(String zip) {
         setFieldValue(postcodeAddressField, zip);
     }
 
-    public void fillCountryField(String country){
+    public void fillCountryField(String country) {
         Select countrySelectElemenet = new Select(countryAddressField);
         countrySelectElemenet.selectByVisibleText(country);
     }
 
-    public void fillStateField(String state){
-        Select stateOption  = new Select(stateAddressField);
+    public void fillStateField(String state) {
+        Select stateOption = new Select(stateAddressField);
         stateOption.selectByVisibleText("Alabama");
     }
 

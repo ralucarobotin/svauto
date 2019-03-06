@@ -18,6 +18,7 @@ public class CreateAccountTest extends BaseTest {
 
     private static final String EMPTY_INVALID_EMAIL_ERROR = "Invalid email address.";
     private static final String DUPLICATE_EMAIL_ERROR = "An account using this email address has already been registered. Please enter a valid password or request a new one.";
+    private static final String EMPTY_FORM_ERROR = "There are 8 errors";
 
     public CreateAccountTest() {
     }
@@ -90,10 +91,24 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.fillCityField(account.getCityAddress());
         this.createAccountPage.fillZipCodeField(account.getZipAddress());
         this.createAccountPage.fillStateField(account.getStateOptionAddress());
-        this.createAccountPage.register();
 
+        this.createAccountPage.register();
         this.myAccountPage.verify();
 
         Assert.assertEquals(this.myAccountPage.getUsernameText(), account.getFirstName() + " " + account.getLastName());
+    }
+
+    @Test
+    void registerEmptyForm() {
+        this.loginPage.open();
+        this.loginPage.verify();
+
+        this.loginPage.submitEmailAccountCreation(generateValidEmailAddress());
+        this.createAccountPage.verify();
+
+        this.createAccountPage.register();
+//        this.createAccountPage.verify();
+
+        Assert.assertEquals(this.createAccountPage.getCreateAccountErrorText(), EMPTY_FORM_ERROR);
     }
 }
