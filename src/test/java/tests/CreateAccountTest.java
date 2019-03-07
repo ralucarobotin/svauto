@@ -27,8 +27,8 @@ public class CreateAccountTest extends BaseTest {
         this.loginPage.clickCreateAccountButton();
         this.createAccountPage.verify();
         Account account = Account.Builder
-                .genderMale()
-                .genderFemale()
+//                .genderMale()
+//                .genderFemale()
                 .customerFirstName()
                 .customerLastName()
                 .email()
@@ -53,7 +53,7 @@ public class CreateAccountTest extends BaseTest {
                 .alias()
                 .build();
 
-        this.createAccountPage.selectGender(account.getGenderFemale());
+//        this.createAccountPage.selectGender(account.getGenderFemale());
         this.createAccountPage.inputCustomerFirstName(account.getCustomerFirstName());
 //        this.createAccountPage.inputCustomerLastName();
 //        this.createAccountPage.inputHomePhone();
