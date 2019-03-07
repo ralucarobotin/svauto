@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static helpers.WebElementHelper.areVisible;
-import static helpers.WebElementHelper.inputLetters;
-import static helpers.WebElementHelper.inputNumbers;
+import static helpers.WebElementHelper.*;
 
 public class CreateAccountPage extends BasePage {
 
@@ -102,21 +100,20 @@ public class CreateAccountPage extends BasePage {
         return areVisible(customerFirstName, customerLastName, email, registerButton);
     }
 
-    public WebElement selectGender(){
-        boolean addGender = RandomUtils.nextBoolean();
-        return addGender ? genderMale : genderFemale;
+//    public boolean inputGender(){
+//
+//    }
+
+    public void inputCustomerFirstName(String text){
+        setFieldValue(customerFirstName, text);
     }
 
-    public void inputCustomerFirstName(){
-        inputLetters(customerFirstName);
+    public void inputCustomerLastName(String text){
+        setFieldValue(customerLastName, text);
     }
 
-    public void inputCustomerLastName(){
-        inputLetters(customerLastName);
-    }
-
-    public void inputHomePhone(){
-        inputNumbers(phone);
+    public void inputHomePhone(String text){
+        setFieldValue(phone, text);
     }
 
 }

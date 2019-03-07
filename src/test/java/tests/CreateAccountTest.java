@@ -3,6 +3,9 @@ package tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
+import static helpers.WebElementHelper.inputLetters;
+import static helpers.WebElementHelper.inputNumbers;
+
 
 public class CreateAccountTest extends BaseTest {
 
@@ -11,7 +14,7 @@ public class CreateAccountTest extends BaseTest {
     private CreateAccountPage createAccountPage = null;
 
     @BeforeMethod
-    void beforeMethod(){
+    void beforeMethod() {
         this.dashboardPage = new DashboardPage(getDriver());
         this.loginPage = new LoginPage(getDriver());
         this.createAccountPage = new CreateAccountPage(getDriver());
@@ -26,37 +29,37 @@ public class CreateAccountTest extends BaseTest {
         this.loginPage.fillInAccountEmail();
         this.loginPage.clickCreateAccountButton();
         this.createAccountPage.verify();
-        Account account = Account.Builder
-//                .genderMale()
-//                .genderFemale()
-                .customerFirstName()
-                .customerLastName()
-                .email()
-                .password()
-                .days()
-                .months()
-                .years()
-                .newsletter()
-                .optIn()
-                .firstName()
-                .lastName()
-                .company()
-                .firstAddress()
-                .secondAddress()
-                .city()
-                .state()
-                .postcode()
-                .country()
-                .otherInfo()
-                .phone()
-                .mobilePhone()
-                .alias()
+        Account account = new Account.Builder()
+//                .genderMale(selectGender())
+//                .genderFemale(selectGender())
+                .customerFirstName(inputLetters())
+                .customerLastName(inputLetters())
+//                .email()
+//                .password()
+//                .days()
+//                .months()
+//                .years()
+//                .newsletter()
+//                .optIn()
+//                .firstName()
+//                .lastName()
+//                .company()
+//                .firstAddress()
+//                .secondAddress()
+//                .city()
+//                .state()
+//                .postcode()
+//                .country()
+//                .otherInfo()
+                .phone(inputNumbers())
+//                .mobilePhone()
+//                .alias()
                 .build();
 
-//        this.createAccountPage.selectGender(account.getGenderFemale());
+//        this.createAccountPage.inputGender();
         this.createAccountPage.inputCustomerFirstName(account.getCustomerFirstName());
-//        this.createAccountPage.inputCustomerLastName();
-//        this.createAccountPage.inputHomePhone();
+        this.createAccountPage.inputCustomerLastName(account.getCustomerLastName());
+        this.createAccountPage.inputHomePhone(account.getPhone());
 //        this.createAccountPage.verify();
     }
 }

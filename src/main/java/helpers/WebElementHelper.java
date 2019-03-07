@@ -63,18 +63,24 @@ public class WebElementHelper {
     element.sendKeys(generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
   }
 
-  public static void inputLetters(WebElement element){
+  public static String inputLetters(){
     int length = 10;
     boolean letters = true;
     boolean numbers = false;
-    element.click();
-    element.clear();
     String generateString = RandomStringUtils.random(length, letters, numbers);
-    element.sendKeys(generateString);
+    return generateString;
   }
 
-  public static void inputNumbers(WebElement element){
+  public static String inputNumbers(){
     String generateNumbers = RandomStringUtils.randomNumeric(0, 9);
-    element.sendKeys(generateNumbers);
+    return generateNumbers;
   }
+
+//  public static boolean selectGender(){
+//    boolean genderMale = true;
+//    boolean genderFemale = true;
+//    boolean addGender = RandomUtils.nextBoolean();
+//    return addGender ? genderMale : genderFemale;
+//  }
+
 }

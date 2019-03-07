@@ -4,8 +4,8 @@ package tests;
 public class Account {
 
     //YOUR PERSONAL INFORMATION
-    private int genderMale;
-    private int genderFemale;
+    private boolean genderMale;
+    private boolean genderFemale;
     private String customerFirstName;
     private String customerLastName;
     private String email;
@@ -31,38 +31,14 @@ public class Account {
     private String mobilePhone;
     private String alias;
 
-    private Account(Builder build){
-        this.genderMale = build.genderMale;
-        this.genderFemale = build.genderFemale;
-        this.customerFirstName = build.customerFirstName;
-        this.customerLastName = build.customerLastName;
-        this.email = build.email;
-        this.password = build.password;
-        this.days = build.days;
-        this.months = build.months;
-        this.years = build.years;
-        this.newsletter = build.newsletter;
-        this.optIn = build.optIn;
-        this.firstName = build.firstName;
-        this.lastName = build.lastName;
-        this.company = build.company;
-        this.firstAddress = build.firstAddress;
-        this.secondAddress = build.secondAddress;
-        this.city = build.city;
-        this.state = build.state;
-        this.postcode = build.postcode;
-        this.country = build.country;
-        this.otherInfo = build.otherInfo;
-        this.phone = build.phone;
-        this.mobilePhone = build.mobilePhone;
-        this.alias = build.alias;
+    private Account(){
     }
 
-    public int getGenderMale() {
+    public boolean getGenderMale() {
         return genderMale;
     }
 
-    public int getGenderFemale() {
+    public boolean getGenderFemale() {
         return genderFemale;
     }
 
@@ -155,8 +131,8 @@ public class Account {
     }
 
     public static class Builder {
-        private int genderMale;
-        private int genderFemale;
+        private boolean genderMale;
+        private boolean genderFemale;
         private String customerFirstName;
         private String customerLastName;
         private String email;
@@ -180,12 +156,12 @@ public class Account {
         private String mobilePhone;
         private String alias;
 
-        public Builder genderMale(int genderMale){
+        public Builder genderMale(boolean genderMale){
             this.genderMale = genderMale;
             return this;
         }
 
-        public Builder genderFemale(int genderFemale){
+        public Builder genderFemale(boolean genderFemale){
             this.genderFemale = genderFemale;
             return this;
         }
@@ -301,34 +277,33 @@ public class Account {
         }
 
         public Account build(){
-//            Account account =  new Account(this);
-//            account.genderMale = this.genderMale;
-//            account.genderFemale = this.genderFemale;
-//            account.customerFirstName = this.customerFirstName;
-//            account.customerLastName = this.customerLastName;
-//            account.email = this.email;
-//            account.password = this.password;
-//            account.days = this.days;
-//            account.months = this.months;
-//            account.years = this.years;
-//            account.newsletter = this.newsletter;
-//            account.optIn = this.optIn;
-//            account.firstName = this.firstName;
-//            account.lastName = this.lastName;
-//            account.company = this.company;
-//            account.firstAddress = this.firstAddress;
-//            account.secondAddress = this.secondAddress;
-//            account.city = this.city;
-//            account.state = this.state;
-//            account.postcode = this.postcode;
-//            account.country = this.country;
-//            account.otherInfo = this.otherInfo;
-//            account.phone = this.phone;
-//            account.mobilePhone = this.mobilePhone;
-//            account.alias = this.alias;
+            Account account =  new Account();
+            account.genderMale = this.genderMale;
+            account.genderFemale = this.genderFemale;
+            account.customerFirstName = this.customerFirstName;
+            account.customerLastName = this.customerLastName;
+            account.email = this.email;
+            account.password = this.password;
+            account.days = this.days;
+            account.months = this.months;
+            account.years = this.years;
+            account.newsletter = this.newsletter;
+            account.optIn = this.optIn;
+            account.firstName = this.firstName;
+            account.lastName = this.lastName;
+            account.company = this.company;
+            account.firstAddress = this.firstAddress;
+            account.secondAddress = this.secondAddress;
+            account.city = this.city;
+            account.state = this.state;
+            account.postcode = this.postcode;
+            account.country = this.country;
+            account.otherInfo = this.otherInfo;
+            account.phone = this.phone;
+            account.mobilePhone = this.mobilePhone;
+            account.alias = this.alias;
 
-//            return account;
-            return new Account(this);
+            return account;
         }
     }
 }
