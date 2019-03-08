@@ -162,6 +162,14 @@ public class CreateAccountPage extends BasePage {
         stateOption.selectByVisibleText(state);
     }
 
+    public void fillGenderField(String gender) {
+        if(gender.equals("Male")){
+            this.genderMaleOption.click();
+        } else {
+            this.genderFemaleOption.click();
+        }
+    }
+
     public void register() {
         registerButton.click();
     }

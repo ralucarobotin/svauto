@@ -100,6 +100,7 @@ public class CreateAccountTest extends BaseTest {
         this.loginPage.submitEmailAccountCreation(generateValidEmailAddress());
         this.createAccountPage.verify();
 
+        this.createAccountPage.fillGenderField(account.getGender());
         this.createAccountPage.fillFirstNameField(account.getFirstName());
         this.createAccountPage.fillLastNameField(account.getLastName());
         this.createAccountPage.fillPasswordField(account.getPassword());
