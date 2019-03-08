@@ -29,15 +29,19 @@ public class NewAccountTest extends BaseTest {
             + "2. Fill in a valid, unused email address.\n"
             + "3. Click Create Account.\n"
             + "4. Verify that the Create account form is displayed.\n")
-    public void testCreateAccountButton() {
+    public void emailValidation() {
         dashboardPage.open();
         dashboardPage.clickLoginButton();
         registrationPage.verify();
-        registrationPage.fillEmailAddress(Utilities.generateNewEmail("mailinator.com"));
+        registrationPage.fillEmailAddress(Utilities.generateEmail("mailinator.com"));
         registrationPage.waitForElementToAppear(registrationPage.getCreateAccountButton());
         registrationPage.clickCreateAccount();
 
         newAccountPage.verify();
+    }
+
+    public void invalidEmail(){
+
     }
 
     @Test(priority = 1,
@@ -52,10 +56,11 @@ public class NewAccountTest extends BaseTest {
                     + "7. Verify that the My Account page is displayed.\n")
     public void createAccount() {
         registrationPage.open();
-        registrationPage.gotoCreateAccountForm();
+        registrationPage.gotoNewAccountForm();
 
-        Assert.assertTrue(newAccountPage.verifyEmailAutofill(), "Email address was not auto-filled");
+        newAccountPage.verify();
         newAccountPage.fillCreateAccountForm();
+        //Assert.assertFalse(newAccountPage.getPersonalInfoEmail().isEmpty(), "Email address was not pre-filled");
         Assert.assertTrue(newAccountPage.verifyFirstNameAutofill(), "First name was not auto-filled");
         Assert.assertTrue(newAccountPage.verifyLastNameAutofill(), "Last name was not auto-filled");
         newAccountPage.clickRegisterButton();
@@ -63,9 +68,9 @@ public class NewAccountTest extends BaseTest {
         myAccountPage.verify();
     }
 
-    @Test
-    public void emptyFieldErrors() {
-
-    }
+//    @Test
+//    public void emptyFieldErrors() {
+//
+//    }
 
 }

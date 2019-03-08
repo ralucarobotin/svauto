@@ -53,8 +53,8 @@ public class RegistrationPage extends BasePage{
 
     public WebElement getCreateAccountButton(){ return this.createAccountButton;}
 
-    public void gotoCreateAccountForm(){
-        fillEmailAddress(Utilities.generateNewEmail("mailinator.com"));
+    public void gotoNewAccountForm(){
+        fillEmailAddress(Utilities.generateEmail("mailinator.com"));
         clickCreateAccount();
     }
 }

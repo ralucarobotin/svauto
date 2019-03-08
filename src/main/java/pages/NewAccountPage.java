@@ -1,4 +1,5 @@
 package pages;
+import helpers.Utilities;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -13,9 +14,19 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class NewAccountPage extends BasePage{
 
-    private static final String URL = "automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
-    private RegistrationPage registrationPage = null;
-    private DashboardPage dashboardPage = null;
+    public static final String INVALID_EMAIL_ERROR = "Invalid email address.";
+    public static final String EMAIL_EXISTS_ERROR = "An account using this email address has already been registered. Please enter a valid password or request a new one.";
+    public static final String LAST_NAME_REQUIRED_ERROR = "lastname is required.";
+    public static final String FIRST_NAME_REQUIRED_ERROR = "firstname is required.";
+    public static final String PSWD_REQUIRED_ERROR = "passwd is required.";
+    public static final String ADDRESS_REQUIRED_ERROR = "address1 is required.";
+    public static final String CITY_REQUIRED_ERROR = "city is required.";
+    public static final String ZIP_INVALID_ERROR = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
+    public static final String STATE_REQUIRED_ERROR = "This country requires you to choose a State.";
+    public static final String PHONE_REQUIRED_TIP = "You must register at least one phone number.";
+    public static final String COUNTRY_REQUIRED_ERROR = "Country is invalid";
+    public static final String INVALID_LAST_NAME_ERROR = "lastname is invalid.";
+    public static final String INVALID_FIRST_NAME_ERROR = "firstname is invalid.";
 
     //YOUR PERSONAL INFORMATION
     @FindBy (id = "id_gender1")
@@ -67,7 +78,7 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "postcode")
     private WebElement address_postcode;
 
-    @FindBy (id = "uniform-id_country")
+    @FindBy (id = "id_country")
     private WebElement address_country;
 
     @FindBy (id = "phone")
@@ -85,20 +96,6 @@ public class NewAccountPage extends BasePage{
     @FindBy (css = ".inline-infos")
     private WebElement inlineInfo;
 
-    public static final String INVALID_EMAIL_ERROR = "Invalid email address.";
-    public static final String EMAIL_EXISTS_ERROR = "An account using this email address has already been registered. Please enter a valid password or request a new one.";
-    public static final String LAST_NAME_REQUIRED_ERROR = "lastname is required.";
-    public static final String FIRST_NAME_REQUIRED_ERROR = "firstname is required.";
-    public static final String PSWD_REQUIRED_ERROR = "passwd is required.";
-    public static final String ADDRESS_REQUIRED_ERROR = "address1 is required.";
-    public static final String CITY_REQUIRED_ERROR = "city is required.";
-    public static final String ZIP_INVALID_ERROR = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
-    public static final String STATE_REQUIRED_ERROR = "This country requires you to choose a State.";
-    public static final String PHONE_REQUIRED_TIP = "You must register at least one phone number.";
-    public static final String COUNTRY_REQUIRED_ERROR = "Country is invalid";
-    public static final String INVALID_LAST_NAME_ERROR = "lastname is invalid.";
-    public static final String INVALID_FIRST_NAME_ERROR = "firstname is invalid.";
-
     public NewAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -110,10 +107,7 @@ public class NewAccountPage extends BasePage{
 
     @Override
     protected boolean isValid() {
-        return areVisible(gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField, passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_streetAddress, address_city, address_state, address_postcode, address_country, address_mobilePhone, address_alias, registerButton);
-    }
-    public void open(){
-        openUrl(URL);
+        return areVisible(personalInfo_emailField, passwordField, registerButton);
     }
 
     public String getAccountFormErrorText(){
@@ -128,8 +122,8 @@ public class NewAccountPage extends BasePage{
         return this.inlineInfo.getText();
     }
 
-    public boolean verifyEmailAutofill(){
-        return !this.personalInfo_emailField.getText().equals(StringUtils.EMPTY);
+    public String getPersonalInfoEmail(){
+        return this.personalInfo_emailField.getText();
     }
 
     public void selectFemaleGender(){
@@ -141,34 +135,28 @@ public class NewAccountPage extends BasePage{
     }
 
     public void fillFirstName(){
-        setFieldValue(personalInfo_firstName, RandomStringUtils.randomAlphabetic(5));
+        setFieldValue(personalInfo_firstName, Utilities.generateRandomAlphabetic());
     }
 
     public void fillLastName(){
-        setFieldValue(personalInfo_firstName, RandomStringUtils.randomAlphabetic(5));
+        setFieldValue(personalInfo_lastName, Utilities.generateRandomAlphabetic());
     }
 
     public void fillPassword(){
-        setFieldValue(passwordField, RandomStringUtils.randomAlphanumeric(10));
+        setFieldValue(passwordField, Utilities.generateRandomPassword());
     }
 
     public void selectBirthDate_day() {
-
-        waitForElementToAppear(birthDate_day);
         Select birthDay_dropdown = new Select(this.birthDate_day);
-        this.birthDate_day.click();
        birthDay_dropdown.selectByIndex(new Random().nextInt(birthDay_dropdown.getOptions().size()));
     }
 
     public void selectBirthDate_month(){
-        waitForElementToAppear(birthDate_month);
         Select birthMonth_dropdown = new Select(this.birthDate_month);
-        this.birthDate_month.click();
         birthMonth_dropdown.selectByIndex(new Random().nextInt(birthMonth_dropdown.getOptions().size()));
     }
 
     public void selectBirthDate_year(){
-        waitForElementToAppear(birthDate_year);
         Select birthYear_dropdown = new Select(this.birthDate_year);
         birthYear_dropdown.selectByIndex(new Random().nextInt(birthYear_dropdown.getOptions().size()));
     }
@@ -182,19 +170,18 @@ public class NewAccountPage extends BasePage{
     }
 
     public void fillCompanyAddress() {
-        setFieldValue(address_company, RandomStringUtils.randomAlphabetic(5));
+        setFieldValue(address_company, Utilities.generateRandomAlphabetic());
     }
 
     public void fillAddress() {
-        setFieldValue(address_streetAddress, RandomStringUtils.randomAlphabetic(10));
+        setFieldValue(address_streetAddress, Utilities.generateRandomAlphabetic());
     }
 
     public void fillCity() {
-        setFieldValue(address_city, RandomStringUtils.randomAlphabetic(10));
+        setFieldValue(address_city, Utilities.generateRandomAlphabetic());
     }
 
     public void selectState_dropdown() {
-        waitForElementToAppear(address_state);
         Select state_dropdown = new Select(address_state);
         state_dropdown.selectByIndex(new Random().nextInt(state_dropdown.getOptions().size()));
     }
@@ -204,26 +191,20 @@ public class NewAccountPage extends BasePage{
     }
 
     public void selectCountry_dropdown(String country) {
-        waitForElementToAppear(address_country);
         Select country_dropdown = new Select(address_country);
-        this.address_country.click();
         country_dropdown.selectByVisibleText(country);
     }
 
     public void fillPhoneNumber(){
-        setFieldValue(this.address_mobilePhone, RandomStringUtils.randomNumeric(10));
+        setFieldValue(this.address_mobilePhone, Utilities.generateRandomNumbers());
     }
 
     public void fillAliasAddress(){
-        setFieldValue(this.address_alias, RandomStringUtils.randomAlphabetic(10));
+        setFieldValue(this.address_alias, Utilities.generateRandomAlphabetic());
     }
 
     public void clickRegisterButton(){
         this.registerButton.click();
-    }
-
-    public WebElement getRegisterButton(){
-        return this.registerButton;
     }
 
     public void fillCreateAccountForm(){

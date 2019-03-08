@@ -63,7 +63,25 @@ public class Utilities {
     }
   }
 
-  public static String generateNewEmail(String domain){
-      return RandomStringUtils.randomAlphabetic(10) + "@" + domain;
+  public static String generateEmail(String domain){
+      String randomEmail = RandomStringUtils.randomAlphabetic(10) + "@" + domain;
+      return randomEmail;
   }
+
+  public static String generateRandomAlphabetic(){
+      String randomAlphabetic = RandomStringUtils.randomAlphabetic(10);
+      return randomAlphabetic;
+  }
+
+  public static String generateRandomPassword(){
+      String randomPassword = RandomStringUtils.randomAlphanumeric(10);
+      return randomPassword;
+  }
+
+  public static String generateRandomNumbers(){
+    String randomNumbers = RandomStringUtils.randomNumeric(10);
+    return randomNumbers;
+  }
+
+
 }
