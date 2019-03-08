@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static helpers.WebElementHelper.areVisible;
-import static helpers.WebElementHelper.setFieldValue;
-import static helpers.WebElementHelper.inputEmail;
+import static helpers.WebElementHelper.*;
 
 public class LoginPage extends BasePage {
 
@@ -67,8 +65,8 @@ public class LoginPage extends BasePage {
         openUrl(openLoginPageUrl);
     }
 
-    public void fillInAccountEmail(){
-        inputEmail(inputEmailCreateAccount);
+    public void fillInAccountEmail(String text){
+        setFieldValue(inputEmailCreateAccount,  text);
     }
 
     public void clickCreateAccountButton(){

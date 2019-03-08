@@ -48,19 +48,25 @@ public class WebElementHelper {
     return elementsNotVisible.isEmpty();
   }
 
-  public static void inputEmail(WebElement element){
+  public static String inputGeneratedEmail(){
     int length = 5;
-    int length2 = 5;
+    int length2 = 4;
     int length3 = 3;
     boolean letters = true;
     boolean numbers = true;
     boolean numbersTwo = false;
-    element.click();
-    element.clear();
     String generateStringOne = RandomStringUtils.random(length, letters, numbers);
     String generateStringTwo = RandomStringUtils.random(length2, letters, numbers);
     String generateStringThree = RandomStringUtils.random(length3, letters, numbersTwo);
-    element.sendKeys(generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
+    return (generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
+  }
+
+  public static String inputPassword(){
+    int length = 10;
+    boolean letters = true;
+    boolean numbers = true;
+    String generateString = RandomStringUtils.random(length, letters, numbers);
+    return generateString;
   }
 
   public static String inputLetters(){

@@ -3,8 +3,9 @@ package tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
-import static helpers.WebElementHelper.inputLetters;
-import static helpers.WebElementHelper.inputNumbers;
+
+
+import static helpers.WebElementHelper.*;
 
 
 public class CreateAccountTest extends BaseTest {
@@ -26,7 +27,7 @@ public class CreateAccountTest extends BaseTest {
         this.dashboardPage.verify();
         this.dashboardPage.clickLoginButton();
         this.loginPage.verify();
-        this.loginPage.fillInAccountEmail();
+        this.loginPage.fillInAccountEmail(inputGeneratedEmail());
         this.loginPage.clickCreateAccountButton();
         this.createAccountPage.verify();
         Account account = new Account.Builder()
@@ -34,8 +35,8 @@ public class CreateAccountTest extends BaseTest {
 //                .genderFemale(selectGender())
                 .customerFirstName(inputLetters())
                 .customerLastName(inputLetters())
-//                .email()
-//                .password()
+                .email(inputGeneratedEmail())
+                .password(inputPassword())
 //                .days()
 //                .months()
 //                .years()
@@ -59,7 +60,9 @@ public class CreateAccountTest extends BaseTest {
 //        this.createAccountPage.inputGender();
         this.createAccountPage.inputCustomerFirstName(account.getCustomerFirstName());
         this.createAccountPage.inputCustomerLastName(account.getCustomerLastName());
+        this.createAccountPage.inputCustomerEmail(account.getEmail());
+        this.createAccountPage.inputCustomerPassword(account.getPassword());
         this.createAccountPage.inputHomePhone(account.getPhone());
-//        this.createAccountPage.verify();
+        this.createAccountPage.verify();
     }
 }

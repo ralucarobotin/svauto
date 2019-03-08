@@ -112,6 +112,18 @@ public class CreateAccountPage extends BasePage {
         setFieldValue(customerLastName, text);
     }
 
+    public void inputCustomerEmail(String text){
+        if(!text.contains(text)){
+            setFieldValue(email, text);
+        } else {
+            System.out.println("Email already set!");
+        }
+    }
+
+    public void inputCustomerPassword(String text){
+        setFieldValue(password, text);
+    }
+
     public void inputHomePhone(String text){
         setFieldValue(phone, text);
     }
