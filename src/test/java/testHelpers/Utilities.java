@@ -19,9 +19,9 @@ public class Utilities {
     }
 
     public static String generateRandomGender() {
-        boolean testGender = RandomUtils.nextBoolean();
-        return testGender ? "Male" : "Female";
+        return RandomUtils.nextBoolean() ? "Male" : "Female";
     }
+
 
     public static String generateRandomPhoneNumber() {
         return RandomStringUtils.random(10, ALLOWEDNUMBERS);
