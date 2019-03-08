@@ -9,6 +9,8 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class LoginPage extends BasePage {
 
+  private final static String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+
   @FindBy(id = "email")
   private WebElement emailField;
 
@@ -21,15 +23,6 @@ public class LoginPage extends BasePage {
   @FindBy (css = "#center_column > div.alert.alert-danger > ol > li")
   private WebElement signInError;
 
-  //Create an account form
-  @FindBy(id = "email_create")
-  private WebElement createEmailField;
-
-  @FindBy(css="button #SubmitCreate")
-  private WebElement createAccountButton;
-
-  @FindBy (id = "create_account_error")
-  private WebElement createAccountError;
 
   public static final String EMPTY_EMAIL_ERROR = "An email address required.";
   public static final String EMPTY_PASSWORD_ERROR = "Password is required.";
@@ -71,23 +64,7 @@ public class LoginPage extends BasePage {
     return signInError;
   }
 
-  //create new account
-  public void fillEmailAddress(String email){
-    setFieldValue(createEmailField,email);
+ public void open(){
+   openUrl(URL);
   }
-
-  public void clickCreateAccount(){
-    this.createAccountButton.click();
-  }
-
-  public String getCreateAccountErrorText(){
-    return this.createAccountError.getText();
-  }
-
-//  public void openLoginPage(){
-//    DashboardPage dashboardPage = new DashboardPage(getDriver());
-//    dashboardPage.verify();
-//    dashboardPage.clickLoginButton();
-//    this.verify();
-//  }
 }

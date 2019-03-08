@@ -1,18 +1,20 @@
 package pages;
-
-import helpers.Utilities;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.Random;
+
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
 
 public class NewAccountPage extends BasePage{
 
-    private LoginPage loginPage = null;
+    private static final String URL = "automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
+    private RegistrationPage registrationPage = null;
     private DashboardPage dashboardPage = null;
 
     //YOUR PERSONAL INFORMATION
@@ -34,17 +36,14 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "passwd")
     private WebElement passwordField;
 
-    @FindBy (css = "select#days")
+    @FindBy (id = "days")
     private WebElement birthDate_day;
-    private Select birthDay_dropdown = new Select(birthDate_day);
 
-    @FindBy (css = "select#months")
+    @FindBy (id = "months")
     private WebElement birthDate_month;
-    private Select birthMonth_dropdown = new Select(birthDate_month);
 
-    @FindBy (css = "select#years")
+    @FindBy (id = "years")
     private WebElement birthDate_year;
-    private Select birthYear_dropdown = new Select(birthDate_year);
 
     //YOUR ADDRESS
     @FindBy (id = "firstname")
@@ -64,14 +63,12 @@ public class NewAccountPage extends BasePage{
 
     @FindBy (id = "id_state")
     private WebElement address_state;
-    private Select state_dropdown = new Select(address_state);
 
     @FindBy (id = "postcode")
     private WebElement address_postcode;
 
-    @FindBy (id = "id_country")
+    @FindBy (id = "uniform-id_country")
     private WebElement address_country;
-    private Select country_dropdown = new Select(address_country);
 
     @FindBy (id = "phone")
     private WebElement address_mobilePhone;
@@ -107,22 +104,17 @@ public class NewAccountPage extends BasePage{
     }
 
     @Override
-    protected boolean isCurrent() {return areVisible(registerButton);
+    protected boolean isCurrent() {
+        return areVisible(registerButton);
         }
 
     @Override
     protected boolean isValid() {
         return areVisible(gender_male, gender_female, personalInfo_firstName, personalInfo_lastName, personalInfo_emailField, passwordField, birthDate_day, birthDate_month, birthDate_year, address_firstName, address_lastName, address_company, address_streetAddress, address_city, address_state, address_postcode, address_country, address_mobilePhone, address_alias, registerButton);
     }
-
-//    public void openNewAccountPage() {
-//        dashboardPage.verify();
-//        dashboardPage.clickLoginButton();
-//        loginPage.verify();
-//        loginPage.fillEmailAddress(Utilities.generateNewEmail("mailinator"));
-//        loginPage.clickCreateAccount();
-//        this.verify();
-//    }
+    public void open(){
+        openUrl(URL);
+    }
 
     public String getAccountFormErrorText(){
         return accountFormError.getText();
@@ -160,19 +152,25 @@ public class NewAccountPage extends BasePage{
         setFieldValue(passwordField, RandomStringUtils.randomAlphanumeric(10));
     }
 
-    public void setBirthDay_dropdown(String value) {
+    public void selectBirthDate_day() {
+
         waitForElementToAppear(birthDate_day);
-        this.birthDay_dropdown.selectByValue(value);
+        Select birthDay_dropdown = new Select(this.birthDate_day);
+        this.birthDate_day.click();
+       birthDay_dropdown.selectByIndex(new Random().nextInt(birthDay_dropdown.getOptions().size()));
     }
 
-    public void setBirthDate_month(String value){
+    public void selectBirthDate_month(){
         waitForElementToAppear(birthDate_month);
-        this.birthMonth_dropdown.selectByValue(value);
+        Select birthMonth_dropdown = new Select(this.birthDate_month);
+        this.birthDate_month.click();
+        birthMonth_dropdown.selectByIndex(new Random().nextInt(birthMonth_dropdown.getOptions().size()));
     }
 
-    public void setBirthDate_year(String value){
+    public void selectBirthDate_year(){
         waitForElementToAppear(birthDate_year);
-        this.birthYear_dropdown.selectByValue(value);
+        Select birthYear_dropdown = new Select(this.birthDate_year);
+        birthYear_dropdown.selectByIndex(new Random().nextInt(birthYear_dropdown.getOptions().size()));
     }
 
     public boolean verifyFirstNameAutofill(){
@@ -195,18 +193,21 @@ public class NewAccountPage extends BasePage{
         setFieldValue(address_city, RandomStringUtils.randomAlphabetic(10));
     }
 
-    public void setState_dropdown(String stateName) {
+    public void selectState_dropdown() {
         waitForElementToAppear(address_state);
-        this.state_dropdown.selectByVisibleText(stateName);
+        Select state_dropdown = new Select(address_state);
+        state_dropdown.selectByIndex(new Random().nextInt(state_dropdown.getOptions().size()));
     }
 
     public void fillZipCode(){
         setFieldValue(address_postcode, RandomStringUtils.randomNumeric(5));
     }
 
-    public void setCountry_dropdown(String countryName) {
+    public void selectCountry_dropdown(String country) {
         waitForElementToAppear(address_country);
-        this.country_dropdown.selectByVisibleText(countryName);
+        Select country_dropdown = new Select(address_country);
+        this.address_country.click();
+        country_dropdown.selectByVisibleText(country);
     }
 
     public void fillPhoneNumber(){
@@ -221,6 +222,26 @@ public class NewAccountPage extends BasePage{
         this.registerButton.click();
     }
 
+    public WebElement getRegisterButton(){
+        return this.registerButton;
+    }
 
+    public void fillCreateAccountForm(){
+        selectFemaleGender();
+        fillFirstName();
+        fillLastName();
+        fillPassword();
+        selectBirthDate_day();
+        selectBirthDate_month();
+        selectBirthDate_year();
+        fillCompanyAddress();
+        fillAddress();
+        fillCity();
+        selectState_dropdown();
+        fillZipCode();
+        selectCountry_dropdown("United States");
+        fillPhoneNumber();
+        fillAliasAddress();
+    }
 
 }
