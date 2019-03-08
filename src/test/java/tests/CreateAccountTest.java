@@ -4,9 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
 
-
-import static helpers.WebElementHelper.*;
-
+import static helpers.Utilities.*;
 
 public class CreateAccountTest extends BaseTest {
 
@@ -22,21 +20,21 @@ public class CreateAccountTest extends BaseTest {
     }
 
     @Test
-    public void testInput() {
+    public void testCreateValidAccount() {
         this.dashboardPage.open();
         this.dashboardPage.verify();
         this.dashboardPage.clickLoginButton();
         this.loginPage.verify();
-        this.loginPage.fillInAccountEmail(inputGeneratedEmail());
+        this.loginPage.fillInAccountEmail(generatedEmail());
         this.loginPage.clickCreateAccountButton();
         this.createAccountPage.verify();
         Account account = new Account.Builder()
 //                .genderMale(selectGender())
 //                .genderFemale(selectGender())
-                .customerFirstName(inputLetters())
-                .customerLastName(inputLetters())
-                .email(inputGeneratedEmail())
-                .password(inputPassword())
+                .customerFirstName(generateCharacters())
+                .customerLastName(generateCharacters())
+                .email(generatedEmail())
+                .password(generatePassword())
 //                .days()
 //                .months()
 //                .years()
@@ -52,7 +50,7 @@ public class CreateAccountTest extends BaseTest {
 //                .postcode()
 //                .country()
 //                .otherInfo()
-                .phone(inputNumbers())
+                .phone(generateNumbers())
 //                .mobilePhone()
 //                .alias()
                 .build();

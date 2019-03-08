@@ -47,46 +47,4 @@ public class WebElementHelper {
     }
     return elementsNotVisible.isEmpty();
   }
-
-  public static String inputGeneratedEmail(){
-    int length = 5;
-    int length2 = 4;
-    int length3 = 3;
-    boolean letters = true;
-    boolean numbers = true;
-    boolean numbersTwo = false;
-    String generateStringOne = RandomStringUtils.random(length, letters, numbers);
-    String generateStringTwo = RandomStringUtils.random(length2, letters, numbers);
-    String generateStringThree = RandomStringUtils.random(length3, letters, numbersTwo);
-    return (generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
-  }
-
-  public static String inputPassword(){
-    int length = 10;
-    boolean letters = true;
-    boolean numbers = true;
-    String generateString = RandomStringUtils.random(length, letters, numbers);
-    return generateString;
-  }
-
-  public static String inputLetters(){
-    int length = 10;
-    boolean letters = true;
-    boolean numbers = false;
-    String generateString = RandomStringUtils.random(length, letters, numbers);
-    return generateString;
-  }
-
-  public static String inputNumbers(){
-    String generateNumbers = RandomStringUtils.randomNumeric(0, 9);
-    return generateNumbers;
-  }
-
-//  public static boolean selectGender(){
-//    boolean genderMale = true;
-//    boolean genderFemale = true;
-//    boolean addGender = RandomUtils.nextBoolean();
-//    return addGender ? genderMale : genderFemale;
-//  }
-
 }

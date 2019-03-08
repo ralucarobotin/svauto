@@ -3,6 +3,7 @@ package helpers;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -61,4 +62,46 @@ public class Utilities {
       }
     }
   }
+
+  public static String generatedEmail(){
+    int length = 5;
+    int length2 = 4;
+    int length3 = 3;
+    boolean letters = true;
+    boolean numbers = true;
+    boolean numbersTwo = false;
+    String generateStringOne = RandomStringUtils.random(length, letters, numbers);
+    String generateStringTwo = RandomStringUtils.random(length2, letters, numbers);
+    String generateStringThree = RandomStringUtils.random(length3, letters, numbersTwo);
+    return (generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
+  }
+
+  public static String generatePassword(){
+    int length = 10;
+    boolean letters = true;
+    boolean numbers = true;
+    String generateString = RandomStringUtils.random(length, letters, numbers);
+    return generateString;
+  }
+
+  public static String generateCharacters(){
+    int length = 10;
+    boolean letters = true;
+    boolean numbers = false;
+    String generateString = RandomStringUtils.random(length, letters, numbers);
+    return generateString;
+  }
+
+  public static String generateNumbers(){
+    String generateNumbers = RandomStringUtils.randomNumeric(0, 9);
+    return generateNumbers;
+  }
+
+//  public static boolean selectGender(){
+//    boolean genderMale = true;
+//    boolean genderFemale = true;
+//    boolean addGender = RandomUtils.nextBoolean();
+//    return addGender ? genderMale : genderFemale;
+//  }
+
 }

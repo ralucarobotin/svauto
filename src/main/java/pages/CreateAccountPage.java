@@ -1,6 +1,5 @@
 package pages;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -113,11 +112,7 @@ public class CreateAccountPage extends BasePage {
     }
 
     public void inputCustomerEmail(String text){
-        if(!text.contains(text)){
-            setFieldValue(email, text);
-        } else {
-            System.out.println("Email already set!");
-        }
+        setFieldValue(email, text);
     }
 
     public void inputCustomerPassword(String text){
