@@ -1,107 +1,113 @@
 package helpers;
 
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 
 
 /**
  * General helper class
  */
 public class Utilities {
-  public static final String APP_FILE = "./app.properties";
-  private static final Logger LOG = Logger.getLogger(Class.class.getName());
-  private static final String SLEEP_INTERRUPTED = "Sleep interrupted!";
+    public static final String APP_FILE = "./app.properties";
+    private static final Logger LOG = Logger.getLogger(Class.class.getName());
+    private static final String SLEEP_INTERRUPTED = "Sleep interrupted!";
 
-  public static String getPropertyValue(Properties properties, String propertyName) {
-    if (StringUtils.isBlank(propertyName)) {
-      throw new IllegalArgumentException("System property name cannot be null or blank");
+    public static String getPropertyValue(Properties properties, String propertyName) {
+        if (StringUtils.isBlank(propertyName)) {
+            throw new IllegalArgumentException("System property name cannot be null or blank");
+        }
+
+        final String propertyValue = properties.getProperty(propertyName);
+        if (StringUtils.isNotBlank(propertyValue)) {
+            return propertyValue;
+        } else {
+            throw new IllegalArgumentException(String.format(
+                    "Environment variable '%s' does not exist or is blank", propertyValue));
+        }
     }
 
-    final String propertyValue = properties.getProperty(propertyName);
-    if (StringUtils.isNotBlank(propertyValue)) {
-      return propertyValue;
-    } else {
-      throw new IllegalArgumentException(String.format(
-          "Environment variable '%s' does not exist or is blank", propertyValue));
+    public static Properties getPropertyFileContent(String propertiesFileName) {
+        return new ReadPropFile().getPropertiesValue(propertiesFileName);
     }
-  }
 
-  public static Properties getPropertyFileContent(String propertiesFileName){
-    return new ReadPropFile().getPropertiesValue(propertiesFileName);
-  }
-
-  public static String getPropertyFromAppProp(String prop){
-    return getPropertyValue(getPropertyFileContent(APP_FILE), prop);
-  }
-
-  public static Object executeScript(final WebDriver driver, final String script, final Object... args) {
-    try {
-      return ((JavascriptExecutor) driver).executeScript(script, args);
+    public static String getPropertyFromAppProp(String prop) {
+        return getPropertyValue(getPropertyFileContent(APP_FILE), prop);
     }
-    catch (final WebDriverException ex) {
-      throw new WebDriverException("Could not execute JavaScript command '" + script + "'", ex);
+
+    public static Object executeScript(final WebDriver driver, final String script, final Object... args) {
+        try {
+            return ((JavascriptExecutor) driver).executeScript(script, args);
+        } catch (final WebDriverException ex) {
+            throw new WebDriverException("Could not execute JavaScript command '" + script + "'", ex);
+        }
     }
-  }
 
-  public static void sleep(final long timeoutMs, final boolean swallowExceptions) {
-    try {
-      Thread.sleep(timeoutMs);
+    public static void sleep(final long timeoutMs, final boolean swallowExceptions) {
+        try {
+            Thread.sleep(timeoutMs);
+        } catch (final InterruptedException e) {
+            if (swallowExceptions) {
+                LOG.info(SLEEP_INTERRUPTED);
+            } else {
+                throw new IllegalStateException(SLEEP_INTERRUPTED, e);
+            }
+        }
     }
-    catch (final InterruptedException e) {
-      if (swallowExceptions) {
-        LOG.info(SLEEP_INTERRUPTED);
-      }
-      else {
-        throw new IllegalStateException(SLEEP_INTERRUPTED, e);
-      }
+
+    public static void selectIntValue(WebElement element, int text){
+       element.sendKeys(String.valueOf(text));
     }
-  }
 
-  public static String generatedEmail(){
-    int length = 5;
-    int length2 = 4;
-    int length3 = 3;
-    boolean letters = true;
-    boolean numbers = true;
-    boolean numbersTwo = false;
-    String generateStringOne = RandomStringUtils.random(length, letters, numbers);
-    String generateStringTwo = RandomStringUtils.random(length2, letters, numbers);
-    String generateStringThree = RandomStringUtils.random(length3, letters, numbersTwo);
-    return (generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
-  }
 
-  public static String generatePassword(){
-    int length = 10;
-    boolean letters = true;
-    boolean numbers = true;
-    String generateString = RandomStringUtils.random(length, letters, numbers);
-    return generateString;
-  }
+//    public static void selectStringValue(WebElement element, String text){
+//        element.sendKeys(text);
+//    }
 
-  public static String generateCharacters(){
-    int length = 10;
-    boolean letters = true;
-    boolean numbers = false;
-    String generateString = RandomStringUtils.random(length, letters, numbers);
-    return generateString;
-  }
+    public static boolean generateBoolean() {
+        return RandomUtils.nextBoolean();
+    }
 
-  public static String generateNumbers(){
-    String generateNumbers = RandomStringUtils.randomNumeric(0, 9);
-    return generateNumbers;
-  }
+    public static String generateNumbers() {
+        return RandomStringUtils.randomNumeric(1, 11);
+    }
 
-//  public static boolean selectGender(){
-//    boolean genderMale = true;
-//    boolean genderFemale = true;
-//    boolean addGender = RandomUtils.nextBoolean();
-//    return addGender ? genderMale : genderFemale;
-//  }
+    public static String generateCharacters() {
+        return RandomStringUtils.random(10, true, false);
+    }
+
+    public static int generateDays(){
+        Random randomGenerator = new Random();
+        return randomGenerator.nextInt(32);
+    }
+
+//    public static int generateMonths(){
+//        Random randomGenerator = new Random();
+//        return randomGenerator.nextInt(13);
+//    }
+//
+//    public static int generateYears(){
+//        Random randomGenerator = new Random();
+//        return randomGenerator.nextInt(119);
+//    }
+
+    public static String generatedEmail() {
+        String generateStringOne = RandomStringUtils.random(5, true, true);
+        String generateStringTwo = RandomStringUtils.random(4, true, true);
+        String generateStringThree = RandomStringUtils.random(3, true, false);
+        return (generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
+    }
+
+    public static String generatePassword() {
+        return RandomStringUtils.random(10, true, true);
+    }
 
 }

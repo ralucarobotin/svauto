@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static helpers.Utilities.selectIntValue;
 import static helpers.WebElementHelper.*;
 
 public class CreateAccountPage extends BasePage {
@@ -85,7 +86,17 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
-    public CreateAccountPage(WebDriver driver){
+    //Extra
+    @FindBy(id = "uniform-days")
+    private WebElement uniformDays;
+
+    @FindBy(id = "uniform-months")
+    private WebElement uniformMonths;
+
+    @FindBy(id = "uniform-years")
+    private WebElement uniformYears;
+
+    public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
 
@@ -99,28 +110,71 @@ public class CreateAccountPage extends BasePage {
         return areVisible(customerFirstName, customerLastName, email, registerButton);
     }
 
-//    public boolean inputGender(){
-//
-//    }
+    public void inputGender(boolean text) {
+        if (!text) {
+            genderMale.click();
+        } else {
+            genderFemale.click();
+        }
+    }
 
-    public void inputCustomerFirstName(String text){
+    public void inputCustomerFirstName(String text) {
         setFieldValue(customerFirstName, text);
     }
 
-    public void inputCustomerLastName(String text){
+    public void inputCustomerLastName(String text) {
         setFieldValue(customerLastName, text);
     }
 
-    public void inputCustomerEmail(String text){
-        setFieldValue(email, text);
+    public void inputEmail(String text) {
+        if (driver.getPageSource().contains(email.getText())) {
+            System.out.println("Email already set!");
+        } else {
+            setFieldValue(email, text);
+        }
     }
 
-    public void inputCustomerPassword(String text){
+    public void inputPassword(String text) {
         setFieldValue(password, text);
     }
 
-    public void inputHomePhone(String text){
+    public void inputDays(int text) {
+        uniformDays.click();
+        if (driver.getPageSource().contains(days.getAttribute("id"))) {
+            selectIntValue(days, text);
+            days.click();
+        } else {
+            System.out.println("Day already set!");
+        }
+    }
+
+//    public void inputMonths(int text) {
+//        uniformMonths.click();
+//        if (driver.getPageSource().contains(months.getAttribute("id"))) {
+//            selectIntValue(months, text);
+//            months.getCssValue("value");
+//            months.click();
+//        } else {
+//            System.out.println("Month already set!");
+//        }
+//    }
+//
+//    public void inputYears(int text){
+//        uniformYears.click();
+//        if (driver.getPageSource().contains(years.getAttribute("id"))) {
+//            selectIntValue(years, text);
+//            years.getCssValue("value");
+//            years.click();
+//        } else {
+//            System.out.println("Year already set!");
+//        }
+//    }
+
+    public void inputPhone(String text) {
         setFieldValue(phone, text);
     }
 
+    public void inputMobilePhone(String text) {
+        setFieldValue(mobilePhone, text);
+    }
 }

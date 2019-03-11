@@ -21,23 +21,20 @@ public class CreateAccountTest extends BaseTest {
 
     @Test
     public void testCreateValidAccount() {
-        this.dashboardPage.open();
-        this.dashboardPage.verify();
-        this.dashboardPage.clickLoginButton();
+        this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
         this.loginPage.clickCreateAccountButton();
         this.createAccountPage.verify();
         Account account = new Account.Builder()
-//                .genderMale(selectGender())
-//                .genderFemale(selectGender())
-                .customerFirstName(generateCharacters())
-                .customerLastName(generateCharacters())
-                .email(generatedEmail())
-                .password(generatePassword())
-//                .days()
-//                .months()
-//                .years()
+//                .gender(generateBoolean())
+//                .customerFirstName(generateCharacters())
+//                .customerLastName(generateCharacters())
+//                .email(generatedEmail())
+//                .password(generatePassword())
+//                .days(generateDays())
+//                .months(generateMonths())
+//                .years(generateYears())
 //                .newsletter()
 //                .optIn()
 //                .firstName()
@@ -51,16 +48,20 @@ public class CreateAccountTest extends BaseTest {
 //                .country()
 //                .otherInfo()
                 .phone(generateNumbers())
-//                .mobilePhone()
+                .mobilePhone(generateNumbers())
 //                .alias()
                 .build();
 
-//        this.createAccountPage.inputGender();
-        this.createAccountPage.inputCustomerFirstName(account.getCustomerFirstName());
-        this.createAccountPage.inputCustomerLastName(account.getCustomerLastName());
-        this.createAccountPage.inputCustomerEmail(account.getEmail());
-        this.createAccountPage.inputCustomerPassword(account.getPassword());
-        this.createAccountPage.inputHomePhone(account.getPhone());
+//        this.createAccountPage.inputGender(account.getGender());
+//        this.createAccountPage.inputCustomerFirstName(account.getCustomerFirstName());
+//        this.createAccountPage.inputCustomerLastName(account.getCustomerLastName());
+//        this.createAccountPage.inputEmail(account.getEmail());
+//        this.createAccountPage.inputPassword(account.getPassword());
+//        this.createAccountPage.inputDays(account.getDays());
+//        this.createAccountPage.inputMonths(account.getMonths());
+//        this.createAccountPage.inputYears(account.getYears());
+        this.createAccountPage.inputPhone(account.getPhone());
+        this.createAccountPage.inputMobilePhone(account.getMobilePhone());
         this.createAccountPage.verify();
     }
 }

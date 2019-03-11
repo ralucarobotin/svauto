@@ -1,17 +1,18 @@
 package tests;
 
 
+import java.util.stream.IntStream;
+
 public class Account {
 
     //YOUR PERSONAL INFORMATION
-    private boolean genderMale;
-    private boolean genderFemale;
+    private boolean gender;
     private String customerFirstName;
     private String customerLastName;
     private String email;
     private String password;
     private int days;
-    private String months;
+    private int months;
     private int years;
     private int newsletter;
     private int optIn;
@@ -31,15 +32,11 @@ public class Account {
     private String mobilePhone;
     private String alias;
 
-    private Account(){
+    private Account() {
     }
 
-    public boolean getGenderMale() {
-        return genderMale;
-    }
-
-    public boolean getGenderFemale() {
-        return genderFemale;
+    public boolean getGender() {
+        return gender;
     }
 
     public String getCustomerFirstName() {
@@ -62,7 +59,7 @@ public class Account {
         return days;
     }
 
-    public String getMonths() {
+    public int getMonths() {
         return months;
     }
 
@@ -131,14 +128,13 @@ public class Account {
     }
 
     public static class Builder {
-        private boolean genderMale;
-        private boolean genderFemale;
+        private boolean gender;
         private String customerFirstName;
         private String customerLastName;
         private String email;
         private String password;
         private int days;
-        private String months;
+        private int months;
         private int years;
         private int newsletter;
         private int optIn;
@@ -156,130 +152,124 @@ public class Account {
         private String mobilePhone;
         private String alias;
 
-        public Builder genderMale(boolean genderMale){
-            this.genderMale = genderMale;
+        public Builder gender(boolean gender) {
+            this.gender = gender;
             return this;
         }
 
-        public Builder genderFemale(boolean genderFemale){
-            this.genderFemale = genderFemale;
-            return this;
-        }
-
-        public Builder customerFirstName(String customerFirstName){
+        public Builder customerFirstName(String customerFirstName) {
             this.customerFirstName = customerFirstName;
             return this;
         }
 
-        public Builder customerLastName(String customerLastName){
+        public Builder customerLastName(String customerLastName) {
             this.customerLastName = customerLastName;
             return this;
         }
 
-        public Builder email(String email){
+        public Builder email(String email) {
             this.email = email;
             return this;
         }
 
-        public Builder password(String password){
+        public Builder password(String password) {
             this.password = password;
             return this;
         }
 
-        public Builder days(int days){
+        public Builder days(int days) {
             this.days = days;
             return this;
         }
 
-        public Builder months(String months){
+        public Builder months(int months) {
             this.months = months;
             return this;
         }
 
-        public Builder years(int years){
+        public Builder years(int years) {
             this.years = years;
             return this;
         }
 
-        public Builder newsletter(int newsletter){
+        public Builder newsletter(int newsletter) {
             this.newsletter = newsletter;
             return this;
         }
 
-        public Builder optIn(int optIn){
+        public Builder optIn(int optIn) {
             this.optIn = optIn;
             return this;
         }
 
-        public Builder firstName(String firstName){
+        public Builder firstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public Builder lastName(String lastName){
+        public Builder lastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public Builder company(String company){
+        public Builder company(String company) {
             this.company = company;
             return this;
         }
 
-        public Builder firstAddress(String firstAddress){
+        public Builder firstAddress(String firstAddress) {
             this.firstAddress = firstAddress;
             return this;
         }
 
-        public Builder secondAddress(String secondAddress){
+        public Builder secondAddress(String secondAddress) {
             this.secondAddress = secondAddress;
             return this;
         }
 
-        public Builder city(String city){
+        public Builder city(String city) {
             this.city = city;
             return this;
         }
 
-        public Builder state(String state){
+        public Builder state(String state) {
             this.state = state;
             return this;
         }
 
-        public Builder postcode(int postcode){
+        public Builder postcode(int postcode) {
             this.postcode = postcode;
             return this;
         }
 
-        public Builder country(String country){
+        public Builder country(String country) {
             this.country = country;
             return this;
         }
 
-        public Builder otherInfo(String otherInfo){
+        public Builder otherInfo(String otherInfo) {
             this.otherInfo = otherInfo;
             return this;
         }
 
-        public Builder phone(String phone){
+        public Builder phone(String phone) {
             this.phone = phone;
             return this;
         }
 
-        public Builder mobilePhone(String mobilePhone){
+        public Builder mobilePhone(String mobilePhone) {
             this.mobilePhone = mobilePhone;
             return this;
         }
 
-        public Builder alias(String alias){
+        public Builder alias(String alias) {
             this.alias = alias;
             return this;
         }
 
-        public Account build(){
-            Account account =  new Account();
-            account.genderMale = this.genderMale;
-            account.genderFemale = this.genderFemale;
+        public Account build() {
+            Account account = new Account();
+            account.gender = this.gender;
             account.customerFirstName = this.customerFirstName;
             account.customerLastName = this.customerLastName;
             account.email = this.email;

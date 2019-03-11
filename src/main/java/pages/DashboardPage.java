@@ -8,7 +8,7 @@ import static helpers.WebElementHelper.areVisible;
 
 public class DashboardPage extends BasePage {
 
-  public final static String URL="http://automationpractice.com";
+  public static final String BASE_URL = "http://automationpractice.com";
 
   @FindBy(id = "homeslider")
   private WebElement carousel;
@@ -35,6 +35,6 @@ public class DashboardPage extends BasePage {
     }
 
   public void open(){
-    openUrl(URL);
+    openUrl(BASE_URL);
   }
 }

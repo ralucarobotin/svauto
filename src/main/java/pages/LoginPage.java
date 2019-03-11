@@ -8,7 +8,7 @@ import static helpers.WebElementHelper.*;
 
 public class LoginPage extends BasePage {
 
-    private static final String openLoginPageUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    public static final String LOGIN_PAGE_URL = DashboardPage.BASE_URL + "/index.php?controller=authentication&back=my-account";
 
     @FindBy(id = "email")
     private WebElement emailField;
@@ -62,7 +62,7 @@ public class LoginPage extends BasePage {
     }
 
     public void openLoginPage(){
-        openUrl(openLoginPageUrl);
+        openUrl(LOGIN_PAGE_URL);
     }
 
     public void fillInAccountEmail(String text){
