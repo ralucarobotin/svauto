@@ -1,10 +1,13 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
-import static helpers.Utilities.selectIntValue;
+import java.util.Random;
+
 import static helpers.WebElementHelper.*;
 
 public class CreateAccountPage extends BasePage {
@@ -86,16 +89,6 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
-    //Extra
-    @FindBy(id = "uniform-days")
-    private WebElement uniformDays;
-
-    @FindBy(id = "uniform-months")
-    private WebElement uniformMonths;
-
-    @FindBy(id = "uniform-years")
-    private WebElement uniformYears;
-
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -138,37 +131,79 @@ public class CreateAccountPage extends BasePage {
         setFieldValue(password, text);
     }
 
-    public void inputDays(int text) {
-        uniformDays.click();
-        if (driver.getPageSource().contains(days.getAttribute("id"))) {
-            selectIntValue(days, text);
-            days.click();
+    public void inputDays() {
+        Select days = new Select(driver.findElement(By.id("days")));
+        days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+    }
+
+    public void inputMonths() {
+        Select month = new Select(driver.findElement(By.id("months")));
+        month.selectByIndex(new Random().nextInt(month.getOptions().size() - 1) + 1);
+
+    }
+
+    public void inputYears() {
+        Select year = new Select(driver.findElement(By.id("years")));
+        year.selectByIndex(new Random().nextInt(year.getOptions().size() - 1) + 1);
+    }
+
+    public void inputNewsLetter() {
+        newsletter.click();
+    }
+
+    public void inputOptIn() {
+        optIn.click();
+    }
+
+    public void inputFirstName(String text) {
+        if (driver.getPageSource().contains(firstName.getText())) {
+            System.out.println("FirstName already set!");
         } else {
-            System.out.println("Day already set!");
+            setFieldValue(firstName, text);
         }
     }
 
-//    public void inputMonths(int text) {
-//        uniformMonths.click();
-//        if (driver.getPageSource().contains(months.getAttribute("id"))) {
-//            selectIntValue(months, text);
-//            months.getCssValue("value");
-//            months.click();
-//        } else {
-//            System.out.println("Month already set!");
-//        }
-//    }
-//
-//    public void inputYears(int text){
-//        uniformYears.click();
-//        if (driver.getPageSource().contains(years.getAttribute("id"))) {
-//            selectIntValue(years, text);
-//            years.getCssValue("value");
-//            years.click();
-//        } else {
-//            System.out.println("Year already set!");
-//        }
-//    }
+    public void inputLastName(String text) {
+        if (driver.getPageSource().contains(lastName.getText())) {
+            System.out.println("LastName already set!");
+        } else {
+            setFieldValue(lastName, text);
+        }
+    }
+
+    public void inputCompany(String text) {
+        setFieldValue(company, text);
+    }
+
+    public void inputFirstAddress(String text) {
+        setFieldValue(firstAddress, text);
+    }
+
+    public void inputSecondAddress(String text) {
+        setFieldValue(secondAddress, text);
+    }
+
+    public void inputCity(String text) {
+        setFieldValue(city, text);
+    }
+
+    public void inputState() {
+        Select state = new Select(driver.findElement(By.id("id_state")));
+        state.selectByIndex(new Random().nextInt(state.getOptions().size() - 1) + 1);
+    }
+
+    public void inputPostCode(String text) {
+        setFieldValue(postcode, text);
+    }
+
+    public void inputCountry() {
+        Select country = new Select(driver.findElement(By.id("id_country")));
+        country.selectByIndex(new Random().nextInt(country.getOptions().size() - 1) + 1);
+    }
+
+    public void inputOtherInfo(String text) {
+        setFieldValue(otherInfo, text);
+    }
 
     public void inputPhone(String text) {
         setFieldValue(phone, text);
@@ -176,5 +211,13 @@ public class CreateAccountPage extends BasePage {
 
     public void inputMobilePhone(String text) {
         setFieldValue(mobilePhone, text);
+    }
+
+    public void inputAlias(String text) {
+        setFieldValue(alias, text);
+    }
+
+    public void clickRegisterButton() {
+        registerButton.click();
     }
 }

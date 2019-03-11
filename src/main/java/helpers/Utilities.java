@@ -1,16 +1,12 @@
 package helpers;
 
 import java.util.Properties;
-import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 
 /**
@@ -63,15 +59,6 @@ public class Utilities {
         }
     }
 
-    public static void selectIntValue(WebElement element, int text){
-       element.sendKeys(String.valueOf(text));
-    }
-
-
-//    public static void selectStringValue(WebElement element, String text){
-//        element.sendKeys(text);
-//    }
-
     public static boolean generateBoolean() {
         return RandomUtils.nextBoolean();
     }
@@ -80,24 +67,13 @@ public class Utilities {
         return RandomStringUtils.randomNumeric(1, 11);
     }
 
+    public static String generateZip() {
+        return RandomStringUtils.randomNumeric(5);
+    }
+
     public static String generateCharacters() {
         return RandomStringUtils.random(10, true, false);
     }
-
-    public static int generateDays(){
-        Random randomGenerator = new Random();
-        return randomGenerator.nextInt(32);
-    }
-
-//    public static int generateMonths(){
-//        Random randomGenerator = new Random();
-//        return randomGenerator.nextInt(13);
-//    }
-//
-//    public static int generateYears(){
-//        Random randomGenerator = new Random();
-//        return randomGenerator.nextInt(119);
-//    }
 
     public static String generatedEmail() {
         String generateStringOne = RandomStringUtils.random(5, true, true);

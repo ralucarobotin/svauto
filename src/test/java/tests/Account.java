@@ -1,8 +1,5 @@
 package tests;
 
-
-import java.util.stream.IntStream;
-
 public class Account {
 
     //YOUR PERSONAL INFORMATION
@@ -25,7 +22,7 @@ public class Account {
     private String secondAddress;
     private String city;
     private String state;
-    private int postcode;
+    private String postcode;
     private String country;
     private String otherInfo;
     private String phone;
@@ -103,7 +100,7 @@ public class Account {
         return state;
     }
 
-    public int getPostcode() {
+    public String getPostCode() {
         return postcode;
     }
 
@@ -145,7 +142,7 @@ public class Account {
         private String secondAddress;
         private String city;
         private String state;
-        private int postcode;
+        private String postcode;
         private String country;
         private String otherInfo;
         private String phone;
@@ -237,7 +234,7 @@ public class Account {
             return this;
         }
 
-        public Builder postcode(int postcode) {
+        public Builder postCode(String postcode) {
             this.postcode = postcode;
             return this;
         }
