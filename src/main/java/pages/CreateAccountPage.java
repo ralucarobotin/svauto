@@ -89,6 +89,9 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
+    @FindBy(css = "#center_column div")
+    private WebElement errorMessageCreateAccount;
+
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -156,7 +159,7 @@ public class CreateAccountPage extends BasePage {
     }
 
     public void inputFirstName(String text) {
-        if (driver.getPageSource().contains(firstName.getText())) {
+        if (driver.getPageSource().matches(customerFirstName.getText())) {
             System.out.println("FirstName already set!");
         } else {
             setFieldValue(firstName, text);
@@ -164,7 +167,7 @@ public class CreateAccountPage extends BasePage {
     }
 
     public void inputLastName(String text) {
-        if (driver.getPageSource().contains(lastName.getText())) {
+        if (driver.getPageSource().matches(customerLastName.getText())) {
             System.out.println("LastName already set!");
         } else {
             setFieldValue(lastName, text);
@@ -219,5 +222,9 @@ public class CreateAccountPage extends BasePage {
 
     public void clickRegisterButton() {
         registerButton.click();
+    }
+
+    public boolean getCreateAccountErrorMessage(){
+       return errorMessageCreateAccount.isDisplayed();
     }
 }
