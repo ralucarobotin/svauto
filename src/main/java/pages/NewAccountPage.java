@@ -1,4 +1,5 @@
 package pages;
+import helpers.Account;
 import helpers.Utilities;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -223,6 +224,9 @@ public class NewAccountPage extends BasePage{
         selectCountry_dropdown("United States");
         fillPhoneNumber();
         fillAliasAddress();
+    }
+
+    public Account createAccount = new Account.Builder()
     }
 
 }
