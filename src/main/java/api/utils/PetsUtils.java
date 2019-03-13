@@ -10,7 +10,6 @@ public class PetsUtils {
     public static Pet generateADefaultPetPaylod(){
         ArrayList<Category> categories = new ArrayList<>();
         categories.add(CategoryUtils.generateDefaultCategory());
-
         Pet pet = new Pet();
         pet.setName("Dog");
         pet.setCategory(categories);

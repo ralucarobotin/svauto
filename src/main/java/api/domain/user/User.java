@@ -73,8 +73,4 @@ public class User {
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
     }
-
-    public String toString() {
-        return "User [ id: " + id + ", username: " + username + " ]";
-    }
 }
