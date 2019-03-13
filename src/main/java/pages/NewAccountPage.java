@@ -2,7 +2,6 @@ package pages;
 import helpers.Account;
 import helpers.Utilities;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -127,12 +126,12 @@ public class NewAccountPage extends BasePage{
         return this.personalInfo_emailField.getText();
     }
 
-    public void selectFemaleGender(){
-        gender_female.click();
-    }
-
-    public void selectMaleGender(){
-        gender_male.click();
+    public void selectGender(){
+        Random value  = new Random();
+        int gender = value.nextInt(2);
+        if( gender == 1) {
+            gender_male.click();
+        } else gender_female.click();
     }
 
     public void fillFirstName(){
@@ -209,7 +208,7 @@ public class NewAccountPage extends BasePage{
     }
 
     public void fillCreateAccountForm(){
-        selectFemaleGender();
+        selectGender();
         fillFirstName();
         fillLastName();
         fillPassword();

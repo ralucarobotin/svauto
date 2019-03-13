@@ -1,8 +1,8 @@
 package helpers;
 
 public class Account {
-    private boolean gender_male;
-    private boolean gender_female;
+    private String gender_male;
+    private String gender_female;
     private String personalInfo_firstName;
     private String personalInfo_lastName;
     private String personalInfo_emailField;
@@ -37,8 +37,8 @@ public class Account {
 
     public static class Builder {
 
-        private boolean gender_male;
-        private boolean gender_female;
+        private String gender_male;
+        private String gender_female;
         private String personalInfo_firstName;
         private String personalInfo_lastName;
         private String personalInfo_emailField;
@@ -57,12 +57,12 @@ public class Account {
         private String address_mobilePhone;
         private String address_alias;
 
-        public Builder setGender_male(boolean gender_male) {
+        public Builder setGender_male(String gender_male) {
             this.gender_male = gender_male;
             return this;
         }
 
-        public Builder setGender_female(boolean gender_female) {
+        public Builder setGender_female(String gender_female) {
             this.gender_female = gender_female;
             return this;
         }
