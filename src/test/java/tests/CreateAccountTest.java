@@ -12,26 +12,10 @@ public class CreateAccountTest extends BaseTest {
     private LoginPage loginPage = null;
     private CreateAccountPage createAccountPage = null;
 
-    private String phoneRequired;
-    private String firstNameRequired;
-    private String lasttNameRequired;
-    private String passwordRequired;
-    private String firstAddressRequired;
-    private String cityRequired;
-    private String postalCodeRequired;
-    private String stateRequired;
-    private String countryRequired;
+    private String messageWith9Errors;
 
     public CreateAccountTest() {
-        this.phoneRequired = "You must register at least one phone number.";
-        this.firstNameRequired = "firstname is required.";
-        this.lasttNameRequired = "lastname is required.";
-        this.passwordRequired = "passwd is required.";
-        this.firstAddressRequired = "address1 is required.";
-        this.cityRequired = "city is required.";
-        this.postalCodeRequired = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
-        this.stateRequired = "This country requires you to choose a State.";
-        this.countryRequired = "Country is invalid";
+        this.messageWith9Errors = getPropertyFromAppProp("messageWith9Errors");
     }
 
     @BeforeMethod
@@ -139,6 +123,6 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-       // Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage());
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith9Errors, "The test for required fields with email has failed");
     }
 }
