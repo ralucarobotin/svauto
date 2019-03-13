@@ -89,7 +89,7 @@ public class CreateAccountPage extends BasePage {
     @FindBy(id = "submitAccount")
     private WebElement registerButton;
 
-    @FindBy(css = "#center_column div")
+    @FindBy(css = "#center_column div ol")
     private WebElement errorMessageCreateAccount;
 
     public CreateAccountPage(WebDriver driver) {
@@ -226,5 +226,9 @@ public class CreateAccountPage extends BasePage {
 
     public boolean getCreateAccountErrorMessage(){
        return errorMessageCreateAccount.isDisplayed();
+    }
+
+    public String getStringsCreateAccountErrorMessage(){
+        return errorMessageCreateAccount.getText();
     }
 }

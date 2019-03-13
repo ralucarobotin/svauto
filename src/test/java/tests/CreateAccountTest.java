@@ -120,8 +120,6 @@ public class CreateAccountTest extends BaseTest {
                 .company(generateCharacters())
                 .secondAddress(generateCharacters())
                 .otherInfo(generateCharacters())
-                .phone(generateNumbers())
-                .mobilePhone(generateNumbers())
                 .alias(generatedEmail())
                 .build();
 
@@ -137,11 +135,10 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.inputOtherInfo(account.getOtherInfo());
-        this.createAccountPage.inputPhone(account.getPhone());
-        this.createAccountPage.inputMobilePhone(account.getMobilePhone());
         this.createAccountPage.inputAlias(account.getAlias());
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
+       // Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage());
     }
 }
