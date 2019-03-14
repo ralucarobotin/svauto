@@ -231,4 +231,13 @@ public class CreateAccountPage extends BasePage {
     public String getStringsCreateAccountErrorMessage(){
         return errorMessageCreateAccount.getText();
     }
+
+    public void clearCountry(){
+        Select country = new Select(driver.findElement(By.id("id_country")));
+        country.selectByIndex(new Random().nextInt(country.getOptions().size() - 1));
+    }
+
+    public void clearEmail(){
+        email.clear();
+    }
 }
