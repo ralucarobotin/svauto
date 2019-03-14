@@ -1,26 +1,15 @@
 package tests;
 
+import helpers.ErrorMsgList;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import pages.*;
 
 import static helpers.Utilities.getPropertyFromAppProp;
+import static helpers.WebElementHelper.*;
 
 public class CreateAccountTest extends BaseTest {
-    private final static String INVALID_EMAIL_ERROR = "Invalid email address.";
-    private final static String EXISTING_EMAIL_ERROR = "An account using this email address has already been registered. " +
-            "Please enter a valid password or request a new one.";
-    private final static String EMPTY_ACCOUNT_DATA = "There are 8 errors\n" +
-            "You must register at least one phone number.\n" +
-            "lastname is required.\n" +
-            "firstname is required.\n" +
-            "passwd is required.\n" +
-            "address1 is required.\n" +
-            "city is required.\n" +
-            "The Zip/Postal code you've entered is invalid. It must follow this format: 00000\n" +
-            "This country requires you to choose a State.";
-
     private DashboardPage dashboardPage = null;
     private CreateAccountPage createAccountPage = null;
     private RegisterAccountPage registerAccountPage = null;
@@ -29,7 +18,6 @@ public class CreateAccountTest extends BaseTest {
     private String customerFirstName;
     private String customerLastName;
     private String passwordNew;
-    private String email;
     private String day;
     private String month;
     private String year;
@@ -50,7 +38,7 @@ public class CreateAccountTest extends BaseTest {
     private String emailExisting;
 
     public CreateAccountTest() {
-        this.customerFirstName = customerFirstName;
+        this.customerFirstName = generateRandomString();
         this.customerLastName = customerLastName;
         this.passwordNew = passwordNew;
         this.day = day;
@@ -96,17 +84,38 @@ public class CreateAccountTest extends BaseTest {
         this.dashboardPage.clickLoginButton();
 
         this.createAccountPage.verify();
-        Assert.assertTrue(this.createAccountPage.getPageHeadingCreateAccount(), "Create Account page heading is displayed");
+        Assert.assertTrue(this.createAccountPage.getPageHeading(), "Create Account page heading is displayed");
 
-        this.createAccountPage.startCreateAccountValid();
+        this.createAccountPage.startValidAccountCreation();
 
         this.registerAccountPage.verify();
-        Assert.assertTrue(this.registerAccountPage.getPageHeadingRegistration(), "Register Account page heading is displayed");
+        Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
 
+        UserAccount account = new UserAccount.Builder()
+            .withCustomerFirstName(generateRandomString())
+            .withCustomerLastName(generateRandomString())
+            .withPass(generateRandomPassword())
+            .withDay(day)
+            .withMonth(month)
+            .withYear(year)
+            .withFirstName(generateRandomString())
+            .withLastName(generateRandomString())
+            .withCompany(generateRandomString())
+            .withAddress1(generateRandomString())
+            .withAddress2(generateRandomString())
+            .withCity(generateRandomString())
+            .withState(state)
+            .withPostalCode(generateRandomPostalCode())
+            .withCountry(country)
+            .withAdditionalInfo(generateRandomString())
+            .withPhone(generateRandomNumber())
+            .withMobilePhone(generateRandomNumber())
+            .withAlias(generateRandomString())
+            .build();
         this.registerAccountPage.registerRandomData();
 
         this.myAccountPage.verify();
-        Assert.assertTrue(this.myAccountPage.getPageHeadingMyAccount(), "My Account page heading is displayed");
+        Assert.assertTrue(this.myAccountPage.getPageHeading(), "My Account page heading is displayed");
     }
 
     @Test(description = "Test account creation with empty Email address\n"
@@ -120,8 +129,9 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickCreateAccountButton();
 
         this.createAccountPage.verify();
-        Assert.assertTrue(this.createAccountPage.getSignUpError(), "Error is displayed");
-        Assert.assertEquals(this.createAccountPage.getSignUpErrorMsg(), INVALID_EMAIL_ERROR, "Text errors do not match");
+        Assert.assertTrue(this.createAccountPage.getSignUpError(), "[Create Account Page] Error message is displayed");
+        Assert.assertEquals(this.createAccountPage.getSignUpErrorMsg(), ErrorMsgList.INVALID_EMAIL_ERROR, "[Create Account Page] " +
+                "Received text error message does not match - Invalid email address. - error");
     }
 
     @Test(description = "Test account creation with invalid Email address format\n"
@@ -133,11 +143,12 @@ public class CreateAccountTest extends BaseTest {
     public void testInvalidEmailFormat() {
         this.createAccountPage.open();
         this.createAccountPage.verify();
-        this.createAccountPage.startCreateAccountInvalid(this.emailInvalidFormat);
+        this.createAccountPage.startInvalidAccountCreation(this.emailInvalidFormat);
 
         this.createAccountPage.verify();
-        Assert.assertTrue(this.createAccountPage.getSignUpError(), "Error is displayed");
-        Assert.assertEquals(this.createAccountPage.getSignUpErrorMsg(), INVALID_EMAIL_ERROR, "Text errors do not match");
+        Assert.assertTrue(this.createAccountPage.getSignUpError(), "[Create Account Page] Error message is displayed");
+        Assert.assertEquals(this.createAccountPage.getSignUpErrorMsg(), ErrorMsgList.INVALID_EMAIL_ERROR, "[Create Account Page] " +
+                "Received text error message does not match - Invalid email address. - error");
     }
 
     @Test(description = "Test account creation with an existing Email address\n"
@@ -149,11 +160,13 @@ public class CreateAccountTest extends BaseTest {
     public void testExistingEmail() {
         this.createAccountPage.open();
         this.createAccountPage.verify();
-        this.createAccountPage.startCreateAccountInvalid(this.emailExisting);
+        this.createAccountPage.startInvalidAccountCreation(this.emailExisting);
 
         this.createAccountPage.verify();
-        Assert.assertTrue(this.createAccountPage.getSignUpError(), "Error is displayed");
-        Assert.assertEquals(this.createAccountPage.getSignUpErrorMsg(), EXISTING_EMAIL_ERROR, "Text errors do not match");
+        Assert.assertTrue(this.createAccountPage.getSignUpError(), "[Create Account Page] Error message is displayed");
+        Assert.assertEquals(this.createAccountPage.getSignUpErrorMsg(), ErrorMsgList.EXISTING_EMAIL_ERROR, "[Create Account Page] " +
+                "Received text error message does not match - An account using this email address has already been registered. " +
+                "- error");
     }
 
     @Test(description = "Test account creation with valid Email address and empty account information\n"
@@ -167,17 +180,101 @@ public class CreateAccountTest extends BaseTest {
     public void testCreateAccountEmptyData() {
         this.createAccountPage.open();
         this.createAccountPage.verify();
-        Assert.assertTrue(this.createAccountPage.getPageHeadingCreateAccount(), "Create Account page heading is displayed");
+        Assert.assertTrue(this.createAccountPage.getPageHeading(), "Create Account page heading is displayed");
 
-        this.createAccountPage.startCreateAccountValid();
+        this.createAccountPage.startValidAccountCreation();
 
         this.registerAccountPage.verify();
-        Assert.assertTrue(this.registerAccountPage.getPageHeadingRegistration(), "Register Account page heading is displayed");
+        Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
 
         this.registerAccountPage.registerEmptyData();
 
         this.registerAccountPage.verify();
-        Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "Error is displayed");
-        Assert.assertEquals(this.registerAccountPage.getRegisterAccountErrorMsg(), EMPTY_ACCOUNT_DATA, "Text errors do not match");
+        Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");
+        Assert.assertEquals(this.registerAccountPage.getRegisterAccountErrorMsg(), ErrorMsgList.EMPTY_ACCOUNT_DATA, "[Register Account Page] " +
+                "Received text error message does not match - There are 8 errors ... - error");
     }
+
+    @Test(description = "Test account creation with valid Email address and empty customer first name information\n"
+            + "Steps:\n"
+            + "1.Navigate to Create Account page URL: http://automationpractice.com/index.php?controller=authentication&back=my-accounthp\n"
+            + "2.Fill in the Email address field with a random generated email\n"
+            + "3.Click Create an account button\n"
+            + "4.Verify that redirect to Registration form is performed\n"
+            + "5.Fill in the account data with the exception of Customer First Name.\n"
+            + "6.Click Register button\n"
+            + "7.Verify that the specific error is displayed\n")
+    public void testCreateAccountEmptyCustomerName() {
+        this.createAccountPage.open();
+        this.createAccountPage.verify();
+        Assert.assertTrue(this.createAccountPage.getPageHeading(), "Create Account page heading is displayed");
+
+        this.createAccountPage.startValidAccountCreation();
+
+        this.registerAccountPage.verify();
+        Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
+
+        this.registerAccountPage.registerEmptyCustomerFirstName();
+
+        this.registerAccountPage.verify();
+        Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");
+        Assert.assertEquals(this.registerAccountPage.getRegisterAccountErrorMsg(), ErrorMsgList.EMPTY_FIRSTNAME, "[Register Account Page] " +
+                "Received text error message does not match - There is 1 error: firstname is required.");
+    }
+
+    @Test(description = "Test account creation with valid Email address and empty city information\n"
+            + "Steps:\n"
+            + "1.Navigate to Create Account page URL: http://automationpractice.com/index.php?controller=authentication&back=my-accounthp\n"
+            + "2.Fill in the Email address field with a random generated email\n"
+            + "3.Click Create an account button\n"
+            + "4.Verify that redirect to Registration form is performed\n"
+            + "5.Fill in the account data with the exception of City.\n"
+            + "6.Click Register button\n"
+            + "7.Verify that the specific error is displayed\n")
+    public void testCreateAccountEmptyCity() {
+        this.createAccountPage.open();
+        this.createAccountPage.verify();
+        Assert.assertTrue(this.createAccountPage.getPageHeading(), "Create Account page heading is displayed");
+
+        this.createAccountPage.startValidAccountCreation();
+
+        this.registerAccountPage.verify();
+        Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
+
+        this.registerAccountPage.registerEmptyCity();
+
+        this.registerAccountPage.verify();
+        Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");
+        Assert.assertEquals(this.registerAccountPage.getRegisterAccountErrorMsg(), ErrorMsgList.EMPTY_CITY, "[Register Account Page] " +
+                "Received text error message does not match - There is 1 error: city is required.");
+    }
+
+    @Test(description = "Test account creation with valid Email address and empty phone and mobile phone information\n"
+            + "Steps:\n"
+            + "1.Navigate to Create Account page URL: http://automationpractice.com/index.php?controller=authentication&back=my-accounthp\n"
+            + "2.Fill in the Email address field with a random generated email\n"
+            + "3.Click Create an account button\n"
+            + "4.Verify that redirect to Registration form is performed\n"
+            + "5.Fill in the account data with the exception of phone and mobile phone.\n"
+            + "6.Click Register button\n"
+            + "7.Verify that the specific error is displayed\n")
+    public void testCreateAccountEmptyPhone() {
+        this.createAccountPage.open();
+        this.createAccountPage.verify();
+        Assert.assertTrue(this.createAccountPage.getPageHeading(), "Create Account page heading is displayed");
+
+        this.createAccountPage.startValidAccountCreation();
+
+        this.registerAccountPage.verify();
+        Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
+
+        this.registerAccountPage.registerEmptyPhone();
+
+        this.registerAccountPage.verify();
+        Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");
+        Assert.assertEquals(this.registerAccountPage.getRegisterAccountErrorMsg(), ErrorMsgList.EMPTY_MOBILEPHONE, "[Register Account Page] " +
+                "Received text error message does not match - There is 1 error: You must register at least one phone number.");
+    }
+
+
 }

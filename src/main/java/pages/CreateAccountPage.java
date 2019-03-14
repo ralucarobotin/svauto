@@ -1,5 +1,6 @@
 package pages;
 
+import helpers.WebElementHelper;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,13 +38,6 @@ public class CreateAccountPage extends BasePage {
         return areVisible(emailField, createAccountButton);
     }
 
-    private static String generateRandomEmail() {
-        int length = 10;
-        String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890" + "_-";
-        String temp = RandomStringUtils.random(length, allowedChars);
-        return temp + "@yahoo.com";
-    }
-
     private void fillInEmail(String email) {
         setFieldValue(emailField, email);
     }
@@ -52,17 +46,17 @@ public class CreateAccountPage extends BasePage {
         createAccountButton.click();
     }
 
-    public void startCreateAccountValid() {
-        fillInEmail(generateRandomEmail());
+    public void startValidAccountCreation() {
+        fillInEmail(WebElementHelper.generateRandomEmail());
         clickCreateAccountButton();
     }
 
-    public void startCreateAccountInvalid(String email) {
+    public void startInvalidAccountCreation(String email) {
         fillInEmail(email);
         clickCreateAccountButton();
     }
 
-    public boolean getPageHeadingCreateAccount() {
+    public boolean getPageHeading() {
         return areVisible(pageHeadingCreateAccount);
     }
 

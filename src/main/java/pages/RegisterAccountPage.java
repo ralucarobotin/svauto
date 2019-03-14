@@ -1,8 +1,7 @@
 package pages;
 
-import com.google.errorprone.annotations.FormatMethod;
+import helpers.WebElementHelper;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -117,33 +116,161 @@ public class RegisterAccountPage extends BasePage {
     @Override
     protected boolean isValid() {
         return areVisible(customerFirstNameField, customerLastNameField, emailField, passField, firstNameField,
-                lastNameField, companyField, address1Field, cityField, postalCodeField, additionalInfoField,
+                lastNameField, companyField, address1Field, cityField, additionalInfoField,
                 phoneField, mobilePhoneField, aliasField);
 //              address2Field - site bug - not visible when error is received
+//              postalCodeField
     }
 
-    private static String generateRandomString() {
-        int length = 10;
-        String allowedChars = "abcdefghijklmnopqrstuvwxyz";
-        return RandomStringUtils.random(length, allowedChars);
+    private void genderSelect() {
+        List <WebElement> genderValue = driver.findElements(By.className("radio-inline"));
+        Random gender = new Random();
+        int randomValue = gender.nextInt(genderValue.size());
+        genderValue.get(randomValue).click();
+        System.out.println(genderValue);
+    }
+    private void fillInCustomerFirstName() {
+        setFieldValue(customerFirstNameField, generateRandomString());
+    }
+    private void fillInCustomerLastName() {
+        setFieldValue(customerLastNameField, generateRandomString());
+    }
+    private void fillInPassword() {
+        setFieldValue(passField, generateRandomPassword());
+    }
+    // - https://seleniumsubbu.blogspot.com/2016/09/how-to-select-random-dropdown-value.html
+    private void daySelect() {
+        List<WebElement> dayValue = new Select(daySet).getOptions();
+        ArrayList<String> options = new ArrayList<String>();
+
+        for (WebElement webElement : dayValue) {
+            String optionValue = webElement.getText();
+            if(!optionValue.equals("-")){options.add(optionValue);}
+        }
+        Random randomValue = new Random();
+        int randomNumber = randomValue.nextInt(options.size());
+        String randomDay = options.get(randomNumber);
+
+        daySet.sendKeys(randomDay);
+    }
+    private void monthSelect() {
+        List<WebElement> monthValue = new Select(monthSet).getOptions();
+        ArrayList<String> options = new ArrayList<String>();
+
+        for (WebElement webElement : monthValue) {
+            String optionValue = webElement.getText();
+            if(!optionValue.equals("-")){options.add(optionValue);}
+        }
+        Random randomValue = new Random();
+        int randomNumber = randomValue.nextInt(options.size());
+        String randomMonth = options.get(randomNumber);
+
+        monthSet.sendKeys(randomMonth);
+    }
+    private void yearSelect() {
+        List<WebElement> yearValue = new Select(yearSet).getOptions();
+        ArrayList<String> options = new ArrayList<String>();
+
+        for (WebElement webElement : yearValue) {
+            String optionValue = webElement.getText();
+            if(!optionValue.equals("-")){options.add(optionValue);}
+        }
+        Random randomValue = new Random();
+        int randomNumber = randomValue.nextInt(options.size());
+        String randomYear = options.get(randomNumber);
+
+        yearSet.sendKeys(randomYear);
+    }
+    private void optionsSelect() {
+        List <WebElement> optionValue = driver.findElements(By.className("checker"));
+        Random option = new Random();
+        int randomValue = option.nextInt(optionValue.size());
+        optionValue.get(randomValue).click();
+    }
+    private void fillInFirstName() {
+        setFieldValue(firstNameField, generateRandomString());
+    }
+    private void fillInLastName() {
+        setFieldValue(lastNameField, generateRandomString());
+    }
+    private void fillInCompany() {
+        setFieldValue(companyField, generateRandomString());
+    }
+    private void fillInAddress1() {
+        setFieldValue(address1Field, generateRandomString());
+    }
+    private void fillInAddress2() {
+        setFieldValue(address2Field, generateRandomString());
+    }
+    private void fillInCity() {
+        setFieldValue(cityField, generateRandomString());
+    }
+    private void stateSelect() {
+        List<WebElement> stateValue = new Select(stateSelect).getOptions();
+        ArrayList<String> options = new ArrayList<String>();
+
+        for (WebElement webElement : stateValue) {
+            String optionValue = webElement.getText();
+            if(!optionValue.equals("-")){options.add(optionValue);}
+        }
+        Random randomValue = new Random();
+        int randomNumber = randomValue.nextInt(options.size());
+        String randomState = options.get(randomNumber);
+
+        stateSelect.sendKeys(randomState);
+    }
+    private void fillInPostalCode() {
+        setFieldValue(postalCodeField, generateRandomPostalCode());
     }
 
-    private static String generateRandomNumber() {
-        int length = 10;
-        String allowedChars = "1234567890";
-        return RandomStringUtils.random(length, allowedChars);
+//    private void countryDefault() {
+//            Select drop = new Select(countrySelect);
+//            drop.selectByVisibleText("-");
+//    }
+
+    private void countrySelect() {
+        List<WebElement> countryValue = new Select(countrySelect).getOptions();
+        ArrayList<String> options = new ArrayList<String>();
+
+        for (WebElement webElement : countryValue) {
+            String optionValue = webElement.getText();
+            if(!optionValue.equals("-")){options.add(optionValue);}
+        }
+        Random randomValue = new Random();
+        int randomNumber = randomValue.nextInt(options.size());
+        String randomCountry = options.get(randomNumber);
+
+        stateSelect.sendKeys(randomCountry);
+        setFieldValue(countrySelect, randomCountry);
+    }
+    private void fillInAdditionalInfo() {
+        setFieldValue(additionalInfoField, generateRandomString());
+    }
+    private void fillInPhone() {
+        setFieldValue(phoneField, generateRandomNumber());
+    }
+    private void fillInMobilePhone() {
+        setFieldValue(mobilePhoneField, generateRandomNumber());
+    }
+    private void fillInAlias() {
+        setFieldValue(aliasField, generateRandomString());
     }
 
-    private static String generateRandomPassword() {
-        int length = 10;
-        String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
-        return RandomStringUtils.random(length, allowedChars);
+    private void clickRegisterButton() {
+        registerAccountButton.click();
     }
 
-    private static String generateRandomPostalCode() {
-        int length = 5;
-        String allowedChars = "1234567890";
-        return RandomStringUtils.random(length, allowedChars);
+    public boolean getPageHeading() {
+        return areVisible(pageHeadingRegistration);
+    }
+
+    public boolean getRegisterAccountError() {
+        waitForElementToAppear(registerAccountError);
+        return areVisible(registerAccountError);
+    }
+
+    public String getRegisterAccountErrorMsg() {
+        return registerAccountError.getText();
     }
 
     private void addPersonalInfo() {
@@ -166,7 +293,6 @@ public class RegisterAccountPage extends BasePage {
         fillInCity();
         stateSelect();
         fillInPostalCode();
-       // countrySelect(getPropertyFromAppProp("country"));
         countrySelect();
     }
 
@@ -183,178 +309,40 @@ public class RegisterAccountPage extends BasePage {
         addOtherInfo();
         clickRegisterButton();
     }
-
     public void registerEmptyData() {
         clickRegisterButton();
     }
-
-    private void genderSelect() {
-        List <WebElement> genderValue = driver.findElements(By.className("radio-inline"));
-        Random gender = new Random();
-        int randomValue = gender.nextInt(genderValue.size());
-        genderValue.get(randomValue).click();
-        System.out.println(genderValue);
+    public void registerEmptyCustomerFirstName(){
+        genderSelect();
+        fillInCustomerLastName();
+        fillInPassword();
+        daySelect();
+        monthSelect();
+        yearSelect();
+        optionsSelect();
+        addAddressInfo();
+        addOtherInfo();
+        clickRegisterButton();
     }
-
-    private void fillInCustomerFirstName() {
-        setFieldValue(customerFirstNameField, generateRandomString());
+    public void registerEmptyCity(){
+        addPersonalInfo();
+        fillInFirstName();
+        fillInLastName();
+        fillInCompany();
+        fillInAddress1();
+        fillInAddress2();
+        stateSelect();
+        fillInPostalCode();
+        countrySelect();
+        addOtherInfo();
+        clickRegisterButton();
     }
-
-    private void fillInCustomerLastName() {
-        setFieldValue(customerLastNameField, generateRandomString());
-    }
-
-    private void fillInPassword() {
-        setFieldValue(passField, generateRandomPassword());
-    }
-
-    //https://seleniumsubbu.blogspot.com/2016/09/how-to-select-random-dropdown-value.html
-    private void daySelect() {
-        List<WebElement> dayValue = new Select(daySet).getOptions();
-        ArrayList<String> options = new ArrayList<String>();
-
-        for (WebElement webElement : dayValue) {
-            String optionValue = webElement.getText();
-            if(!optionValue.equals("-")){options.add(optionValue);}
-        }
-        Random randomValue = new Random();
-        int randomNumber = randomValue.nextInt(options.size());
-        String randomDay = options.get(randomNumber);
-
-        daySet.sendKeys(randomDay);
-    }
-
-    private void monthSelect() {
-        List<WebElement> monthValue = new Select(monthSet).getOptions();
-        ArrayList<String> options = new ArrayList<String>();
-
-        for (WebElement webElement : monthValue) {
-            String optionValue = webElement.getText();
-            if(!optionValue.equals("-")){options.add(optionValue);}
-        }
-        Random randomValue = new Random();
-        int randomNumber = randomValue.nextInt(options.size());
-        String randomMonth = options.get(randomNumber);
-
-        monthSet.sendKeys(randomMonth);
-    }
-
-    private void yearSelect() {
-        List<WebElement> yearValue = new Select(yearSet).getOptions();
-        ArrayList<String> options = new ArrayList<String>();
-
-        for (WebElement webElement : yearValue) {
-            String optionValue = webElement.getText();
-            if(!optionValue.equals("-")){options.add(optionValue);}
-        }
-        Random randomValue = new Random();
-        int randomNumber = randomValue.nextInt(options.size());
-        String randomYear = options.get(randomNumber);
-
-        yearSet.sendKeys(randomYear);
-    }
-
-    private void optionsSelect() {
-        List <WebElement> optionValue = driver.findElements(By.className("checker"));
-        Random option = new Random();
-        int randomValue = option.nextInt(optionValue.size());
-        optionValue.get(randomValue).click();
-    }
-
-    private void fillInFirstName() {
-        setFieldValue(firstNameField, generateRandomString());
-    }
-
-    private void fillInLastName() {
-        setFieldValue(lastNameField, generateRandomString());
-    }
-
-    private void fillInCompany() {
-        setFieldValue(companyField, generateRandomString());
-    }
-
-    private void fillInAddress1() {
-        setFieldValue(address1Field, generateRandomString());
-    }
-
-    private void fillInAddress2() {
-        setFieldValue(address2Field, generateRandomString());
-    }
-
-    private void fillInCity() {
-        setFieldValue(cityField, generateRandomString());
-    }
-
-    private void stateSelect() {
-        List<WebElement> stateValue = new Select(stateSelect).getOptions();
-        ArrayList<String> options = new ArrayList<String>();
-
-        for (WebElement webElement : stateValue) {
-            String optionValue = webElement.getText();
-            if(!optionValue.equals("-")){options.add(optionValue);}
-        }
-        Random randomValue = new Random();
-        int randomNumber = randomValue.nextInt(options.size());
-        String randomState = options.get(randomNumber);
-
-        stateSelect.sendKeys(randomState);
-    }
-
-    private void fillInPostalCode() {
-        setFieldValue(postalCodeField, generateRandomPostalCode());
-    }
-
-//    private void countrySelect(String value) {
-//        Select drop = new Select(countrySelect);
-//        drop.selectByVisibleText(value);
-//    }
-
-    private void countrySelect() {
-        List<WebElement> countryValue = new Select(countrySelect).getOptions();
-        ArrayList<String> options = new ArrayList<String>();
-
-        for (WebElement webElement : countryValue) {
-            String optionValue = webElement.getText();
-            if(!optionValue.equals("-")){options.add(optionValue);}
-        }
-        Random randomValue = new Random();
-        int randomNumber = randomValue.nextInt(options.size());
-        String randomCountry = options.get(randomNumber);
-
-        stateSelect.sendKeys(randomCountry);
-    }
-
-    private void fillInAdditionalInfo() {
-        setFieldValue(additionalInfoField, generateRandomString());
-    }
-
-    private void fillInPhone() {
-        setFieldValue(phoneField, generateRandomNumber());
-    }
-
-    private void fillInMobilePhone() {
-        setFieldValue(mobilePhoneField, generateRandomNumber());
-    }
-
-    private void fillInAlias() {
-        setFieldValue(aliasField, generateRandomString());
-    }
-
-    public void clickRegisterButton() {
-        registerAccountButton.click();
-    }
-
-    public boolean getPageHeadingRegistration() {
-        return areVisible(pageHeadingRegistration);
-    }
-
-    public boolean getRegisterAccountError() {
-        waitForElementToAppear(registerAccountError);
-        return areVisible(registerAccountError);
-    }
-
-    public String getRegisterAccountErrorMsg() {
-        return registerAccountError.getText();
+    public void registerEmptyPhone(){
+        addPersonalInfo();
+        addAddressInfo();
+        fillInAdditionalInfo();
+        fillInAlias();
+        clickRegisterButton();
     }
 }
 

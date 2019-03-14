@@ -1,5 +1,6 @@
 package helpers;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -44,5 +45,32 @@ public class WebElementHelper {
       LOG.warning(String.format("The following elements are not visible in page: %s", elementsNotVisible));
     }
     return elementsNotVisible.isEmpty();
+  }
+
+  public static String generateRandomEmail() {
+    int length = 10;
+    String temp = RandomStringUtils.randomAlphanumeric(length);
+    return temp + "@" + temp + "." + "com";
+  }
+
+  public static String generateRandomString() {
+    int length = 10;
+    return RandomStringUtils.randomAlphabetic(length);
+  }
+
+  public static String generateRandomNumber() {
+    int length = 10;
+    return RandomStringUtils.randomNumeric(length);
+  }
+
+  public static String generateRandomPassword() {
+    int length = 10;
+    //String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
+    return RandomStringUtils.randomAlphanumeric(length);
+  }
+
+  public static String generateRandomPostalCode() {
+    int length = 5;
+    return RandomStringUtils.randomNumeric(length);
   }
 }

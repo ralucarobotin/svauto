@@ -55,7 +55,7 @@ public class MyAccountPage extends BasePage {
         logoutButton.click();
     }
 
-    public boolean getPageHeadingMyAccount() {
+    public boolean getPageHeading() {
         return areVisible(pageHeadingMyAccount);
     }
 }

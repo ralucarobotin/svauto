@@ -57,7 +57,7 @@ public class LoginPage extends BasePage {
     setFieldValue(passField, password);
   }
 
-  public boolean getPageHeadingLogin() {
+  public boolean getPageHeading() {
     return areVisible(pageHeadingLogin);
   }
 
