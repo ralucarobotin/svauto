@@ -1,6 +1,8 @@
 package helpers;
 
+import net.bytebuddy.utility.RandomString;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -65,12 +67,28 @@ public class WebElementHelper {
 
   public static String generateRandomPassword() {
     int length = 10;
-    //String allowedChars = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
     return RandomStringUtils.randomAlphanumeric(length);
   }
 
   public static String generateRandomPostalCode() {
     int length = 5;
     return RandomStringUtils.randomNumeric(length);
+  }
+
+  public static String generateRandomState() {
+    String[] stateList = new String[]{"Alabama", "Alaska", "Arizona",
+            "Arkansas", "California", "Colorado", "Connecticut",
+            "Delaware", "District of Columbia", "Florida", "Georgia",
+            "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
+            "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+            "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
+            "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+            "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
+            "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina",
+            "South Dakota", "Tennessee", "Texas", "US Virgin Islands", "Utah",
+            "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin",
+            "Wyoming"};
+
+    return stateList[RandomUtils.nextInt() % stateList.length];
   }
 }

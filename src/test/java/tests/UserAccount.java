@@ -1,8 +1,10 @@
 package tests;
 
+import static helpers.WebElementHelper.*;
+
 public class UserAccount {
-//    private boolean genderFemale;
-//    private boolean genderMale;
+    private String genderMale;
+    private String genderFemale;
     private String customerFirstName;
     private String customerLastName;
     private String passwordNew;
@@ -23,9 +25,12 @@ public class UserAccount {
     private String mobilePhone;
     private String alias;
 
-    //    public boolean getGender() {
-//        return this.gender;
-//    }
+    public String getGenderMale() {
+        return this.genderMale;
+    }
+    public String getGenderFemale() {
+        return this.genderFemale;
+    }
     public String getCustomerFirstName() {
         return this.customerFirstName;
     }
@@ -85,8 +90,8 @@ public class UserAccount {
     }
 
     private UserAccount(Builder builder) {
-        //     this.genderFemale = builder.genderFemale;
-        //     this.genderMale = builder.genderMale;
+        this.genderMale = builder.genderMale;
+        this.genderFemale = builder.genderFemale;
         this.customerFirstName = builder.customerFirstName;
         this.customerLastName = builder.customerLastName;
         this.passwordNew = builder.passwordNew;
@@ -109,165 +114,121 @@ public class UserAccount {
     }
 
     public static class Builder {
-  //      private boolean genderFemale;
-//        private boolean genderMale;
-        private String customerFirstName;
-        private String customerLastName;
-        private String passwordNew;
+        private String genderMale;
+        private String genderFemale;
+        private String customerFirstName = generateRandomString();
+        private String customerLastName = generateRandomString();
+        private String passwordNew = generateRandomPassword();
         private String day;
         private String month;
         private String year;
-        private String firstName;
-        private String lastName;
-        private String company;
-        private String address1;
-        private String address2;
-        private String city;
-        private String state;
-        private String postalCode;
+        private String firstName = generateRandomString();
+        private String lastName = generateRandomString();
+        private String company = generateRandomString();
+        private String address1 = generateRandomString();
+        private String address2 = generateRandomString();
+        private String city = generateRandomString();
+        private String state = generateRandomState();
+        private String postalCode = generateRandomPostalCode();
         private String country;
-        private String additionalInfo;
-        private String phone;
-        private String mobilePhone;
-        private String alias;
+        private String additionalInfo = generateRandomString();
+        private String phone = generateRandomNumber();
+        private String mobilePhone = generateRandomNumber();
+        private String alias = generateRandomString();
 
-//        public Builder withGender(boolean genderFemale) {
-//            this.genderFemale = genderFemale;
-//            return this;
-//        }
-
-        //        public Builder withGender(boolean genderMale) {
-//            this.genderMale = genderMale;
-//            return this;
-//        }
-
+        public Builder withGenderMale(String genderMale) {
+            this.genderMale = genderMale;
+            return this;
+        }
+        public Builder withGenderFemale(String genderFemale) {
+            this.genderFemale = genderFemale;
+            return this;
+        }
         public Builder withCustomerFirstName(String customerFirstName) {
             this.customerFirstName = customerFirstName;
             return this;
         }
-
         public Builder withCustomerLastName(String customerLastName) {
             this.customerLastName = customerLastName;
             return this;
         }
-
         public Builder withPass(String passwordNew) {
             this.passwordNew = passwordNew;
             return this;
         }
-
         public Builder withDay(String day) {
             this.day = day;
             return this;
         }
-
         public Builder withMonth(String month) {
             this.month = month;
             return this;
         }
-
         public Builder withYear(String year) {
             this.year = year;
             return this;
         }
-
         public Builder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
-
         public Builder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
-
         public Builder withCompany(String company) {
             this.company = company;
             return this;
         }
-
         public Builder withAddress1(String address1) {
             this.address1 = address1;
             return this;
         }
-
         public Builder withAddress2(String address2) {
             this.address2 = address2;
             return this;
         }
-
         public Builder withCity(String city) {
             this.city = city;
             return this;
         }
-
         public Builder withState(String state) {
             this.state = state;
             return this;
         }
-
         public Builder withPostalCode(String postalCode) {
             this.postalCode = postalCode;
             return this;
         }
-
         public Builder withCountry(String country) {
             this.country = country;
             return this;
         }
-
         public Builder withAdditionalInfo(String additionalInfo) {
             this.additionalInfo = additionalInfo;
             return this;
         }
-
         public Builder withPhone(String phone) {
             this.phone = phone;
             return this;
         }
-
         public Builder withMobilePhone(String mobilePhone) {
             this.mobilePhone = mobilePhone;
             return this;
         }
-
         public Builder withAlias(String alias) {
             this.alias = alias;
             return this;
         }
-
         public String toString()
         {
             return this.customerFirstName + this.customerLastName + this.passwordNew + this.day + this.month + this.year +
                     this.firstName + this.lastName + this.company + this.address1 + this.address2 + this.city + this.postalCode +
                     this.country + this.state + this.phone + this.mobilePhone + this.alias;
         }
-
         public UserAccount build() {
             return new UserAccount(this);
         }
     }
-
-//    UserAccount account = new UserAccount.Builder().build();
-//            .withCustomerFirstName(fillInCustomerFirstName())
-//            .withCustomerLastName()
-//            .withPass()
-//            .withDay()
-//            .withMonth()
-//            .withYear()
-//            .withFirstName()
-//            .withLastName()
-//            .withCompany()
-//            .withAddress1()
-//            .withAddress2()
-//            .withCity()
-//            .withState()
-//            .withCountrySelect()
-//            .withPostalCode()
-//            .withCountry()
-//            .withAdditionalInfo()
-//            .withPhone()
-//            .withMobilePhone()
-//            .withAlias()
 }
 

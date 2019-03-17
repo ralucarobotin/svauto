@@ -6,10 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
+import static pages.DashboardPage.URL;
 
 public class LoginPage extends BasePage {
-  public final static String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-
   @FindBy(css = "#center_column > h1")
   private WebElement pageHeadingLogin;
 
@@ -70,6 +69,6 @@ public class LoginPage extends BasePage {
   }
 
   public void open() {
-        openUrl(URL);
+        openUrl(URL + "/index.php?controller=authentication&back=my-account");
   }
 }

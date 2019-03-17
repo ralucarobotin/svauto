@@ -1,17 +1,15 @@
 package pages;
 
 import helpers.WebElementHelper;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
+import static pages.DashboardPage.URL;
 
 public class CreateAccountPage extends BasePage {
-    public static final String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-
     @FindBy(css = "#center_column > h1")
     private WebElement pageHeadingCreateAccount;
 
@@ -70,7 +68,7 @@ public class CreateAccountPage extends BasePage {
     }
 
     public void open(){
-        openUrl(URL);
+        openUrl(URL + "/index.php?controller=authentication&back=my-account");
     }
 }
 

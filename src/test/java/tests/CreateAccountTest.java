@@ -1,13 +1,13 @@
 package tests;
 
 import helpers.ErrorMsgList;
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import pages.*;
 
 import static helpers.Utilities.getPropertyFromAppProp;
-import static helpers.WebElementHelper.*;
 
 public class CreateAccountTest extends BaseTest {
     private DashboardPage dashboardPage = null;
@@ -15,48 +15,10 @@ public class CreateAccountTest extends BaseTest {
     private RegisterAccountPage registerAccountPage = null;
     private MyAccountPage myAccountPage = null;
 
-    private String customerFirstName;
-    private String customerLastName;
-    private String passwordNew;
-    private String day;
-    private String month;
-    private String year;
-    private String firstName;
-    private String lastName;
-    private String company;
-    private String address1;
-    private String address2;
-    private String city;
-    private String state;
-    private String postalCode;
-    private String country;
-    private String additionalInfo;
-    private String phone;
-    private String mobilePhone;
-    private String alias;
     private String emailInvalidFormat;
     private String emailExisting;
 
     public CreateAccountTest() {
-        this.customerFirstName = generateRandomString();
-        this.customerLastName = customerLastName;
-        this.passwordNew = passwordNew;
-        this.day = day;
-        this.month = month;
-        this.year = year;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.company = company;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.city = city;
-        this.state = state;
-        this.postalCode = postalCode;
-        this.country = country;
-        this.additionalInfo = additionalInfo;
-        this.phone = phone;
-        this.mobilePhone = mobilePhone;
-        this.alias = alias;
         this.emailInvalidFormat = getPropertyFromAppProp("invalidEmailFormat");
         this.emailExisting = getPropertyFromAppProp("email");
     }
@@ -91,28 +53,30 @@ public class CreateAccountTest extends BaseTest {
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
 
-        UserAccount account = new UserAccount.Builder()
-            .withCustomerFirstName(generateRandomString())
-            .withCustomerLastName(generateRandomString())
-            .withPass(generateRandomPassword())
-            .withDay(day)
-            .withMonth(month)
-            .withYear(year)
-            .withFirstName(generateRandomString())
-            .withLastName(generateRandomString())
-            .withCompany(generateRandomString())
-            .withAddress1(generateRandomString())
-            .withAddress2(generateRandomString())
-            .withCity(generateRandomString())
-            .withState(state)
-            .withPostalCode(generateRandomPostalCode())
-            .withCountry(country)
-            .withAdditionalInfo(generateRandomString())
-            .withPhone(generateRandomNumber())
-            .withMobilePhone(generateRandomNumber())
-            .withAlias(generateRandomString())
-            .build();
-        this.registerAccountPage.registerRandomData();
+        UserAccount account = new UserAccount.Builder().build();
+
+        this.registerAccountPage.genderSelect();
+        this.registerAccountPage.fillInCustomerFirstName(account.getCustomerFirstName());
+        this.registerAccountPage.fillInCustomerLastName(account.getCustomerLastName());
+        this.registerAccountPage.fillInPassword(account.getPasswordNew());
+        this.registerAccountPage.daySelect();
+        this.registerAccountPage.monthSelect();
+        this.registerAccountPage.yearSelect();
+        this.registerAccountPage.optionsSelect();
+        this.registerAccountPage.fillInFirstName(account.getFirstName());
+        this.registerAccountPage.fillInLastName(account.getLastName());
+        this.registerAccountPage.fillInCompany(account.getCompany());
+        this.registerAccountPage.fillInAddress1(account.getAddress1());
+        this.registerAccountPage.fillInAddress2(account.getAddress2());
+        this.registerAccountPage.fillInCity(account.getCity());
+        this.registerAccountPage.stateSelect();
+        this.registerAccountPage.fillInPostalCode(account.getPostalCode());
+        this.registerAccountPage.countrySelect();
+        this.registerAccountPage.fillInAdditionalInfo(account.getAdditionalInfo());
+        this.registerAccountPage.fillInPhone(account.getPhone());
+        this.registerAccountPage.fillInMobilePhone(account.getMobilePhone());
+        this.registerAccountPage.fillInAlias(account.getAlias());
+        this.registerAccountPage.clickRegisterButton();
 
         this.myAccountPage.verify();
         Assert.assertTrue(this.myAccountPage.getPageHeading(), "My Account page heading is displayed");
@@ -214,7 +178,30 @@ public class CreateAccountTest extends BaseTest {
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
 
-        this.registerAccountPage.registerEmptyCustomerFirstName();
+        UserAccount account = new UserAccount.Builder().build();
+
+        this.registerAccountPage.genderSelect();
+        this.registerAccountPage.fillInCustomerFirstName(StringUtils.EMPTY);
+        this.registerAccountPage.fillInCustomerLastName(account.getCustomerLastName());
+        this.registerAccountPage.fillInPassword(account.getPasswordNew());
+        this.registerAccountPage.daySelect();
+        this.registerAccountPage.monthSelect();
+        this.registerAccountPage.yearSelect();
+        this.registerAccountPage.optionsSelect();
+        this.registerAccountPage.fillInFirstName(account.getFirstName());
+        this.registerAccountPage.fillInLastName(account.getLastName());
+        this.registerAccountPage.fillInCompany(account.getCompany());
+        this.registerAccountPage.fillInAddress1(account.getAddress1());
+        this.registerAccountPage.fillInAddress2(account.getAddress2());
+        this.registerAccountPage.fillInCity(account.getCity());
+        this.registerAccountPage.stateSelect();
+        this.registerAccountPage.fillInPostalCode(account.getPostalCode());
+        this.registerAccountPage.countrySelect();
+        this.registerAccountPage.fillInAdditionalInfo(account.getAdditionalInfo());
+        this.registerAccountPage.fillInPhone(account.getPhone());
+        this.registerAccountPage.fillInMobilePhone(account.getMobilePhone());
+        this.registerAccountPage.fillInAlias(account.getAlias());
+        this.registerAccountPage.clickRegisterButton();
 
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");
@@ -241,7 +228,30 @@ public class CreateAccountTest extends BaseTest {
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
 
-        this.registerAccountPage.registerEmptyCity();
+        UserAccount account = new UserAccount.Builder().build();
+
+        this.registerAccountPage.genderSelect();
+        this.registerAccountPage.fillInCustomerFirstName(account.getCustomerFirstName());
+        this.registerAccountPage.fillInCustomerLastName(account.getCustomerLastName());
+        this.registerAccountPage.fillInPassword(account.getPasswordNew());
+        this.registerAccountPage.daySelect();
+        this.registerAccountPage.monthSelect();
+        this.registerAccountPage.yearSelect();
+        this.registerAccountPage.optionsSelect();
+        this.registerAccountPage.fillInFirstName(account.getFirstName());
+        this.registerAccountPage.fillInLastName(account.getLastName());
+        this.registerAccountPage.fillInCompany(account.getCompany());
+        this.registerAccountPage.fillInAddress1(account.getAddress1());
+        this.registerAccountPage.fillInAddress2(account.getAddress2());
+        this.registerAccountPage.fillInCity(StringUtils.EMPTY);
+        this.registerAccountPage.stateSelect();
+        this.registerAccountPage.fillInPostalCode(account.getPostalCode());
+        this.registerAccountPage.countrySelect();
+        this.registerAccountPage.fillInAdditionalInfo(account.getAdditionalInfo());
+        this.registerAccountPage.fillInPhone(account.getPhone());
+        this.registerAccountPage.fillInMobilePhone(account.getMobilePhone());
+        this.registerAccountPage.fillInAlias(account.getAlias());
+        this.registerAccountPage.clickRegisterButton();
 
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");
@@ -268,7 +278,30 @@ public class CreateAccountTest extends BaseTest {
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getPageHeading(), "Register Account page heading is displayed");
 
-        this.registerAccountPage.registerEmptyPhone();
+        UserAccount account = new UserAccount.Builder().build();
+
+        this.registerAccountPage.genderSelect();
+        this.registerAccountPage.fillInCustomerFirstName(account.getCustomerFirstName());
+        this.registerAccountPage.fillInCustomerLastName(account.getCustomerLastName());
+        this.registerAccountPage.fillInPassword(account.getPasswordNew());
+        this.registerAccountPage.daySelect();
+        this.registerAccountPage.monthSelect();
+        this.registerAccountPage.yearSelect();
+        this.registerAccountPage.optionsSelect();
+        this.registerAccountPage.fillInFirstName(account.getFirstName());
+        this.registerAccountPage.fillInLastName(account.getLastName());
+        this.registerAccountPage.fillInCompany(account.getCompany());
+        this.registerAccountPage.fillInAddress1(account.getAddress1());
+        this.registerAccountPage.fillInAddress2(account.getAddress2());
+        this.registerAccountPage.fillInCity(account.getCity());
+        this.registerAccountPage.stateSelect();
+        this.registerAccountPage.fillInPostalCode(account.getPostalCode());
+        this.registerAccountPage.countrySelect();
+        this.registerAccountPage.fillInAdditionalInfo(account.getAdditionalInfo());
+        this.registerAccountPage.fillInPhone(StringUtils.EMPTY);
+        this.registerAccountPage.fillInMobilePhone(StringUtils.EMPTY);
+        this.registerAccountPage.fillInAlias(account.getAlias());
+        this.registerAccountPage.clickRegisterButton();
 
         this.registerAccountPage.verify();
         Assert.assertTrue(this.registerAccountPage.getRegisterAccountError(), "[Register Account Page] Error message is displayed");

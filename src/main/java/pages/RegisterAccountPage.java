@@ -1,7 +1,5 @@
 package pages;
 
-import helpers.WebElementHelper;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static helpers.Utilities.getPropertyFromAppProp;
 import static helpers.WebElementHelper.*;
 
 public class RegisterAccountPage extends BasePage {
@@ -122,24 +119,24 @@ public class RegisterAccountPage extends BasePage {
 //              postalCodeField
     }
 
-    private void genderSelect() {
+    public void genderSelect() {
         List <WebElement> genderValue = driver.findElements(By.className("radio-inline"));
         Random gender = new Random();
         int randomValue = gender.nextInt(genderValue.size());
         genderValue.get(randomValue).click();
-        System.out.println(genderValue);
     }
-    private void fillInCustomerFirstName() {
-        setFieldValue(customerFirstNameField, generateRandomString());
+    public void fillInCustomerFirstName(String customerFirstName) {
+        setFieldValue(customerFirstNameField, customerFirstName);
     }
-    private void fillInCustomerLastName() {
-        setFieldValue(customerLastNameField, generateRandomString());
+    public void fillInCustomerLastName(String customerLastName) {
+        setFieldValue(customerLastNameField, customerLastName);
     }
-    private void fillInPassword() {
-        setFieldValue(passField, generateRandomPassword());
+    public void fillInPassword(String passwordNew) {
+        setFieldValue(passField, passwordNew);
     }
+
     // - https://seleniumsubbu.blogspot.com/2016/09/how-to-select-random-dropdown-value.html
-    private void daySelect() {
+    public void daySelect() {
         List<WebElement> dayValue = new Select(daySet).getOptions();
         ArrayList<String> options = new ArrayList<String>();
 
@@ -153,7 +150,13 @@ public class RegisterAccountPage extends BasePage {
 
         daySet.sendKeys(randomDay);
     }
-    private void monthSelect() {
+
+//    public void daySelect() {
+//        Select day = new Select(driver.findElement(By.id("days")));
+//        day.selectByIndex(new Random().nextInt(day.getOptions().size() - 1) + 1);
+//    }
+
+    public void monthSelect() {
         List<WebElement> monthValue = new Select(monthSet).getOptions();
         ArrayList<String> options = new ArrayList<String>();
 
@@ -167,7 +170,7 @@ public class RegisterAccountPage extends BasePage {
 
         monthSet.sendKeys(randomMonth);
     }
-    private void yearSelect() {
+    public void yearSelect() {
         List<WebElement> yearValue = new Select(yearSet).getOptions();
         ArrayList<String> options = new ArrayList<String>();
 
@@ -181,31 +184,31 @@ public class RegisterAccountPage extends BasePage {
 
         yearSet.sendKeys(randomYear);
     }
-    private void optionsSelect() {
+    public void optionsSelect() {
         List <WebElement> optionValue = driver.findElements(By.className("checker"));
         Random option = new Random();
         int randomValue = option.nextInt(optionValue.size());
         optionValue.get(randomValue).click();
     }
-    private void fillInFirstName() {
-        setFieldValue(firstNameField, generateRandomString());
+    public void fillInFirstName(String firstName) {
+        setFieldValue(firstNameField, firstName);
     }
-    private void fillInLastName() {
-        setFieldValue(lastNameField, generateRandomString());
+    public void fillInLastName(String lastName) {
+        setFieldValue(lastNameField, lastName);
     }
-    private void fillInCompany() {
-        setFieldValue(companyField, generateRandomString());
+    public void fillInCompany(String company) {
+        setFieldValue(companyField, company);
     }
-    private void fillInAddress1() {
-        setFieldValue(address1Field, generateRandomString());
+    public void fillInAddress1(String address1) {
+        setFieldValue(address1Field, address1);
     }
-    private void fillInAddress2() {
-        setFieldValue(address2Field, generateRandomString());
+    public void fillInAddress2(String address2) {
+        setFieldValue(address2Field, address2 );
     }
-    private void fillInCity() {
-        setFieldValue(cityField, generateRandomString());
+    public void fillInCity(String city) {
+        setFieldValue(cityField, city);
     }
-    private void stateSelect() {
+    public void stateSelect() {
         List<WebElement> stateValue = new Select(stateSelect).getOptions();
         ArrayList<String> options = new ArrayList<String>();
 
@@ -219,8 +222,8 @@ public class RegisterAccountPage extends BasePage {
 
         stateSelect.sendKeys(randomState);
     }
-    private void fillInPostalCode() {
-        setFieldValue(postalCodeField, generateRandomPostalCode());
+    public void fillInPostalCode(String postalCode) {
+        setFieldValue(postalCodeField, postalCode);
     }
 
 //    private void countryDefault() {
@@ -228,7 +231,7 @@ public class RegisterAccountPage extends BasePage {
 //            drop.selectByVisibleText("-");
 //    }
 
-    private void countrySelect() {
+    public void countrySelect() {
         List<WebElement> countryValue = new Select(countrySelect).getOptions();
         ArrayList<String> options = new ArrayList<String>();
 
@@ -240,23 +243,22 @@ public class RegisterAccountPage extends BasePage {
         int randomNumber = randomValue.nextInt(options.size());
         String randomCountry = options.get(randomNumber);
 
-        stateSelect.sendKeys(randomCountry);
-        setFieldValue(countrySelect, randomCountry);
+        countrySelect.sendKeys(randomCountry);
     }
-    private void fillInAdditionalInfo() {
-        setFieldValue(additionalInfoField, generateRandomString());
+    public void fillInAdditionalInfo(String additionalInfo) {
+        setFieldValue(additionalInfoField, additionalInfo);
     }
-    private void fillInPhone() {
-        setFieldValue(phoneField, generateRandomNumber());
+    public void fillInPhone(String phone) {
+        setFieldValue(phoneField, phone);
     }
-    private void fillInMobilePhone() {
-        setFieldValue(mobilePhoneField, generateRandomNumber());
+    public void fillInMobilePhone(String mobilePhone) {
+        setFieldValue(mobilePhoneField, mobilePhone);
     }
-    private void fillInAlias() {
-        setFieldValue(aliasField, generateRandomString());
+    public void fillInAlias(String alias) {
+        setFieldValue(aliasField, alias);
     }
 
-    private void clickRegisterButton() {
+    public void clickRegisterButton() {
         registerAccountButton.click();
     }
 
@@ -273,75 +275,7 @@ public class RegisterAccountPage extends BasePage {
         return registerAccountError.getText();
     }
 
-    private void addPersonalInfo() {
-        genderSelect();
-        fillInCustomerFirstName();
-        fillInCustomerLastName();
-        fillInPassword();
-        daySelect();
-        monthSelect();
-        yearSelect();
-        optionsSelect();
-    }
-
-    private void addAddressInfo() {
-        fillInFirstName();
-        fillInLastName();
-        fillInCompany();
-        fillInAddress1();
-        fillInAddress2();
-        fillInCity();
-        stateSelect();
-        fillInPostalCode();
-        countrySelect();
-    }
-
-    private void addOtherInfo() {
-        fillInAdditionalInfo();
-        fillInPhone();
-        fillInMobilePhone();
-        fillInAlias();
-    }
-
-    public void registerRandomData() {
-        addPersonalInfo();
-        addAddressInfo();
-        addOtherInfo();
-        clickRegisterButton();
-    }
     public void registerEmptyData() {
-        clickRegisterButton();
-    }
-    public void registerEmptyCustomerFirstName(){
-        genderSelect();
-        fillInCustomerLastName();
-        fillInPassword();
-        daySelect();
-        monthSelect();
-        yearSelect();
-        optionsSelect();
-        addAddressInfo();
-        addOtherInfo();
-        clickRegisterButton();
-    }
-    public void registerEmptyCity(){
-        addPersonalInfo();
-        fillInFirstName();
-        fillInLastName();
-        fillInCompany();
-        fillInAddress1();
-        fillInAddress2();
-        stateSelect();
-        fillInPostalCode();
-        countrySelect();
-        addOtherInfo();
-        clickRegisterButton();
-    }
-    public void registerEmptyPhone(){
-        addPersonalInfo();
-        addAddressInfo();
-        fillInAdditionalInfo();
-        fillInAlias();
         clickRegisterButton();
     }
 }
