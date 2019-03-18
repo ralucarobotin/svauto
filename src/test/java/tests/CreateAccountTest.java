@@ -13,28 +13,28 @@ public class CreateAccountTest extends BaseTest {
     private CreateAccountPage createAccountPage = null;
     private PostCreateAccountPage postCreateAccountPage = null;
 
-    private String messageWith10Errors;
-    private String messageWith9Errors;
-    private String messageWith8Errors;
-    private String messageWith7Errors;
-    private String messageWith6Errors;
-    private String messageWith5Errors;
-    private String messageWith4Errors;
-    private String messageWith3Errors;
-    private String messageWith2Errors;
-    private String messageWith1Errors;
+    private String messageForNoMandatoryInput;
+    private String messageForEmailAdded;
+    private String messageForEmailCountryAdded;
+    private String messageForEmailCountryStateAdded;
+    private String messageForEmailCountryStateZipAdded;
+    private String messageForEmailCountryStateZipCityAdded;
+    private String messageForEmailCountryStateZipCityAddressAdded;
+    private String messageForEmailCountryStateZipCityAddressPasswordAdded;
+    private String messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded;
+    private String messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded;
 
     public CreateAccountTest() {
-        this.messageWith10Errors = getPropertyFromAppProp("messageWith10Errors");
-        this.messageWith9Errors = getPropertyFromAppProp("messageWith9Errors");
-        this.messageWith8Errors = getPropertyFromAppProp("messageWith8Errors");
-        this.messageWith7Errors = getPropertyFromAppProp("messageWith7Errors");
-        this.messageWith6Errors = getPropertyFromAppProp("messageWith6Errors");
-        this.messageWith5Errors = getPropertyFromAppProp("messageWith5Errors");
-        this.messageWith4Errors = getPropertyFromAppProp("messageWith4Errors");
-        this.messageWith3Errors = getPropertyFromAppProp("messageWith3Errors");
-        this.messageWith2Errors = getPropertyFromAppProp("messageWith2Errors");
-        this.messageWith1Errors = getPropertyFromAppProp("messageWith1Errors");
+        this.messageForNoMandatoryInput = getPropertyFromAppProp("messageForNoMandatoryInput");
+        this.messageForEmailAdded = getPropertyFromAppProp("messageForEmailAdded");
+        this.messageForEmailCountryAdded = getPropertyFromAppProp("messageForEmailCountryAdded");
+        this.messageForEmailCountryStateAdded = getPropertyFromAppProp("messageForEmailCountryStateAdded");
+        this.messageForEmailCountryStateZipAdded = getPropertyFromAppProp("messageForEmailCountryStateZipAdded");
+        this.messageForEmailCountryStateZipCityAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAdded");
+        this.messageForEmailCountryStateZipCityAddressAdded= getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressAdded");
+        this.messageForEmailCountryStateZipCityAddressPasswordAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressPasswordAdded");
+        this.messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded");
+        this.messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded");
     }
 
     @BeforeMethod
@@ -108,7 +108,7 @@ public class CreateAccountTest extends BaseTest {
 
     @Test(description = " "
     )
-    public void messageWith10Errors() {
+    public void messageForNoMandatoryInput() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -138,12 +138,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith10Errors, "The test for messageWith10Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForNoMandatoryInput,
+                "The test for messageForNoMandatoryInput has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith9Errors() {
+    public void messageForEmailRequired() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -172,12 +173,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith9Errors, "The test for messageWith9Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailAdded,
+                "The test for messageForEmailAdded has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith8Errors() {
+    public void messageForEmailCountryRequired() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -205,12 +207,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith8Errors, "TThe test for messageWith8Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryAdded,
+                "The test for messageForEmailCountryAdded has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith7Errors() {
+    public void messageForEmailCountryStateRequired() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -239,12 +242,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith7Errors, "TThe test for messageWith7Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateAdded,
+                "The test for messageForEmailCountryStateAdded has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith6Errors() {
+    public void messageForEmailCountryStateZipRequired() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -275,12 +279,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith6Errors, "TThe test for messageWith6Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateZipAdded,
+                "The test for messageForEmailCountryStateZipAdded has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith5Errors() {
+    public void messageForEmailCountryStateZipCityRequired() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -313,12 +318,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith5Errors, "TThe test for messageWith5Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateZipCityAdded,
+                "The test for messageForEmailCountryStateZipCityAdded has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith4Errors() {
+    public void messageForEmailCountryStateZipCityAddressRequired() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -353,7 +359,8 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith4Errors, "TThe test for messageWith4Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateZipCityAddressAdded,
+                "The test for messageForEmailCountryStateZipCityAddressAdded has failed");
     }
 
     @Test(description = " "
@@ -395,7 +402,8 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith3Errors, "TThe test for messageWith3Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateZipCityAddressPasswordAdded,
+                "The test for messageForEmailCountryStateZipCityAddressPasswordAdded has failed");
     }
 
     @Test(description = " "
@@ -439,12 +447,13 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith2Errors, "TThe test for messageWith2Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded,
+                "The test for messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded has failed");
     }
 
     @Test(description = " "
     )
-    public void messageWith1Errors() {
+    public void messageWith1Error() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -485,6 +494,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.clickRegisterButton();
         this.createAccountPage.verify();
         Assert.assertTrue(this.createAccountPage.getCreateAccountErrorMessage());
-        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageWith1Errors, "TThe test for messageWith1Errors has failed");
+        Assert.assertEquals(this.createAccountPage.getStringsCreateAccountErrorMessage(), messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded,
+                "The test for messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded has failed");
     }
 }

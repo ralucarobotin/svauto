@@ -142,7 +142,6 @@ public class CreateAccountPage extends BasePage {
     public void inputMonths() {
         Select month = new Select(driver.findElement(By.id("months")));
         month.selectByIndex(new Random().nextInt(month.getOptions().size() - 1) + 1);
-
     }
 
     public void inputYears() {
@@ -224,20 +223,20 @@ public class CreateAccountPage extends BasePage {
         registerButton.click();
     }
 
-    public boolean getCreateAccountErrorMessage(){
-       return errorMessageCreateAccount.isDisplayed();
+    public boolean getCreateAccountErrorMessage() {
+        return errorMessageCreateAccount.isDisplayed();
     }
 
-    public String getStringsCreateAccountErrorMessage(){
+    public String getStringsCreateAccountErrorMessage() {
         return errorMessageCreateAccount.getText();
     }
 
-    public void clearCountry(){
+    public void clearCountry() {
         Select country = new Select(driver.findElement(By.id("id_country")));
-        country.selectByIndex(new Random().nextInt(country.getOptions().size() - 1));
+        country.selectByIndex(0);
     }
 
-    public void clearEmail(){
+    public void clearEmail() {
         email.clear();
     }
 }
