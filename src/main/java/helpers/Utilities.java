@@ -1,6 +1,8 @@
 package helpers;
 
+import java.time.LocalDate;
 import java.util.Properties;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -86,4 +88,12 @@ public class Utilities {
         return RandomStringUtils.random(10, true, true);
     }
 
+//    public static LocalDate generateDate(){
+//    LocalDate startDate = LocalDate.of(1900, 1, 1);
+//    long start = startDate.toEpochDay();
+//    LocalDate endDate = LocalDate.now();
+//    long end = endDate.toEpochDay();
+//    long random = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
+//    return LocalDate.ofEpochDay(random);
+//    }
 }

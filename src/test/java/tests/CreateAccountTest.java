@@ -44,7 +44,7 @@ public class CreateAccountTest extends BaseTest {
         this.postCreateAccountPage = new PostCreateAccountPage(getDriver());
     }
 
-    @Test(description = "Test create account page with valid credentials:\n " +
+    @Test(invocationCount = 100, description = "Test create account page with valid credentials:\n " +
             "Steps:\n" +
             "1. Navigate to the Dashboard page with URL: http://automationpractice.com/index.php\n" +
             "2. Verify that the Dashboard page is loaded correctly.\n" +
@@ -84,10 +84,10 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputCustomerLastName(account.getCustomerLastName());
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputPassword(account.getPassword());
-        this.createAccountPage.inputDays();
-        this.createAccountPage.inputMonths();
-        this.createAccountPage.inputYears();
-        this.createAccountPage.validateDate();
+        this.createAccountPage.inputDate();
+//        this.createAccountPage.inputDay();
+//        this.createAccountPage.inputMonth();
+//        this.createAccountPage.inputYear();
         this.createAccountPage.inputNewsLetter();
         this.createAccountPage.inputOptIn();
         this.createAccountPage.inputFirstName(account.getFirstName());

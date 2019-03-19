@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.Random;
 
 import static helpers.WebElementHelper.*;
+import static helpers.Utilities.*;
 
 public class CreateAccountPage extends BasePage {
 
@@ -134,25 +135,13 @@ public class CreateAccountPage extends BasePage {
         setFieldValue(password, text);
     }
 
-    public void inputDays() {
+    public void inputDate(){
         Select days = new Select(driver.findElement(By.id("days")));
         days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
-    }
-
-    public void inputMonths() {
         Select month = new Select(driver.findElement(By.id("months")));
         month.selectByIndex(new Random().nextInt(month.getOptions().size() - 1) + 1);
-    }
-
-    public void inputYears() {
         Select year = new Select(driver.findElement(By.id("years")));
-        year.selectByIndex(new Random().nextInt(year.getOptions().size() - 1) + 1);
-    }
-
-    public void validateDate(){
-        Select days = new Select(driver.findElement(By.id("days")));
-        Select month = new Select(driver.findElement(By.id("months")));
-//        Select year = new Select(driver.findElement(By.id("years")));
+        year.selectByIndex(new Random().nextInt(year.getOptions().size() - 1) + 19);
         if(month.getOptions().get(2).isSelected() && days.getOptions().get(31).isSelected() || days.getOptions().get(30).isSelected() || days.getOptions().get(29).isSelected()){
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         } else if (month.getOptions().get(4).isSelected() && days.getOptions().get(31).isSelected()) {
@@ -165,6 +154,27 @@ public class CreateAccountPage extends BasePage {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         }
     }
+
+//    public void inputDay() {
+//        Select days = new Select(driver.findElement(By.id("days")));
+//        String day = Integer.toString(generateDate().getDayOfMonth());
+//        System.out.println(day);
+//        days.selectByValue(day);
+//    }
+//
+//    public void inputMonth() {
+//        Select months = new Select(driver.findElement(By.id("months")));
+//        String month = Integer.toString(generateDate().getMonthValue());
+//        System.out.println(month);
+//        months.selectByValue(month);
+//    }
+//
+//    public void inputYear() {
+//        Select years = new Select(driver.findElement(By.id("years")));
+//        String year = Integer.toString(generateDate().getYear());
+//        System.out.println(year);
+//        years.selectByValue(year);
+//    }
 
     public void inputNewsLetter() {
         newsletter.click();
