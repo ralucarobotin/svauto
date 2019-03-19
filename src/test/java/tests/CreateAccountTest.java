@@ -7,6 +7,7 @@ import pages.CreateAccountPage;
 import pages.LoginPage;
 import pages.MyAccountPage;
 
+
 import static testHelpers.Utilities.*;
 
 public class CreateAccountTest extends BaseTest {
@@ -92,6 +93,9 @@ public class CreateAccountTest extends BaseTest {
                 .city(generateRandomString(6))
                 .zip(generateRandomZipCode())
                 .state(generateRandomState())
+                .yearOfBirth(generateRandomYear())
+                .monthOfBirth(generateRandomMonth())
+                .dayOfBirth(generateRandomDay())
                 .build();
 
         this.loginPage.open();
@@ -110,6 +114,9 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.fillCityField(account.getCityAddress());
         this.createAccountPage.fillZipCodeField(account.getZipAddress());
         this.createAccountPage.fillStateField(account.getStateOptionAddress());
+        this.createAccountPage.fillDayOfBirthField(account.getDayOfBirth());
+        this.createAccountPage.fillYearsOfBirthField(account.getYearOfBirth());
+        this.createAccountPage.fillMonthsOfBirthField(account.getMonthOfBirth());
 
         this.createAccountPage.register();
         this.myAccountPage.verify();
@@ -136,4 +143,6 @@ public class CreateAccountTest extends BaseTest {
 
         Assert.assertEquals(this.createAccountPage.getCreateAccountErrorText(), EMPTY_FORM_ERROR);
     }
+
+
 }

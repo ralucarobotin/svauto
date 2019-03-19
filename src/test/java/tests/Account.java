@@ -1,14 +1,16 @@
 package tests;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Account {
     private String gender;
     private String firstName;
     private String lastName;
     //    private String email;
     private String password;
-    //    private int dayOfBirth;
-//    private String monthOfBirth;
-//    private int yearOfBirth;
+    private String dayOfBirth;
+    private String monthOfBirth;
+    private String yearOfBirth;
 //    private boolean newsletterAccept;
 //    private boolean specialOffersAccept;
 //    private String firstNameAddress;
@@ -37,6 +39,9 @@ public class Account {
         this.zipAddress = builder.zipAddress;
         this.countryOptionAddress = builder.countryOptionAddress;
         this.stateOptionAddress = builder.stateOptionAddress;
+        this.yearOfBirth = builder.yearOfBirth;
+        this.monthOfBirth = builder.monthOfBirth;
+        this.dayOfBirth = builder.dayOfBirth;
     }
 
     public String getGender() {
@@ -83,15 +88,27 @@ public class Account {
         return stateOptionAddress;
     }
 
+    public String getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public String getMonthOfBirth() {
+        return monthOfBirth;
+    }
+
+    public String getYearOfBirth() {
+        return yearOfBirth;
+    }
+
     public static class Builder {
         private String gender;
         private String firstName;
         private String lastName;
         //        private String email;
         private String password;
-        //        private int dayOfBirth;
-//        private String monthOfBirth;
-//        private int yearOfBirth;
+        private String dayOfBirth;
+        private String monthOfBirth;
+        private String yearOfBirth;
 //        private boolean newsletterAccept;
 //        private boolean specialOffersAccept;
 //        private String firstNameAddress;
@@ -162,6 +179,22 @@ public class Account {
             this.stateOptionAddress = state;
             return this;
         }
+
+        public Builder dayOfBirth(String dayOfBirth){
+            this.dayOfBirth = dayOfBirth;
+            return this;
+        }
+
+        public Builder monthOfBirth(String monthOfBirth){
+            this.monthOfBirth = monthOfBirth;
+            return this;
+        }
+
+        public Builder yearOfBirth(String yearOfBirth){
+            this.yearOfBirth = yearOfBirth;
+            return this;
+        }
+
 
         public Account build() {
             return new Account(this);

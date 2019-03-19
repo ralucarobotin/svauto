@@ -2,6 +2,11 @@ package testHelpers;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Utilities {
     private static final String ALLOWERCHARSANDNUMBERS = "abcdefghijklmnopqrstuvwxyz" + "1234567890";
@@ -46,6 +51,54 @@ public class Utilities {
                 "Wyoming"};
 
         return stateList[RandomUtils.nextInt() % stateList.length];
+    }
+
+    private static String generateRandomDate() {
+        int randomInt = RandomUtils.nextInt() % (360 * 30);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
+        Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.DAY_OF_MONTH, -randomInt);
+        return sdf.format(calendar.getTime());
+    }
+
+    public static String generateRandomDay(){
+        return StringUtils.stripStart(generateRandomDate().split(" ")[2], "0");
+    }
+
+    public static String generateRandomYear(){
+        return generateRandomDate().split(" ")[0];
+    }
+
+    public static String generateRandomMonth(){
+        switch (generateRandomDate().split(" ")[1]){
+            case "Jan":
+                return "1";
+            case "Feb":
+                return "2";
+            case "Mar":
+                return "3";
+            case "Apr":
+                return "4";
+            case "May":
+                return "5";
+            case "Jun":
+                return "6";
+            case "Jul":
+                return "7";
+            case "Aug":
+                return "8";
+            case "Sep":
+                return "9";
+            case "Oct":
+                return "10";
+            case "Nov":
+                return "11";
+            case "Dec":
+                return "12";
+            default:
+                return "12";
+        }
     }
 
 }

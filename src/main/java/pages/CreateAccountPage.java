@@ -170,6 +170,21 @@ public class CreateAccountPage extends BasePage {
         }
     }
 
+    public void fillDayOfBirthField(String dayOfBirth){
+        Select days = new Select(driver.findElement(By.id("days")));
+        days.selectByValue(dayOfBirth);
+    }
+
+    public void fillYearsOfBirthField(String yearOfBirth){
+        Select years = new Select(driver.findElement(By.id("years")));
+        years.selectByValue(yearOfBirth);
+    }
+
+    public void fillMonthsOfBirthField(String monthOfBirth){
+        Select months = new Select(driver.findElement(By.id("months")));
+        months.selectByValue(monthOfBirth);
+    }
+
     public void register() {
         registerButton.click();
     }
