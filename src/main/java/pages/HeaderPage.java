@@ -23,6 +23,9 @@ public class HeaderPage extends BasePage {
     @FindBy(className = "account")
     private WebElement accountName;
 
+    @FindBy(xpath = "//a[@title='View my shopping cart']")
+    private WebElement shoppingCart;
+
     public HeaderPage(WebDriver driver) {
         super(driver);
     }
@@ -32,14 +35,18 @@ public class HeaderPage extends BasePage {
     }
 
     protected boolean isValid() {
-        return areVisible(banner, phoneContactHeader, contactUsLink);
+        return areVisible(banner, phoneContactHeader, contactUsLink, shoppingCart);
     }
 
     public void clickLogoutButton(){
         this.logoutButton.click();
     }
 
-    public void contactUsLink(){
+    public void clickContactUsLink(){
         this.contactUsLink.click();
+    }
+
+    public void clickShoppingCart(){
+        this.shoppingCart.click();
     }
 }
