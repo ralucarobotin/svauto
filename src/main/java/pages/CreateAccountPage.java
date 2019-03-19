@@ -149,6 +149,23 @@ public class CreateAccountPage extends BasePage {
         year.selectByIndex(new Random().nextInt(year.getOptions().size() - 1) + 1);
     }
 
+    public void validateDate(){
+        Select days = new Select(driver.findElement(By.id("days")));
+        Select month = new Select(driver.findElement(By.id("months")));
+//        Select year = new Select(driver.findElement(By.id("years")));
+        if(month.getOptions().get(2).isSelected() && days.getOptions().get(31).isSelected() || days.getOptions().get(30).isSelected() || days.getOptions().get(29).isSelected()){
+            days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+        } else if (month.getOptions().get(4).isSelected() && days.getOptions().get(31).isSelected()) {
+            days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+        } else if (month.getOptions().get(6).isSelected() && days.getOptions().get(31).isSelected()){
+            days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+        } else if (month.getOptions().get(9).isSelected() && days.getOptions().get(31).isSelected()){
+            days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+        } else if (month.getOptions().get(11).isSelected() && days.getOptions().get(31).isSelected()) {
+            days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+        }
+    }
+
     public void inputNewsLetter() {
         newsletter.click();
     }
