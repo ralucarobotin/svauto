@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
@@ -33,6 +34,25 @@ public class ShoppingCardTest extends BaseTest {
 
         this.headerPage.verify();
         this.shoppingCartPage.verify();
+    }
+
+    @Test
+    public void testEmptyShoppingCartMessageNotLoggedIn(){
+        this.shoppingCartPage.open();
+        this.shoppingCartPage.verify();
+
+        Assert.assertEquals(this.shoppingCartPage.getShoppingCartEmptyWarning(), "Your shopping cart is empty.");
+    }
+
+    @Test
+    public void testEmptyShoppingCartMessageLoggedIn(){
+        this.loginPage.open();
+        this.loginPage.login(getPropertyFromAppProp("email"), getPropertyFromAppProp("password"));
+
+        this.shoppingCartPage.open();
+        this.shoppingCartPage.verify();
+
+        Assert.assertEquals(this.shoppingCartPage.getShoppingCartEmptyWarning(), "Your shopping cart is empty.");
     }
 
 }

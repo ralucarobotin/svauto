@@ -16,6 +16,9 @@ public class ShoppingCartPage extends BasePage {
     @FindBy(id = "order_step")
     private WebElement orderSteps;
 
+    @FindBy(xpath = "//p[@class='alert alert-warning']")
+    private WebElement emptyShoppingCartText;
+
     public ShoppingCartPage(WebDriver driver){
         super(driver);
     }
@@ -30,5 +33,9 @@ public class ShoppingCartPage extends BasePage {
 
     public boolean isValid(){
         return areVisible(pageTitle, orderSteps);
+    }
+
+    public String getShoppingCartEmptyWarning(){
+        return emptyShoppingCartText.getText();
     }
 }
