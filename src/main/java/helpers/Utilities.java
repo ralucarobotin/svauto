@@ -5,7 +5,6 @@ import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.Properties;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;

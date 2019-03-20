@@ -31,7 +31,7 @@ public class CreateAccountTest extends BaseTest {
         this.messageForEmailCountryStateAdded = getPropertyFromAppProp("messageForEmailCountryStateAdded");
         this.messageForEmailCountryStateZipAdded = getPropertyFromAppProp("messageForEmailCountryStateZipAdded");
         this.messageForEmailCountryStateZipCityAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAdded");
-        this.messageForEmailCountryStateZipCityAddressAdded= getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressAdded");
+        this.messageForEmailCountryStateZipCityAddressAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressAdded");
         this.messageForEmailCountryStateZipCityAddressPasswordAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressPasswordAdded");
         this.messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded");
         this.messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded = getPropertyFromAppProp("messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded");
@@ -44,7 +44,7 @@ public class CreateAccountTest extends BaseTest {
         this.postCreateAccountPage = new PostCreateAccountPage(getDriver());
     }
 
-    @Test(invocationCount = 100, description = "Test create account page with valid credentials:\n " +
+    @Test(invocationCount = 3, description = "Test create account page with valid credentials:\n " +
             "Steps:\n" +
             "1. Navigate to the Dashboard page with URL: http://automationpractice.com/index.php\n" +
             "2. Verify that the Dashboard page is loaded correctly.\n" +
@@ -85,9 +85,6 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputPassword(account.getPassword());
         this.createAccountPage.inputDate2();
-//        this.createAccountPage.inputDay();
-//        this.createAccountPage.inputMonth();
-//        this.createAccountPage.inputYear();
         this.createAccountPage.inputNewsLetter();
         this.createAccountPage.inputOptIn();
         this.createAccountPage.inputFirstName(account.getFirstName());
@@ -107,7 +104,16 @@ public class CreateAccountTest extends BaseTest {
         this.postCreateAccountPage.verify();
     }
 
-    @Test(description = " "
+    @Test(description = "Test create account page with no valid credentials added:" +
+            "Steps:" +
+            "1. Navigate to the Login page with URL: http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation" +
+            "2. Verify that the Login page is loaded correctly." +
+            "3. Input email." +
+            "4. Click on the 'Create an account' button." +
+            "5. Verify that the 'Authentication' page is loaded correctly." +
+            "6. Input only the fields where valid credentials are not required." +
+            "7. Click on the 'Register' button." +
+            "8. Verify that the error message displays the mandatory error Strings."
     )
     public void messageForNoMandatoryInput() {
         this.loginPage.openLoginPage();
@@ -131,6 +137,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
         this.createAccountPage.clearEmail();
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.clearCountry();
@@ -143,9 +150,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForNoMandatoryInput has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageForEmailRequired() {
+    public void messageForEmailAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -166,6 +173,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.clearCountry();
@@ -178,9 +186,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageForEmailCountryRequired() {
+    public void messageForEmailCountryAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -201,6 +209,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.inputOtherInfo(account.getOtherInfo());
@@ -212,9 +221,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageForEmailCountryStateRequired() {
+    public void messageForEmailCountryStateAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -235,6 +244,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.inputState();
@@ -247,9 +257,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryStateAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageForEmailCountryStateZipRequired() {
+    public void messageForEmailCountryStateZipAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -271,6 +281,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.inputState();
@@ -284,9 +295,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryStateZipAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageForEmailCountryStateZipCityRequired() {
+    public void messageForEmailCountryStateZipCityAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -309,6 +320,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
         this.createAccountPage.inputCity(account.getCity());
@@ -323,9 +335,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryStateZipCityAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageForEmailCountryStateZipCityAddressRequired() {
+    public void messageForEmailCountryStateZipCityAddressAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -349,6 +361,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputFirstAddress(account.getFirstAddress());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
@@ -364,9 +377,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryStateZipCityAddressAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageWith3Errors() {
+    public void messageForEmailCountryStateZipCityAddressPasswordAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -392,6 +405,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputPassword(account.getPassword());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputFirstAddress(account.getFirstAddress());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
@@ -407,9 +421,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryStateZipCityAddressPasswordAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageWith2Errors() {
+    public void messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -437,6 +451,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputPassword(account.getPassword());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate2();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputFirstAddress(account.getFirstAddress());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());
@@ -452,9 +467,9 @@ public class CreateAccountTest extends BaseTest {
                 "The test for messageForEmailCountryStateZipCityAddressPasswordFirstNameAdded has failed");
     }
 
-    @Test(description = " "
+    @Test(description = "TBD"
     )
-    public void messageWith1Error() {
+    public void messageForEmailCountryStateZipCityAddressPasswordFirstNameLastNameAdded() {
         this.loginPage.openLoginPage();
         this.loginPage.verify();
         this.loginPage.fillInAccountEmail(generatedEmail());
@@ -484,6 +499,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputPassword(account.getPassword());
         this.createAccountPage.inputFirstName(account.getFirstName());
         this.createAccountPage.inputLastName(account.getLastName());
+        this.createAccountPage.inputDate();
         this.createAccountPage.inputCompany(account.getCompany());
         this.createAccountPage.inputFirstAddress(account.getFirstAddress());
         this.createAccountPage.inputSecondAddress(account.getSecondAddress());

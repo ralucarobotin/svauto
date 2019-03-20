@@ -140,58 +140,45 @@ public class CreateAccountPage extends BasePage {
         setFieldValue(password, text);
     }
 
-    public void inputDate(){
+    public void inputDate() {
         Select days = new Select(driver.findElement(By.id("days")));
         days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         Select month = new Select(driver.findElement(By.id("months")));
         month.selectByIndex(new Random().nextInt(month.getOptions().size() - 1) + 1);
         Select year = new Select(driver.findElement(By.id("years")));
-        year.selectByIndex(new Random().nextInt(year.getOptions().size() - 1) + 19);
-        if(month.getOptions().get(2).isSelected() && days.getOptions().get(31).isSelected() || days.getOptions().get(30).isSelected() || days.getOptions().get(29).isSelected()){
+        year.selectByIndex(new Random().nextInt(year.getOptions().size() - 1) + 1);
+        if (month.getOptions().get(2).isSelected() && days.getOptions().get(31).isSelected() || days.getOptions().get(30).isSelected() || days.getOptions().get(29).isSelected()) {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         } else if (month.getOptions().get(4).isSelected() && days.getOptions().get(31).isSelected()) {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
-        } else if (month.getOptions().get(6).isSelected() && days.getOptions().get(31).isSelected()){
+        } else if (month.getOptions().get(6).isSelected() && days.getOptions().get(31).isSelected()) {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
-        } else if (month.getOptions().get(9).isSelected() && days.getOptions().get(31).isSelected()){
+        } else if (month.getOptions().get(9).isSelected() && days.getOptions().get(31).isSelected()) {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         } else if (month.getOptions().get(11).isSelected() && days.getOptions().get(31).isSelected()) {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         }
     }
 
-    public void inputDate2(){
+    public void inputDate2() {
         LocalDate date = generateDate();
-        if(driver.findElement(By.id("uniform-days")).isDisplayed()){
-            dayArrow.click();
-            String day = Integer.toString(date.getDayOfMonth());
-            System.out.println(day);
-            if(day.matches(days.getText())){
-                days.click();
-            }
-        }
-    }
+        System.out.println(date);
 
-//    public void inputDay() {
-//        Select days = new Select(driver.findElement(By.id("days")));
-//        String day = Integer.toString(generateDate().getDayOfMonth());
-//        System.out.println(day);
-//        days.selectByValue(day);
-//    }
-//
-//    public void inputMonth() {
-//        Select months = new Select(driver.findElement(By.id("months")));
-//        String month = Integer.toString(generateDate().getMonthValue());
-//        System.out.println(month);
-//        months.selectByValue(month);
-//    }
-//
-//    public void inputYear() {
-//        Select years = new Select(driver.findElement(By.id("years")));
-//        String year = Integer.toString(generateDate().getYear());
-//        System.out.println(year);
-//        years.selectByValue(year);
-//    }
+        String day = Integer.toString(date.getDayOfMonth());
+        System.out.println(day);
+        Select days = new Select(driver.findElement(By.id("days")));
+        days.selectByValue(day);
+
+        String month = Integer.toString(date.getMonthValue());
+        System.out.println(month);
+        Select months = new Select(driver.findElement(By.id("months")));
+        months.selectByValue(month);
+
+        String year = Integer.toString(date.getYear());
+        System.out.println(year);
+        Select years = new Select(driver.findElement(By.id("years")));
+        years.selectByValue(year);
+    }
 
     public void inputNewsLetter() {
         newsletter.click();
