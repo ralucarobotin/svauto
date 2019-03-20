@@ -84,7 +84,7 @@ public class CreateAccountTest extends BaseTest {
         this.createAccountPage.inputCustomerLastName(account.getCustomerLastName());
         this.createAccountPage.inputEmail(account.getEmail());
         this.createAccountPage.inputPassword(account.getPassword());
-        this.createAccountPage.inputDate();
+        this.createAccountPage.inputDate2();
 //        this.createAccountPage.inputDay();
 //        this.createAccountPage.inputMonth();
 //        this.createAccountPage.inputYear();

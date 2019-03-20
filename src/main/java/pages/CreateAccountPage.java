@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 import static helpers.WebElementHelper.*;
@@ -93,6 +94,10 @@ public class CreateAccountPage extends BasePage {
     @FindBy(css = "#center_column div ol")
     private WebElement errorMessageCreateAccount;
 
+    @FindBy(id = "uniform-days")
+    private WebElement dayArrow;
+
+
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -152,6 +157,18 @@ public class CreateAccountPage extends BasePage {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
         } else if (month.getOptions().get(11).isSelected() && days.getOptions().get(31).isSelected()) {
             days.selectByIndex(new Random().nextInt(days.getOptions().size() - 1) + 1);
+        }
+    }
+
+    public void inputDate2(){
+        LocalDate date = generateDate();
+        if(driver.findElement(By.id("uniform-days")).isDisplayed()){
+            dayArrow.click();
+            String day = Integer.toString(date.getDayOfMonth());
+            System.out.println(day);
+            if(day.matches(days.getText())){
+                days.click();
+            }
         }
     }
 

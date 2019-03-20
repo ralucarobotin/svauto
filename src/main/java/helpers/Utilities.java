@@ -1,7 +1,10 @@
 package helpers;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 
@@ -88,12 +91,10 @@ public class Utilities {
         return RandomStringUtils.random(10, true, true);
     }
 
-//    public static LocalDate generateDate(){
-//    LocalDate startDate = LocalDate.of(1900, 1, 1);
-//    long start = startDate.toEpochDay();
-//    LocalDate endDate = LocalDate.now();
-//    long end = endDate.toEpochDay();
-//    long random = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
-//    return LocalDate.ofEpochDay(random);
-//    }
+    public static LocalDate generateDate(){
+    LocalDate startDate = LocalDate.of(1900, Month.JANUARY, 1);
+    long range = ChronoUnit.DAYS.between(startDate, LocalDate.now());
+    LocalDate randomDate = startDate.plusDays(new Random().nextInt((int)range + 1));
+    return randomDate;
+    }
 }
