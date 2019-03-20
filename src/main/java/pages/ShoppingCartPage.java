@@ -19,6 +19,9 @@ public class ShoppingCartPage extends BasePage {
     @FindBy(xpath = "//p[@class='alert alert-warning']")
     private WebElement emptyShoppingCartText;
 
+    @FindBy(xpath = "//span[@class='heading-counter']")
+    private WebElement productCounter;
+
     public ShoppingCartPage(WebDriver driver){
         super(driver);
     }
@@ -37,5 +40,9 @@ public class ShoppingCartPage extends BasePage {
 
     public String getShoppingCartEmptyWarning(){
         return emptyShoppingCartText.getText();
+    }
+
+    public String getShoppingCartProductCounterText(){
+        return productCounter.getText();
     }
 }
