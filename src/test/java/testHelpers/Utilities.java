@@ -13,6 +13,7 @@ public class Utilities {
     private static final String ALLOWERCHARS = "abcdefghijklmnopqrstuvwxyz";
     private static final String ALLOWEDNUMBERS = "1234567890";
     private static final String EMAILDOMAIN = "@test.com";
+    private static final String randomDate = generateRandomDate();
 
 
     public static String generateValidEmailAddress() {
@@ -63,15 +64,15 @@ public class Utilities {
     }
 
     public static String generateRandomDay(){
-        return StringUtils.stripStart(generateRandomDate().split(" ")[2], "0");
+        return StringUtils.stripStart(randomDate.split(" ")[2], "0");
     }
 
     public static String generateRandomYear(){
-        return generateRandomDate().split(" ")[0];
+        return randomDate.split(" ")[0];
     }
 
     public static String generateRandomMonth(){
-        switch (generateRandomDate().split(" ")[1]){
+        switch (randomDate.split(" ")[1]){
             case "Jan":
                 return "1";
             case "Feb":
