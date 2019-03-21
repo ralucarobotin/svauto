@@ -1,6 +1,7 @@
 package helpers;
 
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -63,8 +64,8 @@ public class Utilities {
     }
   }
 
-  public static String generateEmail(String domain){
-      String randomEmail = RandomStringUtils.randomAlphabetic(10) + "@" + domain;
+  public static String generateEmail(){
+      String randomEmail = RandomStringUtils.randomAlphabetic(10) + "@mailinator.com";
       return randomEmail;
   }
 
@@ -83,5 +84,14 @@ public class Utilities {
     return randomNumbers;
   }
 
+  public static boolean generateRandomBoolean(){
+    Random randomBoolean = new Random();
+    return randomBoolean.nextBoolean();
+  }
+
+  public static int generateRandomDropdownSelection(int size){
+    Random randomValue = new Random();
+    return randomValue.nextInt(size);
+  }
 
 }

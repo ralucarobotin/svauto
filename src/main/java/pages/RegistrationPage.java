@@ -10,16 +10,13 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class RegistrationPage extends BasePage{
 
-    private final static String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    private final static String URL = DashboardPage.URL + "/index.php?controller=authentication&back=my-account";
 
     @FindBy(id = "email_create")
     private WebElement createEmailField;
 
     @FindBy(id="SubmitCreate")
     private WebElement createAccountButton;
-
-    @FindBy (id = "create_account_error")
-    private WebElement createAccountError;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
@@ -40,21 +37,16 @@ public class RegistrationPage extends BasePage{
     }
 
     public void fillEmailAddress(String email){
-        setFieldValue(createEmailField,email);
+        setFieldValue(createEmailField, email);
     }
 
     public void clickCreateAccount(){
         this.createAccountButton.click();
     }
 
-    public String getCreateAccountErrorText(){
-        return this.createAccountError.getText();
-    }
-
-    public WebElement getCreateAccountButton(){ return this.createAccountButton;}
-
     public void gotoNewAccountForm(){
-        fillEmailAddress(Utilities.generateEmail("mailinator.com"));
+        open();
+        fillEmailAddress(Utilities.generateEmail());
         clickCreateAccount();
     }
 }

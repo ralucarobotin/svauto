@@ -1,32 +1,20 @@
 package pages;
-import helpers.Account;
+
 import helpers.Utilities;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.Random;
-
+import static helpers.Utilities.*;
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
 
 public class NewAccountPage extends BasePage{
-
-    public static final String INVALID_EMAIL_ERROR = "Invalid email address.";
-    public static final String EMAIL_EXISTS_ERROR = "An account using this email address has already been registered. Please enter a valid password or request a new one.";
-    public static final String LAST_NAME_REQUIRED_ERROR = "lastname is required.";
-    public static final String FIRST_NAME_REQUIRED_ERROR = "firstname is required.";
-    public static final String PSWD_REQUIRED_ERROR = "passwd is required.";
-    public static final String ADDRESS_REQUIRED_ERROR = "address1 is required.";
-    public static final String CITY_REQUIRED_ERROR = "city is required.";
-    public static final String ZIP_INVALID_ERROR = "The Zip/Postal code you've entered is invalid. It must follow this format: 00000";
-    public static final String STATE_REQUIRED_ERROR = "This country requires you to choose a State.";
-    public static final String PHONE_REQUIRED_TIP = "You must register at least one phone number.";
-    public static final String COUNTRY_REQUIRED_ERROR = "Country is invalid";
-    public static final String INVALID_LAST_NAME_ERROR = "lastname is invalid.";
-    public static final String INVALID_FIRST_NAME_ERROR = "firstname is invalid.";
 
     //YOUR PERSONAL INFORMATION
     @FindBy (id = "id_gender1")
@@ -90,9 +78,6 @@ public class NewAccountPage extends BasePage{
     @FindBy (id = "submitAccount")
     private WebElement registerButton;
 
-    @FindBy (css = "#center_column > div.alert.alert-danger > ol > li")
-    private WebElement accountFormError;
-
     @FindBy (css = ".inline-infos")
     private WebElement inlineInfo;
 
@@ -110,26 +95,12 @@ public class NewAccountPage extends BasePage{
         return areVisible(personalInfo_emailField, passwordField, registerButton);
     }
 
-    public String getAccountFormErrorText(){
-        return accountFormError.getText();
-    }
-
-    public WebElement getErrorBannerElement(){
-        return accountFormError;
-    }
-
-    public String getPhoneRequiredTooltipText() {
-        return this.inlineInfo.getText();
-    }
-
-    public String getPersonalInfoEmail(){
+    public String getEmailAutofillText(){
         return this.personalInfo_emailField.getText();
     }
 
     public void selectGender(){
-        Random value  = new Random();
-        int gender = value.nextInt(2);
-        if( gender == 1) {
+        if (generateRandomBoolean()) {
             gender_male.click();
         } else gender_female.click();
     }
@@ -158,7 +129,8 @@ public class NewAccountPage extends BasePage{
 
     public void selectBirthDate_year(){
         Select birthYear_dropdown = new Select(this.birthDate_year);
-        birthYear_dropdown.selectByIndex(new Random().nextInt(birthYear_dropdown.getOptions().size()));
+            birthYear_dropdown.selectByIndex(new Random().nextInt(birthYear_dropdown.getOptions().size()));
+
     }
 
     public boolean verifyFirstNameAutofill(){
@@ -183,16 +155,16 @@ public class NewAccountPage extends BasePage{
 
     public void selectState_dropdown() {
         Select state_dropdown = new Select(address_state);
-        state_dropdown.selectByIndex(new Random().nextInt(state_dropdown.getOptions().size()));
+        state_dropdown.selectByIndex(generateRandomDropdownSelection(state_dropdown.getOptions().size()));
     }
 
     public void fillZipCode(){
         setFieldValue(address_postcode, RandomStringUtils.randomNumeric(5));
     }
 
-    public void selectCountry_dropdown(String country) {
+    public void selectCountry_dropdown() {
         Select country_dropdown = new Select(address_country);
-        country_dropdown.selectByVisibleText(country);
+        country_dropdown.selectByIndex(generateRandomDropdownSelection(country_dropdown.getOptions().size()));
     }
 
     public void fillPhoneNumber(){
@@ -215,17 +187,13 @@ public class NewAccountPage extends BasePage{
         selectBirthDate_day();
         selectBirthDate_month();
         selectBirthDate_year();
-        fillCompanyAddress();
         fillAddress();
         fillCity();
         selectState_dropdown();
         fillZipCode();
-        selectCountry_dropdown("United States");
+        selectCountry_dropdown();
         fillPhoneNumber();
         fillAliasAddress();
-    }
-
-    public Account createAccount = new Account.Builder()
     }
 
 }
