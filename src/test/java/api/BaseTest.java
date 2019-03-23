@@ -1,27 +1,30 @@
 package api;
 
-import api.domain.pets.Pet;
-import api.utils.PetsUtils;
+import api.apiwrappers.OrderApiWrapper;
+import api.domain.store.Order;
+import api.utils.StoreUtils;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 public class BaseTest {
 
-    public static void main(String args[]){
+    private static final OrderApiWrapper orderApiWrapper = new OrderApiWrapper();
 
-        //[Test id] Verify that the pet is successfully created
-        //Generate the payload
-        Pet pet = PetsUtils.generateADefaultPetPaylod();
+    @Test
+    private void VerifyThatAnOrderIsSuccessfullyCreated() throws IOException {
 
-        //Preparing java object to be serialized ot Json format
-        String payloadRequest = new JsonHelper().parseJavaObjectsToJson(pet);
-        System.out.println(payloadRequest);
+        //Generate the payload for an order
+        Order orderPayload = StoreUtils.generateADefaultOrderPaylod();
 
-        //Perform POST call
-        //TO DO
+        //Process the order
+        Order postResponseOrder = (Order) orderApiWrapper.postOrder(orderPayload);
 
-        //Response call is received in a Json format and needs to be deserialized to java object
-        System.out.println(new JsonHelper().parseJsonToJava(payloadRequest, new Pet()));
+        //The order was successfully created
+        assert StoreUtils.checkIfOrdersAreEquals(orderPayload, postResponseOrder);
 
-        //Once the response payload is deserialized it can be asserted
-
+        //Verify the order via GET call
+        Order getResponseOrder = (Order) orderApiWrapper.getOrder(postResponseOrder);
+        assert StoreUtils.checkIfOrdersAreEquals(postResponseOrder, getResponseOrder);
     }
 }

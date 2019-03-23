@@ -9,31 +9,36 @@ class JsonHelper {
 
     /**
      * Parse java objects to Json
-     * @param jsonString response call in jsonFormat
+     *
+     * @param jsonString  response call in jsonFormat
      * @param objectClass mapping the response to the desired class
      * @return jsonFormatString
      */
-    Object parseJsonToJava(String jsonString, Object objectClass){
-        Object abc = new Object();
-        try{
-            abc = mapper.readValue(jsonString, objectClass.getClass());
-        } catch (IOException e) { e.printStackTrace();}
+    Object parseJsonToJava(String jsonString, Object objectClass) {
+        Object parseJsonToJava = new Object();
+        try {
+            parseJsonToJava = mapper.readValue(jsonString, objectClass.getClass());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        return abc;
+        return parseJsonToJava;
     }
 
     /**
      * Parse java objects to Json
+     *
      * @param parsingObject Java object used for call payload
      * @return jsonFormatString
      */
-    String parseJavaObjectsToJson(Object parsingObject){
-        String jsonString = null;
-        try{
-            jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parsingObject);
-        } catch (IOException e) { e.printStackTrace();}
+    String parseJavaObjectsToJson(Object parsingObject) {
+        String parseJavaObjectsToJson = null;
+        try {
+            parseJavaObjectsToJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parsingObject);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        return jsonString;
+        return parseJavaObjectsToJson;
     }
-
 }

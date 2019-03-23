@@ -3,26 +3,26 @@ package api.domain.store;
 import java.math.BigDecimal;
 
 public class Order {
-    private String id;
-    private String petId;
+    private BigDecimal id;
+    private BigDecimal petId;
     private BigDecimal quantity;
     private String shipDate;
     private String status;
     private Boolean complete;
 
-    public String getId() {
+    public BigDecimal getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigDecimal id) {
         this.id = id;
     }
 
-    public String getPetId() {
+    public BigDecimal getPetId() {
         return petId;
     }
 
-    public void setPetId(String petId) {
+    public void setPetId(BigDecimal petId) {
         this.petId = petId;
     }
 

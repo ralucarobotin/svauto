@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class PetsUtils {
 
-    public static Pet generateADefaultPetPaylod(){
+    public static Pet generateADefaultPetPaylod() {
         ArrayList<Category> categories = new ArrayList<>();
         categories.add(CategoryUtils.generateDefaultCategory());
         Pet pet = new Pet();
