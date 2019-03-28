@@ -1,44 +1,27 @@
 package api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
+import com.google.gson.Gson;
 
 class JsonHelper {
-    private ObjectMapper mapper = new ObjectMapper();
+    private Gson gson = new Gson();
 
     /**
      * Parse java objects to Json
-     *
-     * @param jsonString  response call in jsonFormat
-     * @param objectClass mapping the response to the desired class
+     * @param jsonString response call in jsonFormat
+     * @param cls mapping the response to the desired class
      * @return jsonFormatString
      */
-    Object parseJsonToJava(String jsonString, Object objectClass) {
-        Object parseJsonToJava = new Object();
-        try {
-            parseJsonToJava = mapper.readValue(jsonString, objectClass.getClass());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return parseJsonToJava;
+    Object  parseJsonToJava(String jsonString, Class cls){
+       return gson.fromJson(jsonString, cls);
     }
 
     /**
      * Parse java objects to Json
-     *
-     * @param parsingObject Java object used for call payload
+     * @param object Java object used for call payload
      * @return jsonFormatString
      */
-    String parseJavaObjectsToJson(Object parsingObject) {
-        String parseJavaObjectsToJson = null;
-        try {
-            parseJavaObjectsToJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parsingObject);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return parseJavaObjectsToJson;
+    String parseJavaObjectsToJson(Object object){
+       return gson.toJson(object);
     }
+
 }

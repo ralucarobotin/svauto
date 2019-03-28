@@ -1,14 +1,14 @@
 package api.utils;
 
-import api.domain.store.Order;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Random;
 
+import api.domain.store.Order;
+
 public class StoreUtils {
 
-    public static Order generateADefaultOrderPaylod() {
+    public static Order generateADefaultOrderPayload() {
         Order order = new Order();
         order.setId(new BigDecimal(new Random().nextInt(20)));
         order.setPetId(new BigDecimal(String.valueOf(new Random().nextInt(20))));
@@ -20,7 +20,7 @@ public class StoreUtils {
         return order;
     }
 
-    public static boolean checkIfOrdersAreEquals(Order requestPayload, Order responsePayload) {
+    public static boolean checkIfOrdersAreEqual(Order requestPayload, Order responsePayload) {
 
         assert requestPayload.getId().equals(responsePayload.getId()) : "The order's id is wrong";
         assert requestPayload.getPetId().equals(responsePayload.getPetId()) : "The order's pet id is wrong";
