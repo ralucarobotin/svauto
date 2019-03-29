@@ -1,13 +1,13 @@
 package api.utils;
 
+import java.util.ArrayList;
+
 import api.domain.pets.Category;
 import api.domain.pets.Pet;
 
-import java.util.ArrayList;
-
 public class PetsUtils {
 
-    public static Pet generateADefaultPetPaylod(){
+    public static Pet generateADefaultPetPayload(){
         ArrayList<Category> categories = new ArrayList<>();
         categories.add(CategoryUtils.generateDefaultCategory());
         Pet pet = new Pet();
