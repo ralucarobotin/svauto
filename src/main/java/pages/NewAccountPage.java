@@ -99,8 +99,8 @@ public class NewAccountPage extends BasePage{
         return this.personalInfo_emailField.getText();
     }
 
-    public void selectGender(){
-        if (generateRandomBoolean()) {
+    public void selectGender(boolean flip){
+        if (flip) {
             gender_male.click();
         } else gender_female.click();
     }
@@ -119,18 +119,17 @@ public class NewAccountPage extends BasePage{
 
     public void selectBirthDate_day() {
         Select birthDay_dropdown = new Select(this.birthDate_day);
-       birthDay_dropdown.selectByIndex(new Random().nextInt(birthDay_dropdown.getOptions().size()));
+        birthDay_dropdown.selectByIndex(new Random().nextInt(birthDay_dropdown.getOptions().size()));
     }
 
-    public void selectBirthDate_month(){
+    public void selectBirthDate_month(String month){
         Select birthMonth_dropdown = new Select(this.birthDate_month);
-        birthMonth_dropdown.selectByIndex(new Random().nextInt(birthMonth_dropdown.getOptions().size()));
+        birthMonth_dropdown.selectByVisibleText(month);
     }
 
-    public void selectBirthDate_year(){
+    public void selectBirthDate_year(String year){
         Select birthYear_dropdown = new Select(this.birthDate_year);
-            birthYear_dropdown.selectByIndex(new Random().nextInt(birthYear_dropdown.getOptions().size()));
-
+        birthYear_dropdown.selectByIndex(new Random().nextInt(birthYear_dropdown.getOptions().size()));
     }
 
     public boolean verifyFirstNameAutofill(){
@@ -139,10 +138,6 @@ public class NewAccountPage extends BasePage{
 
     public boolean verifyLastNameAutofill(){
         return this.address_lastName.getText().equals(this.personalInfo_lastName.getText());
-    }
-
-    public void fillCompanyAddress() {
-        setFieldValue(address_company, Utilities.generateRandomAlphabetic());
     }
 
     public void fillAddress() {
@@ -155,7 +150,7 @@ public class NewAccountPage extends BasePage{
 
     public void selectState_dropdown() {
         Select state_dropdown = new Select(address_state);
-        state_dropdown.selectByIndex(generateRandomDropdownSelection(state_dropdown.getOptions().size()));
+        state_dropdown.selectByValue(Integer.toString(generateRandomDropdownSelection(state_dropdown.getOptions().size())));
     }
 
     public void fillZipCode(){
@@ -180,13 +175,13 @@ public class NewAccountPage extends BasePage{
     }
 
     public void fillCreateAccountForm(){
-        selectGender();
+        selectGender(Utilities.generateRandomBoolean());
         fillFirstName();
         fillLastName();
         fillPassword();
         selectBirthDate_day();
-        selectBirthDate_month();
-        selectBirthDate_year();
+        selectBirthDate_month(Utilities.randomMonth());
+        selectBirthDate_year(Utilities.randomYear());
         fillAddress();
         fillCity();
         selectState_dropdown();

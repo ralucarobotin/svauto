@@ -6,9 +6,9 @@ public class AccountBuilder {
     private String personalInfo_lastName = Utilities.generateRandomAlphabetic();
     private String personalInfo_emailField = Utilities.generateEmail();
     private String passwordField = Utilities.generateRandomPassword();
-    private int birthDate_day;
-    private int birthDate_month;
-    private int birthDate_year;
+    private String birthDate_day;
+    private String birthDate_month;
+    private String birthDate_year;
     private String address_firstName;
     private String address_lastName;
     private String address_company;
@@ -54,15 +54,15 @@ public class AccountBuilder {
         return passwordField;
     }
 
-    public int getBirthDate_day() {
+    public String getBirthDate_day() {
         return birthDate_day;
     }
 
-    public int getBirthDate_month() {
+    public String getBirthDate_month() {
         return birthDate_month;
     }
 
-    public int getBirthDate_year() {
+    public String getBirthDate_year() {
         return birthDate_year;
     }
 
@@ -113,9 +113,9 @@ public class AccountBuilder {
         private String personalInfo_lastName;
         private String personalInfo_emailField;
         private String passwordField;
-        private int birthDate_day;
-        private int birthDate_month;
-        private int birthDate_year;
+        private String birthDate_day;
+        private String birthDate_month;
+        private String birthDate_year;
         private String address_firstName;
         private String address_lastName;
         private String address_company;
@@ -132,17 +132,17 @@ public class AccountBuilder {
             return this;
         }
 
-        public Builder setBirthDate_day(int birthDate_day) {
+        public Builder setBirthDate_day(String birthDate_day) {
             this.birthDate_day = birthDate_day;
             return this;
         }
 
-        public Builder setBirthDate_month(int birthDate_month) {
+        public Builder setBirthDate_month(String birthDate_month) {
             this.birthDate_month = birthDate_month;
             return this;
         }
 
-        public Builder setBirthDate_year(int birthDate_year) {
+        public Builder setBirthDate_year(String birthDate_year) {
             this.birthDate_year = birthDate_year;
             return this;
         }
@@ -156,11 +156,11 @@ public class AccountBuilder {
             this.personalInfo_lastName = personalInfo_lastName;
             return this;
         }
-
-        public Builder setPersonalInfo_emailField(String personalInfo_emailField) {
-            this.personalInfo_emailField = personalInfo_emailField;
-            return this;
-        }
+//
+//        public Builder setPersonalInfo_emailField(String personalInfo_emailField) {
+//            this.personalInfo_emailField = personalInfo_emailField;
+//            return this;
+//        }
 
         public Builder setPasswordField(String passwordField) {
             this.passwordField = passwordField;

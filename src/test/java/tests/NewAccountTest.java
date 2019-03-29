@@ -1,6 +1,7 @@
 package tests;
 
 import helpers.AccountBuilder;
+import helpers.Utilities;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,12 +14,11 @@ public class NewAccountTest extends BaseTest {
     private NewAccountPage newAccountPage = null;
     private NewAccountErrors newAccountErrors = null;
     private RegistrationPage registrationPage = null;
-    private RegistrationPageErrors registrationPageErrors = null;
+
 
     @BeforeMethod
     void beforeMethod() {
         this.registrationPage = new RegistrationPage(getDriver());
-        this.registrationPageErrors = new RegistrationPageErrors(getDriver());
         this.newAccountPage = new NewAccountPage(getDriver());
         this.newAccountErrors = new NewAccountErrors(getDriver());
         this.myAccountPage = new MyAccountPage(getDriver());
@@ -56,7 +56,21 @@ public class NewAccountTest extends BaseTest {
 //    @Test
 //    public void invalidPasswordThrowsError(){
 //        registrationPage.gotoNewAccountForm();
-//        AccountBuilder account = new AccountBuilder.Builder();
+//        AccountBuilder account = new AccountBuilder.Builder()
+//                .setGender(Utilities.generateRandomBoolean())
+//                .setPersonalInfo_firstName(Utilities.generateRandomAlphabetic())
+//                .setPersonalInfo_lastName(Utilities.generateRandomAlphabetic())
+//                .setPasswordField("")
+//                .setBirthDate_year(Utilities.randomYear())
+//                .setBirthDate_month(Utilities.randomMonth())
+//                .setBirthDate_day(Utilities.randomDay())
+//                .setAddress_streetAddress(Utilities.generateRandomAlphabetic())
+//                .setAddress_city(Utilities.generateRandomAlphabetic())
+//                .setAddress_state()
+//                .setAddress_postcode(Utilities.generateRandomNumbers())
+//                .setAddress_mobilePhone(Utilities.generateRandomNumbers())
+//                .setAddress_alias(Utilities.generateRandomAlphabetic());
+//
 //
 //    }
 

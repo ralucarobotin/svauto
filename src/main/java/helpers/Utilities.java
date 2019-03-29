@@ -1,10 +1,17 @@
 package helpers;
 
+import java.time.Month;
+import java.time.MonthDay;
+import java.time.Year;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Logger;
 
+import com.github.rkumsher.date.RandomDateUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -65,23 +72,20 @@ public class Utilities {
   }
 
   public static String generateEmail(){
-      String randomEmail = RandomStringUtils.randomAlphabetic(10) + "@mailinator.com";
-      return randomEmail;
+      return RandomStringUtils.randomAlphabetic(10) + "@mailinator.com";
   }
 
   public static String generateRandomAlphabetic(){
-      String randomAlphabetic = RandomStringUtils.randomAlphabetic(10);
-      return randomAlphabetic;
+      return RandomStringUtils.randomAlphabetic(10);
   }
 
   public static String generateRandomPassword(){
-      String randomPassword = RandomStringUtils.randomAlphanumeric(10);
-      return randomPassword;
+      return RandomStringUtils.randomAlphanumeric(10);
   }
 
   public static String generateRandomNumbers(){
-    String randomNumbers = RandomStringUtils.randomNumeric(10);
-    return randomNumbers;
+    return RandomStringUtils.randomNumeric(10);
+
   }
 
   public static boolean generateRandomBoolean(){
@@ -92,6 +96,18 @@ public class Utilities {
   public static int generateRandomDropdownSelection(int size){
     Random randomValue = new Random();
     return randomValue.nextInt(size);
+  }
+
+//  public static String randomDay(){
+//    return RandomStringUtils.random(????)
+//  }
+
+  public static String randomMonth(){
+    return RandomDateUtils.randomMonth().toString();
+  }
+
+  public static String randomYear(){
+    return RandomDateUtils.randomYear(1900, 2019).toString();
   }
 
 }
