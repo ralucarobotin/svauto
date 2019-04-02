@@ -7,6 +7,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
@@ -41,6 +43,31 @@ public class CommonApiWrapper {
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
         logger.info("GET RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+
+        return responseDto;
+    }
+
+    protected Object put(Object payload, String endpoint) throws IOException {
+        HttpPut httpPut = new HttpPut(endpoint);
+        logger.info("Put HTTP method initialized" + httpPut);
+        StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
+        logger.info("PUT REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
+        httpPut.setEntity(requestEntity);
+        HttpResponse response = httpclient.execute(httpPut);
+        Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
+        ), payload.getClass());
+        logger.info("PUT RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+
+        return responseDto;
+    }
+
+    protected Object delete(Object payload, String endpoint) throws IOException {
+        HttpDelete httpDelete = new HttpDelete(endpoint);
+        logger.info("Delete HTTP method initialized" + httpDelete);
+        HttpResponse response = httpclient.execute(httpDelete);
+        Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
+        ), payload.getClass());
+        logger.info("DELETE RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
 
         return responseDto;
     }
