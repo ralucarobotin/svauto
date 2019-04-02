@@ -2,6 +2,7 @@ package api.order;
 
 import java.io.IOException;
 
+import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import api.apiwrappers.OrderApiWrapper;
@@ -27,5 +28,9 @@ public class BaseTest {
         //Verify the order via GET call
         Order getResponseOrder = orderApiWrapper.getOrder(postResponseOrder);
         assert StoreUtils.checkIfOrdersAreEqual(postResponseOrder, getResponseOrder);
+
+        //Delete the order via DELETE call
+        Order deleteResponseOrder = orderApiWrapper.deleteOrder(postResponseOrder);
+      //  assert deleteResponseOrder.equals(HttpStatus.SC_OK);
     }
 }

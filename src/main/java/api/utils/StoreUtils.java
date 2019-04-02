@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Random;
 
 import api.domain.store.Order;
+import org.apache.commons.lang3.StringUtils;
 
 public class StoreUtils {
 
@@ -31,5 +32,4 @@ public class StoreUtils {
 
         return true;
     }
-
 }

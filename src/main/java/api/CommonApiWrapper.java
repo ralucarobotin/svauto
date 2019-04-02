@@ -22,6 +22,8 @@ public class CommonApiWrapper {
     private JsonHelper jsonHelper = new JsonHelper();
     protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");
 
+    protected int postResponse, getResponse, deleteResponse, putResponse;
+
     protected Object post(Object payload, String endpoint) throws IOException {
         HttpPost httpPost = new HttpPost(endpoint);
         logger.info("Post HTTP method initialized" + httpPost);
@@ -29,9 +31,11 @@ public class CommonApiWrapper {
         logger.info("POST REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPost.setEntity(requestEntity);
         HttpResponse response = httpclient.execute(httpPost);
+        postResponse = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
         logger.info("POST RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+        logger.info("POST HTTP RESPONSE " + postResponse);
 
         return responseDto;
     }
@@ -40,9 +44,11 @@ public class CommonApiWrapper {
         HttpGet httpGet = new HttpGet(endpoint);
         logger.info("Get HTTP method initialized" + httpGet);
         HttpResponse response = httpclient.execute(httpGet);
+        getResponse = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
         logger.info("GET RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+        logger.info("GET HTTP RESPONSE " + getResponse);
 
         return responseDto;
     }
@@ -54,9 +60,11 @@ public class CommonApiWrapper {
         logger.info("PUT REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPut.setEntity(requestEntity);
         HttpResponse response = httpclient.execute(httpPut);
+        putResponse = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
         logger.info("PUT RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+        logger.info("PUT HTTP RESPONSE " + putResponse);
 
         return responseDto;
     }
@@ -65,9 +73,11 @@ public class CommonApiWrapper {
         HttpDelete httpDelete = new HttpDelete(endpoint);
         logger.info("Delete HTTP method initialized" + httpDelete);
         HttpResponse response = httpclient.execute(httpDelete);
+        deleteResponse = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
         logger.info("DELETE RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+        logger.info("DELETE HTTP RESPONSE " + deleteResponse);
 
         return responseDto;
     }
