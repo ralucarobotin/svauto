@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Random;
 
+import api.domain.pets.Tags;
+import api.domain.pets.Category;
 import api.domain.store.Order;
-import org.apache.commons.lang3.StringUtils;
+import api.domain.pets.Pet;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class StoreUtils {
 
@@ -32,4 +35,5 @@ public class StoreUtils {
 
         return true;
     }
+
 }
