@@ -3,12 +3,14 @@ package api.utils;
 import api.domain.pets.Category;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.math.BigDecimal;
+
 class CategoryUtils {
 
-    static Category generateDefaultCategory() {
+    static Category generateDefaultCategory(BigDecimal id, String name) {
         Category category = new Category();
-        category.setId(RandomStringUtils.randomNumeric(10));
-        category.setName(RandomStringUtils.randomAlphabetic(20));
+        category.setId(id);
+        category.setName(name);
 
         return category;
     }

@@ -26,14 +26,13 @@ public class CommonApiWrapper {
 
     protected Object post(Object payload, String endpoint) throws IOException {
         HttpPost httpPost = new HttpPost(endpoint);
-        logger.info("Post HTTP method initialized" + httpPost);
+        logger.info("Post HTTP method initialized " + httpPost);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
         logger.info("POST REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPost.setEntity(requestEntity);
         HttpResponse response = httpclient.execute(httpPost);
         postResponse = response.getStatusLine().getStatusCode();
-        Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
-        ), payload.getClass());
+        Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()), payload.getClass());
         logger.info("POST RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
         logger.info("POST HTTP RESPONSE " + postResponse);
 
@@ -42,7 +41,7 @@ public class CommonApiWrapper {
 
     protected Object get(Object payload, String endpoint) throws IOException {
         HttpGet httpGet = new HttpGet(endpoint);
-        logger.info("Get HTTP method initialized" + httpGet);
+        logger.info("Get HTTP method initialized " + httpGet);
         HttpResponse response = httpclient.execute(httpGet);
         getResponse = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
@@ -55,7 +54,7 @@ public class CommonApiWrapper {
 
     protected Object put(Object payload, String endpoint) throws IOException {
         HttpPut httpPut = new HttpPut(endpoint);
-        logger.info("Put HTTP method initialized" + httpPut);
+        logger.info("Put HTTP method initialized " + httpPut);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
         logger.info("PUT REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPut.setEntity(requestEntity);
@@ -71,7 +70,7 @@ public class CommonApiWrapper {
 
     protected Object delete(Object payload, String endpoint) throws IOException {
         HttpDelete httpDelete = new HttpDelete(endpoint);
-        logger.info("Delete HTTP method initialized" + httpDelete);
+        logger.info("Delete HTTP method initialized " + httpDelete);
         HttpResponse response = httpclient.execute(httpDelete);
         deleteResponse = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()

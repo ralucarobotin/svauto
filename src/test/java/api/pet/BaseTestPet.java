@@ -3,20 +3,25 @@ package api.pet;
 import java.io.IOException;
 
 import api.utils.PetsUtils;
-import org.apache.http.HttpStatus;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import api.apiwrappers.PetsApiWrapper;
 import api.domain.pets.Pet;
-import api.utils.StoreUtils;
 
-public class BaseTest_Pet {
+public class BaseTestPet {
 
     private static final PetsApiWrapper petApiWrapper = new PetsApiWrapper();
+//    private Pet petPayload = null;
+//
+//    @BeforeMethod
+//    void beforeMethod(){
+//        Generate the payload for a pet
+//        Pet petPayload = PetsUtils.generateADefaultPetPayload();
+//    }
 
     @Test
     private void VerifyThatAPetIsSuccessfullyAdded() throws IOException {
-
         //Generate the payload for a pet
         Pet petPayload = PetsUtils.generateADefaultPetPayload();
 

@@ -19,6 +19,12 @@ public class OrderApiWrapper extends CommonApiWrapper {
         return (Order)get(order, endpoint);
     }
 
+    public Order getOrderInventory(Order order) throws IOException {
+        String endpoint = baseUrl + "/v2/store/inventory";
+
+        return (Order)get(order, endpoint);
+    }
+
     public Order deleteOrder(Order order) throws IOException {
         String endpoint = baseUrl + "/v2/store/order/" + order.getId().toString();
 
