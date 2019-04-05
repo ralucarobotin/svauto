@@ -22,7 +22,7 @@ public class CommonApiWrapper {
     protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");
     private final String newLine = "\n";
 
-    protected int deleteResponse, getResponse, postResponse;
+    protected static int deleteStatus, getStatus, postStatus;
 
     protected Object post(Object payload, String endpoint) throws IOException {
         HttpPost httpPost = new HttpPost(endpoint);
@@ -32,10 +32,10 @@ public class CommonApiWrapper {
         logger.info("POST REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPost.setEntity(requestEntity);
         HttpResponse response = httpclient.execute(httpPost);
-        postResponse = response.getStatusLine().getStatusCode();
+        postStatus = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
-        logger.info("POST HTTP RESPONSE " + postResponse);
+        logger.info("POST HTTP RESPONSE " + postStatus);
         logger.info("POST RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto) + newLine);
 
         return responseDto;
@@ -45,23 +45,20 @@ public class CommonApiWrapper {
         HttpGet httpGet = new HttpGet(endpoint);
         logger.info("Get HTTP method initialized: " + httpGet);
         HttpResponse response = httpclient.execute(httpGet);
-        getResponse = response.getStatusLine().getStatusCode();
+        getStatus = response.getStatusLine().getStatusCode();
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
-        logger.info("GET HTTP RESPONSE " + getResponse);
+        logger.info("GET HTTP RESPONSE " + getStatus);
         logger.info("GET RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto) + newLine);
 
         return responseDto;
     }
 
-    protected Object delete(Object payload, String endpoint) throws IOException{
+    protected void delete(String endpoint) throws IOException{
         HttpDelete httpDelete = new HttpDelete(endpoint);
         logger.info("Delete HTTP method initialized" + httpDelete);
         HttpResponse response = httpclient.execute(httpDelete);
-        deleteResponse = response.getStatusLine().getStatusCode();
-        Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity())
-            , payload.getClass());
-        logger.info("DELETE HTTP RESPONSE " + deleteResponse + newLine);
-        return responseDto;
+        deleteStatus = response.getStatusLine().getStatusCode();
+        logger.info("DELETE HTTP RESPONSE " + deleteStatus + newLine);
     }
 }

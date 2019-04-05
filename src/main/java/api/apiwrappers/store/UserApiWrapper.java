@@ -21,20 +21,20 @@ public class UserApiWrapper extends CommonApiWrapper {
     return (User)get(order, endpoint);
   }
 
-  public User deleteUser(User order) throws IOException{
+  public void deleteUser(User order) throws IOException{
     String endpoint = baseUrl + orderPath + order.getId().toString();
-    return (User)delete(order, endpoint);
+    delete(endpoint);
   }
 
   public int getDeleteUserResponse(){
-    return deleteResponse;
+    return deleteStatus;
   }
 
   public int getPostUserResponse(){
-    return postResponse;
+    return postStatus;
   }
 
   public int getGetUserResponse(){
-    return getResponse;
+    return getStatus;
   }
 }

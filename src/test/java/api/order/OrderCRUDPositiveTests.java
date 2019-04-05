@@ -12,7 +12,7 @@ import api.apiwrappers.store.OrderApiWrapper;
 import api.domain.store.Order;
 import api.utils.StoreUtils;
 
-public class OrderCRUD200Tests {
+public class OrderCRUDPositiveTests {
 
     private static final OrderApiWrapper orderApiWrapper = new OrderApiWrapper();
     private static final SoftAssert softAssert = new SoftAssert();
