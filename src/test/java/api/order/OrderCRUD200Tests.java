@@ -8,11 +8,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import api.apiwrappers.OrderApiWrapper;
+import api.apiwrappers.store.OrderApiWrapper;
 import api.domain.store.Order;
 import api.utils.StoreUtils;
 
-public class BaseTest {
+public class OrderCRUD200Tests {
 
     private static final OrderApiWrapper orderApiWrapper = new OrderApiWrapper();
     private static final SoftAssert softAssert = new SoftAssert();

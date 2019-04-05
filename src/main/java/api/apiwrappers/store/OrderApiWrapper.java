@@ -1,4 +1,4 @@
-package api.apiwrappers;
+package api.apiwrappers.store;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import api.domain.store.Order;
 
 public class OrderApiWrapper extends CommonApiWrapper {
 
-    String orderPath = "/v2/store/order";
+    private final String orderPath = "/v2/store/order/";
 
     public Order postOrder(Order order) throws IOException {
         String endpoint = baseUrl + orderPath;
@@ -16,13 +16,13 @@ public class OrderApiWrapper extends CommonApiWrapper {
     }
 
     public Order getOrder(Order order) throws IOException {
-        String endpoint = baseUrl + orderPath + "/" + order.getId().toString();
+        String endpoint = baseUrl + orderPath + order.getId().toString();
         
         return (Order)get(order, endpoint);
     }
 
     public Order deleteOrder(Order order) throws IOException{
-        String endpoint = baseUrl + orderPath + "/" + order.getId().toString();
+        String endpoint = baseUrl + orderPath + order.getId().toString();
         return (Order)delete(order, endpoint);
     }
 
