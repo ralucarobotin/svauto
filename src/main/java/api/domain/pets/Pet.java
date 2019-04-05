@@ -1,30 +1,27 @@
 package api.domain.pets;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 public class Pet {
-    private BigDecimal id;
-    private List<Category> category;
+    private int id;
+    private Category category;
     private String name;
-    private List<Tags> tags;
+    private Tags tags;
     private String status;
 
-    public BigDecimal getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public List<Category> getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(List<Category> category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -36,11 +33,11 @@ public class Pet {
         this.name = name;
     }
 
-    public List<Tags> getTags() {
+    public Tags getTags() {
         return tags;
     }
 
-    public void setTags(List<Tags> tags) {
+    public void setTags(Tags tags) {
         this.tags = tags;
     }
 

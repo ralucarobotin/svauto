@@ -1,16 +1,14 @@
 package api.domain.pets;
 
-import java.math.BigDecimal;
-
 public class Category {
-    private BigDecimal id;
+    private int id;
     private String name;
 
-    public BigDecimal getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(int id) {
         this.id = id;
     }
 

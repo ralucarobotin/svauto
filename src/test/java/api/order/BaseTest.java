@@ -3,6 +3,7 @@ package api.order;
 import java.io.IOException;
 
 import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import api.apiwrappers.OrderApiWrapper;
@@ -31,6 +32,6 @@ public class BaseTest {
 
         //Delete the order via DELETE call
         Order deleteResponseOrder = orderApiWrapper.deleteOrder(postResponseOrder);
-      //  assert deleteResponseOrder.equals(HttpStatus.SC_OK);
+        Assert.assertEquals(deleteResponseOrder, HttpStatus.SC_OK);
     }
 }

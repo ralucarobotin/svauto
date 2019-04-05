@@ -12,13 +12,13 @@ public class PetsApiWrapper extends CommonApiWrapper{
     }
 
     public Pet postPetById(Pet pet) throws IOException {
-        String endpoint = baseUrl + "/v2/pet/" + pet.getId().toString();
+        String endpoint = baseUrl + "/v2/pet/" + pet.getId();
 
         return (Pet)post(pet, endpoint);
     }
 
     public Pet postPetUploadImage(Pet pet) throws IOException {
-        String endpoint = baseUrl + "/v2/pet/" + pet.getId().toString() + "/uploadImage";
+        String endpoint = baseUrl + "/v2/pet/" + pet.getId() + "/uploadImage";
 
         return (Pet)post(pet, endpoint);
     }
@@ -30,7 +30,7 @@ public class PetsApiWrapper extends CommonApiWrapper{
     }
 
     public Pet getPetById(Pet pet) throws IOException {
-        String endpoint = baseUrl + "/v2/pet/" + pet.getId().toString();
+        String endpoint = baseUrl + "/v2/pet/" + pet.getId();
 
         return (Pet)get(pet, endpoint);
     }
@@ -42,9 +42,8 @@ public class PetsApiWrapper extends CommonApiWrapper{
     }
 
     public Pet deletePetById(Pet pet) throws IOException {
-        String endpoint = baseUrl + "/v2/pet/" + pet.getId().toString();
+        String endpoint = baseUrl + "/v2/pet/" + pet.getId();
 
-        return (Pet)delete(pet, endpoint);
+        return (Pet)delete(endpoint);
     }
-
 }

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class TagUtils {
 
-    static Tags generateDefaultTag(BigDecimal id, String name) {
+    static Tags generateDefaultTag(int id, String name) {
         Tags tag = new Tags();
         tag.setId(id);
         tag.setName(name);
