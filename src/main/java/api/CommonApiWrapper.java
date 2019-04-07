@@ -68,13 +68,11 @@ public class CommonApiWrapper {
         return responseDto;
     }
 
-    protected Object delete(String endpoint) throws IOException {
+    protected void delete(String endpoint) throws IOException {
         HttpDelete httpDelete = new HttpDelete(endpoint);
         logger.info("Delete HTTP method initialized " + httpDelete);
         HttpResponse response = httpclient.execute(httpDelete);
         statusCode = response.getStatusLine().getStatusCode();
         logger.info("DELETE HTTP RESPONSE " + statusCode);
-
-        return response;
     }
 }

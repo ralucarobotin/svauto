@@ -41,9 +41,21 @@ public class PetsApiWrapper extends CommonApiWrapper{
         return (Pet)get(pet, endpoint);
     }
 
-    public Pet deletePetById(Pet pet) throws IOException {
+    public void deletePetById(Pet pet) throws IOException {
         String endpoint = baseUrl + "/v2/pet/" + pet.getId();
 
-        return (Pet)delete(endpoint);
+        delete(endpoint);
+    }
+
+    public int getGetPetResponse(){
+        return statusCode;
+    }
+
+    public int getPostPetResponse(){
+        return statusCode;
+    }
+
+    public int getDeletePetResponse(){
+        return statusCode;
     }
 }

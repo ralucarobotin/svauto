@@ -1,13 +1,11 @@
 package api.domain.pets;
 
-import java.util.List;
-
 public class Pet {
     private int id;
     private Category category;
     private String name;
     private Tags tags;
-    private String status;
+    private Enum status;
 
     public int getId() {
         return id;
@@ -41,13 +39,11 @@ public class Pet {
         this.tags = tags;
     }
 
-    public String getStatus() {
+    public Enum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Enum status) {
         this.status = status;
     }
-
-
 }

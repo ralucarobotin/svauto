@@ -25,9 +25,21 @@ public class OrderApiWrapper extends CommonApiWrapper {
         return (Order)get(order, endpoint);
     }
 
-    public Order deleteOrder(Order order) throws IOException {
+    public void deleteOrder(Order order) throws IOException {
         String endpoint = baseUrl + "/v2/store/order/" + order.getId();
 
-        return (Order)delete(endpoint);
+        delete(endpoint);
+    }
+
+    public int getGetOrderResponse(){
+        return statusCode;
+    }
+
+    public int getPostOrderResponse(){
+        return statusCode;
+    }
+
+    public int getDeleteOrderResponse(){
+        return statusCode;
     }
 }
