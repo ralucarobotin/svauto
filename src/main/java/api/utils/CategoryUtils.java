@@ -1,13 +1,14 @@
 package api.utils;
 
 import api.domain.pets.Category;
+import java.math.BigDecimal;
 
-class CategoryUtils {
+public class CategoryUtils {
 
-    static Category generateDefaultCategory() {
+    protected static Category generateDefaultCategory(BigDecimal id, String name) {
         Category category = new Category();
-        category.setId("1");
-        category.setName("Animals");
+        category.setId(id);
+        category.setName(name);
 
         return category;
     }

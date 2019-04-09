@@ -5,8 +5,10 @@ import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
@@ -22,7 +24,7 @@ public class CommonApiWrapper {
 
     protected Object post(Object payload, String endpoint) throws IOException {
         HttpPost httpPost = new HttpPost(endpoint);
-        logger.info("Post HTTP method initialized" + httpPost);
+        logger.info("Post HTTP method initialized: " + httpPost);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
         logger.info("POST REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPost.setEntity(requestEntity);
@@ -36,12 +38,32 @@ public class CommonApiWrapper {
 
     protected Object get(Object payload, String endpoint) throws IOException {
         HttpGet httpGet = new HttpGet(endpoint);
-        logger.info("Get HTTP method initialized" + httpGet);
+        logger.info("Get HTTP method initialized: " + httpGet);
         HttpResponse response = httpclient.execute(httpGet);
         Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
         ), payload.getClass());
         logger.info("GET RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
 
         return responseDto;
+    }
+
+    protected Object put(Object payload, String endpoint) throws IOException {
+        HttpPut httpPut = new HttpPut(endpoint);
+        logger.info("Put HTTP method initialized: " + httpPut);
+        StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
+        logger.info("PUT REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
+        httpPut.setEntity(requestEntity);
+        HttpResponse response = httpclient.execute(httpPut);
+        Object responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
+        ), payload.getClass());
+        logger.info("PUT RESPONSE " + jsonHelper.parseJavaObjectsToJson(responseDto));
+
+        return responseDto;
+    }
+
+    protected Object delete(String endpoint) throws IOException {
+        HttpDelete httpDelete = new HttpDelete(endpoint);
+        logger.info("Delete HTTP method initialized: " + httpDelete);
+        return httpclient.execute(httpDelete);
     }
 }

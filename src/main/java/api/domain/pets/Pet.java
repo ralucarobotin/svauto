@@ -1,27 +1,29 @@
 package api.domain.pets;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Pet {
-    private String id;
-    private List<Category> category;
+    private BigDecimal id;
+    private Category category;
     private String name;
+    private String photoURL;
     private List<Tags> tags;
-    private String status;
+    private PetStatus status;
 
-    public String getId() {
+    public BigDecimal getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigDecimal id) {
         this.id = id;
     }
 
-    public List<Category> getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(List<Category> category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -33,6 +35,14 @@ public class Pet {
         this.name = name;
     }
 
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
+
     public List<Tags> getTags() {
         return tags;
     }
@@ -41,11 +51,11 @@ public class Pet {
         this.tags = tags;
     }
 
-    public String getStatus() {
+    public PetStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PetStatus status) {
         this.status = status;
     }
 }

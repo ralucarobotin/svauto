@@ -1,20 +1,22 @@
 package api.domain.user;
 
+import java.math.BigDecimal;
+
 public class User {
-    private String id;
+    private BigDecimal id;
     private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String phone;
-    private String userStatus;
+    private BigDecimal userStatus;
 
-    public String getId() {
+    public BigDecimal getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(BigDecimal id) {
         this.id = id;
     }
 
@@ -66,11 +68,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getUserStatus() {
+    public BigDecimal getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(String userStatus) {
+    public void setUserStatus(BigDecimal userStatus) {
         this.userStatus = userStatus;
     }
 }

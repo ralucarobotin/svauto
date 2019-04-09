@@ -7,7 +7,7 @@ public class Order {
     private BigDecimal petId;
     private BigDecimal quantity;
     private String shipDate;
-    private String status;
+    private OrderStatus status;
     private Boolean complete;
 
     public BigDecimal getId() {
@@ -42,11 +42,11 @@ public class Order {
         this.shipDate = shipDate;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
