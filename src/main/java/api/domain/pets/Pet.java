@@ -1,11 +1,13 @@
 package api.domain.pets;
 
+import java.util.ArrayList;
+
 public class Pet {
     private int id;
     private Category category;
     private String name;
-    private Tags tags;
-    private Enum status;
+    private ArrayList<Tags> tags;
+    private PetStatus status;
 
     public int getId() {
         return id;
@@ -31,19 +33,19 @@ public class Pet {
         this.name = name;
     }
 
-    public Tags getTags() {
+    public ArrayList<Tags> getTags() {
         return tags;
     }
 
-    public void setTags(Tags tags) {
+    public void setTags(ArrayList<Tags> tags) {
         this.tags = tags;
     }
 
-    public Enum getStatus() {
+    public PetStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(PetStatus status) {
         this.status = status;
     }
 }

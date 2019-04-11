@@ -2,10 +2,10 @@ package api.domain.pets;
 
 import java.util.Random;
 
-public enum PetStatusEnum {
+public enum PetStatus {
     AVAILABLE, PENDING, SOLD;
 
-    public static PetStatusEnum generatePetRandomStatus() {
+    public static PetStatus generatePetRandomStatus() {
         Random randomStatus = new Random();
         return values()[randomStatus.nextInt(values().length)];
     }

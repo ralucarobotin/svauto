@@ -4,34 +4,34 @@ import java.io.IOException;
 import api.CommonApiWrapper;
 import api.domain.pets.*;
 
-public class PetsApiWrapper extends CommonApiWrapper{
+public class PetApiWrapper extends CommonApiWrapper{
     private String petEndpoint = baseUrl + "/v2/pet";
 
-    public Pet postPet(Pet pet) throws IOException {
+    public Pet postPet(Pet pet){
         return (Pet)post(pet, petEndpoint);
     }
 
-    public Pet postPetById(Pet pet) throws IOException {
+    public Pet postPetById(Pet pet){
         return (Pet)post(pet, petEndpoint + pet.getId());
     }
 
-    public Pet postPetUploadImage(Pet pet) throws IOException {
+    public Pet postPetUploadImage(Pet pet){
         return (Pet)post(pet, petEndpoint + "/" + pet.getId() + "/uploadImage");
     }
 
-    public Pet putPet(Pet pet) throws IOException {
+    public Pet putPet(Pet pet){
         return (Pet)put(pet, petEndpoint);
     }
 
-    public Pet getPetById(Pet pet) throws IOException {
+    public Pet getPetById(Pet pet){
         return (Pet)get(pet, petEndpoint + "/" + pet.getId());
     }
 
-    public Pet getPetFindByStatus(Pet pet) throws IOException {
+    public Pet getPetFindByStatus(Pet pet)   {
         return (Pet)get(pet, petEndpoint + "/" + pet.getId());
     }
 
-    public void deletePetById(Pet pet) throws IOException {
+    public void deletePetById(Pet pet){
         delete(petEndpoint + "/" + pet.getId());
     }
 
