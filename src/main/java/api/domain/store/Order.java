@@ -1,36 +1,34 @@
 package api.domain.store;
 
-import java.math.BigDecimal;
-
 public class Order {
-    private BigDecimal id;
-    private BigDecimal petId;
-    private BigDecimal quantity;
+    private int id;
+    private int petId;
+    private int quantity;
     private String shipDate;
     private String status;
     private Boolean complete;
 
-    public BigDecimal getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public BigDecimal getPetId() {
+    public int getPetId() {
         return petId;
     }
 
-    public void setPetId(BigDecimal petId) {
+    public void setPetId(int petId) {
         this.petId = petId;
     }
 
-    public BigDecimal getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

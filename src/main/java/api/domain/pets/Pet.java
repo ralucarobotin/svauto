@@ -1,27 +1,27 @@
 package api.domain.pets;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Pet {
-    private String id;
-    private List<Category> category;
+    private int id;
+    private Category category;
     private String name;
-    private List<Tags> tags;
-    private String status;
+    private ArrayList<Tags> tags;
+    private PetStatus status;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public List<Category> getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(List<Category> category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -33,19 +33,19 @@ public class Pet {
         this.name = name;
     }
 
-    public List<Tags> getTags() {
+    public ArrayList<Tags> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tags> tags) {
+    public void setTags(ArrayList<Tags> tags) {
         this.tags = tags;
     }
 
-    public String getStatus() {
+    public PetStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PetStatus status) {
         this.status = status;
     }
 }

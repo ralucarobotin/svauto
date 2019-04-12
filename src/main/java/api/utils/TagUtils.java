@@ -1,19 +1,19 @@
 package api.utils;
 
-import api.domain.pets.Category;
+import api.domain.pets.Tags;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
-class CategoryUtils {
+public class TagUtils {
 
-    static Category generateDefaultCategory() {
-        Category category = new Category();
+    static Tags generateDefaultTag() {
+        Tags tag = new Tags();
         int id = RandomUtils.nextInt(1, 5);
         String name = RandomStringUtils.randomAlphabetic(20);
 
-        category.setId(id);
-        category.setName(name);
+        tag.setId(id);
+        tag.setName(name);
 
-        return category;
+        return tag;
     }
 }
