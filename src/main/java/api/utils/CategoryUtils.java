@@ -16,4 +16,15 @@ class CategoryUtils {
 
         return category;
     }
+
+    static Category generateSpecificCategory() {
+        Category category = new Category();
+        int id = 3;
+        String name = "dog";
+
+        category.setId(id);
+        category.setName(name);
+
+        return category;
+    }
 }

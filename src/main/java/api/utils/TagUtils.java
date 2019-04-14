@@ -16,4 +16,15 @@ public class TagUtils {
 
         return tag;
     }
+
+    static Tags generateSpecificTag() {
+        Tags tag = new Tags();
+        int id = 8;
+        String name = "Bad Wolf";
+
+        tag.setId(id);
+        tag.setName(name);
+
+        return tag;
+    }
 }
