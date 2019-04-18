@@ -3,17 +3,17 @@ package api.domain.pets;
 import java.util.ArrayList;
 
 public class Pet {
-    private int id;
+    private Integer id;
     private Category category;
     private String name;
     private ArrayList<Tags> tags;
     private PetStatus status;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
