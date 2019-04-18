@@ -6,9 +6,9 @@ import org.apache.commons.lang3.RandomUtils;
 
 public class TagUtils {
 
-    public static Tags generateDefaultTag() {
+    static Tags generateDefaultTag() {
         Tags tag = new Tags();
-        int id = RandomUtils.nextInt(1, 5);
+        Integer id = RandomUtils.nextInt(1, 5);
         String name = RandomStringUtils.randomAlphabetic(20);
 
         tag.setId(id);

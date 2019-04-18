@@ -36,10 +36,14 @@ public class CommonApiWrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        statusCode = response.getStatusLine().getStatusCode();
+        if (response != null) {
+            statusCode = response.getStatusLine().getStatusCode();
+        }
         Object responseDto = null;
         try {
-            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()), payload.getClass());
+            if (response != null) {
+                responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()), payload.getClass());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,11 +62,15 @@ public class CommonApiWrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        statusCode = response.getStatusLine().getStatusCode();
+        if (response != null) {
+            statusCode = response.getStatusLine().getStatusCode();
+        }
         Object responseDto = null;
         try {
-            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
-            ), payload.getClass());
+            if (response != null) {
+                responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
+                ), payload.getClass());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,11 +92,15 @@ public class CommonApiWrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        statusCode = response.getStatusLine().getStatusCode();
+        if (response != null) {
+            statusCode = response.getStatusLine().getStatusCode();
+        }
         Object responseDto = null;
         try {
-            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
-            ), payload.getClass());
+            if (response != null) {
+                responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()
+                ), payload.getClass());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +119,9 @@ public class CommonApiWrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        statusCode = response.getStatusLine().getStatusCode();
+        if (response != null) {
+            statusCode = response.getStatusLine().getStatusCode();
+        }
         logger.info("DELETE HTTP RESPONSE " + statusCode);
     }
 }

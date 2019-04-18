@@ -24,45 +24,6 @@ public class PetsUtils {
         return pet;
     }
 
-    public static Pet generatePetPayloadInvalidId(){
-        Pet pet = new Pet();
-        ArrayList<Tags> tags = new ArrayList<>();
-        pet.setId(-0);
-        pet.setCategory(CategoryUtils.generateDefaultCategory());
-        pet.setName(RandomStringUtils.randomAlphabetic(20));
-        tags.add(TagUtils.generateDefaultTag());
-        pet.setTags(tags);
-        pet.setStatus(PetStatus.generatePetRandomStatus());
-
-        return pet;
-    }
-
-    public static Pet generatePetPayloadEmptyStatus(){
-        Pet pet = new Pet();
-        ArrayList<Tags> tags = new ArrayList<>();
-        pet.setId(RandomUtils.nextInt(1, 5));
-        pet.setCategory(CategoryUtils.generateDefaultCategory());
-        pet.setName(RandomStringUtils.randomAlphabetic(20));
-        tags.add(TagUtils.generateDefaultTag());
-        pet.setTags(tags);
-        pet.setStatus(PetStatus.valueOf(null));
-
-        return pet;
-    }
-
-    public static Pet generatePetPayloadInvalidStatus(){
-        Pet pet = new Pet();
-        ArrayList<Tags> tags = new ArrayList<>();
-        pet.setId(RandomUtils.nextInt(1, 5));
-        pet.setCategory(CategoryUtils.generateDefaultCategory());
-        pet.setName(RandomStringUtils.randomAlphabetic(20));
-        tags.add(TagUtils.generateDefaultTag());
-        pet.setTags(tags);
-        pet.setStatus(PetStatus.valueOf("asdaasd"));
-
-        return pet;
-    }
-
     public static boolean checkIfPetsAreEqual(Pet requestPayload, Pet responsePayload) {
         Assert.assertEquals(requestPayload.getId(), responsePayload.getId(),"The pets's id is wrong");
         Assert.assertEquals(requestPayload.getCategory().getId(), responsePayload.getCategory().getId(), "The pets's category id is wrong");

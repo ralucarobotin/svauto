@@ -4,11 +4,11 @@ import api.domain.pets.Category;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
-public class CategoryUtils {
+class CategoryUtils {
 
-    public static Category generateDefaultCategory() {
+    static Category generateDefaultCategory() {
         Category category = new Category();
-        int id = RandomUtils.nextInt(1, 5);
+        Integer id = RandomUtils.nextInt(1, 5);
         String name = RandomStringUtils.randomAlphabetic(20);
 
         category.setId(id);
