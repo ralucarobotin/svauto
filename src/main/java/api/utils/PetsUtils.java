@@ -24,19 +24,6 @@ public class PetsUtils {
         return pet;
     }
 
-    public static Pet generateASpecificPetPayload(){
-        Pet pet = new Pet();
-        ArrayList<Tags> tags = new ArrayList<>();
-        pet.setId(5);
-        pet.setCategory(CategoryUtils.generateSpecificCategory());
-        pet.setName("Toto");
-        tags.add(TagUtils.generateSpecificTag());
-        pet.setTags(tags);
-        pet.setStatus(PetStatus.AVAILABLE);
-
-        return pet;
-    }
-
     public static boolean checkIfPetsAreEqual(Pet requestPayload, Pet responsePayload) {
         Assert.assertEquals(requestPayload.getId(), responsePayload.getId(),"The pets's id is wrong");
         Assert.assertEquals(requestPayload.getCategory().getId(), responsePayload.getCategory().getId(), "The pets's category id is wrong");

@@ -8,19 +8,8 @@ public class TagUtils {
 
     static Tags generateDefaultTag() {
         Tags tag = new Tags();
-        int id = RandomUtils.nextInt(1, 5);
+        Integer id = RandomUtils.nextInt(1, 5);
         String name = RandomStringUtils.randomAlphabetic(20);
-
-        tag.setId(id);
-        tag.setName(name);
-
-        return tag;
-    }
-
-    static Tags generateSpecificTag() {
-        Tags tag = new Tags();
-        int id = 8;
-        String name = "Bad Wolf";
 
         tag.setId(id);
         tag.setName(name);
