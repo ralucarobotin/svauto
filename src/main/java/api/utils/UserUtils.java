@@ -4,44 +4,22 @@ import api.domain.user.User;
 import helpers.Utilities;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Base64;
 
 public class UserUtils {
 
     protected String user = Utilities.getPropertyFromAppProp("user");
     protected String pass = Utilities.getPropertyFromAppProp("userPassword");
-    protected String urlLogin = Utilities.getPropertyFromAppProp("urlLogin");
 
     public void setAuthHeader(HttpURLConnection urlConnection) {
 
-        BufferedReader httpResponseReader = null;
-        try{
+        String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
+        urlConnection.addRequestProperty("Authorization", basicAuthPayload);
 
-            URL serverUrl = new URL(urlLogin);
-            urlConnection = (HttpURLConnection) serverUrl.openConnection();
-
-            String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user+":"+pass).getBytes());
-            urlConnection.addRequestProperty("Authorization", basicAuthPayload);
-
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-
-            if (httpResponseReader != null) {
-                try {
-                    httpResponseReader.close();
-                } catch (IOException ioe) {
-                    // Close quietly
-                }
-            }
-        }
     }
-
 
     public static User generateADefaultUserPayload() {
         User user = new User();
@@ -55,6 +33,19 @@ public class UserUtils {
         user.setUserStatus(RandomUtils.nextInt(1, 5));
 
         return user;
+    }
+
+    public static boolean checkIfUsersAreEqual(User requestPayload, User responsePayload) {
+        Assert.assertEquals(requestPayload.getId(), responsePayload.getId(), "The user's id is wrong");
+        Assert.assertEquals(requestPayload.getUsername(), responsePayload.getUsername(), "The user's username is wrong");
+        Assert.assertEquals(requestPayload.getFirstName(), responsePayload.getFirstName(), "The user's firstname is wrong");
+        Assert.assertEquals(requestPayload.getLastName(), responsePayload.getLastName(), "The user's lastname is wrong");
+        Assert.assertEquals(requestPayload.getEmail(), responsePayload.getEmail(), "The user's email is wrong");
+        Assert.assertEquals(requestPayload.getPassword(), responsePayload.getPassword(), "The user's password is wrong");
+        Assert.assertEquals(requestPayload.getPhone(), responsePayload.getPhone(), "The user's phone is wrong");
+        Assert.assertEquals(requestPayload.getUserStatus(), responsePayload.getUserStatus(), "The user's userStatus is wrong");
+
+        return true;
     }
 
 }
