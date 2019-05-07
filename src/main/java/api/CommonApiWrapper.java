@@ -1,6 +1,7 @@
 package api;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
@@ -21,11 +22,16 @@ public class CommonApiWrapper {
     private HttpClient httpclient = HttpClients.createDefault();
     private JsonHelper jsonHelper = new JsonHelper();
     protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");
+    private String user = Utilities.getPropertyFromAppProp("user");
+    private String pass = Utilities.getPropertyFromAppProp("userPassword");
 
     protected int statusCode;
 
     protected Object post(Object payload, String endpoint){
         HttpPost httpPost = new HttpPost(endpoint);
+        String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
+        httpPost.addHeader("Authorization", basicAuthPayload);
+
         logger.info("Post HTTP method initialized " + httpPost);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
         logger.info("POST REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
@@ -51,6 +57,9 @@ public class CommonApiWrapper {
 
     protected Object get(Object payload, String endpoint) {
         HttpGet httpGet = new HttpGet(endpoint);
+        String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
+        httpGet.addHeader("Authorization", basicAuthPayload);
+
         logger.info("Get HTTP method initialized " + httpGet);
         HttpResponse response = null;
         try {
@@ -74,6 +83,10 @@ public class CommonApiWrapper {
 
     protected Object put(Object payload, String endpoint){
         HttpPut httpPut = new HttpPut(endpoint);
+        String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
+        httpPut.addHeader("Authorization", basicAuthPayload);
+
+
         logger.info("Put HTTP method initialized " + httpPut);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
         logger.info("PUT REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
@@ -100,6 +113,9 @@ public class CommonApiWrapper {
 
     protected void delete(String endpoint){
         HttpDelete httpDelete = new HttpDelete(endpoint);
+        String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
+        httpDelete.addHeader("Authorization", basicAuthPayload);
+
         logger.info("Delete HTTP method initialized " + httpDelete);
         HttpResponse response = null;
         try {

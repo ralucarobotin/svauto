@@ -6,20 +6,7 @@ import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 
-import java.net.HttpURLConnection;
-import java.util.Base64;
-
 public class UserUtils {
-
-    protected String user = Utilities.getPropertyFromAppProp("user");
-    protected String pass = Utilities.getPropertyFromAppProp("userPassword");
-
-    public void setAuthHeader(HttpURLConnection urlConnection) {
-
-        String basicAuthPayload = "Basic " + Base64.getEncoder().encodeToString((user + ":" + pass).getBytes());
-        urlConnection.addRequestProperty("Authorization", basicAuthPayload);
-
-    }
 
     public static User generateADefaultUserPayload() {
         User user = new User();
