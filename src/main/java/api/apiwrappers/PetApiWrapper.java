@@ -1,6 +1,5 @@
 package api.apiwrappers;
 
-import java.io.IOException;
 import api.CommonApiWrapper;
 import api.domain.pets.*;
 

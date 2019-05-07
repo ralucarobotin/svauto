@@ -3,6 +3,7 @@ package helpers;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -46,6 +47,21 @@ public class Utilities {
     catch (final WebDriverException ex) {
       throw new WebDriverException("Could not execute JavaScript command '" + script + "'", ex);
     }
+  }
+
+  public static String generatedEmail() {
+    String generateStringOne = RandomStringUtils.random(5, true, true);
+    String generateStringTwo = RandomStringUtils.random(4, true, true);
+    String generateStringThree = RandomStringUtils.random(3, true, false);
+    return (generateStringOne + "@" + generateStringTwo + "." + generateStringThree);
+  }
+
+  public static String generatePassword() {
+    return RandomStringUtils.random(10, true, true);
+  }
+
+  public static String generateCharacters() {
+    return RandomStringUtils.random(10, true, false);
   }
 
   public static void sleep(final long timeoutMs, final boolean swallowExceptions) {

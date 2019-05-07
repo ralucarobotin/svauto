@@ -11,7 +11,7 @@ class JsonHelper {
      * @param cls mapping the response to the desired class
      * @return jsonFormatString
      */
-    Object  parseJsonToJava(String jsonString, Class cls){
+    Object  parseJsonToJava(String jsonString, Class<?> cls){
        return gson.fromJson(jsonString, cls);
     }
 

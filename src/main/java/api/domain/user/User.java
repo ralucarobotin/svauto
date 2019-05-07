@@ -1,20 +1,20 @@
 package api.domain.user;
 
 public class User {
-    private String id;
+    private int id;
     private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String phone;
-    private String userStatus;
+    private int userStatus;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -66,11 +66,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getUserStatus() {
+    public int getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(String userStatus) {
+    public void setUserStatus(int userStatus) {
         this.userStatus = userStatus;
     }
 }
