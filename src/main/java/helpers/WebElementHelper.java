@@ -1,11 +1,11 @@
 package helpers;
 
-import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+
+import org.openqa.selenium.WebElement;
 
 /**
  * Helper class for working with the page's elements
@@ -44,5 +44,9 @@ public class WebElementHelper {
       LOG.warning(String.format("The following elements are not visible in page: %s", elementsNotVisible));
     }
     return elementsNotVisible.isEmpty();
+  }
+
+  public static String getTextFromPage(WebElement element){
+    return element.getText().trim();
   }
 }
