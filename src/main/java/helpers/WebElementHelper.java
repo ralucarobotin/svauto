@@ -46,7 +46,11 @@ public class WebElementHelper {
     return elementsNotVisible.isEmpty();
   }
 
-  public static String getTextFromPage(WebElement element){
+  public static boolean areVisible(List<WebElement> elements){
+    return areVisible(elements.toArray(new WebElement[elements.size()]));
+  }
+
+  public static String getElementText(WebElement element){
     return element.getText().trim();
   }
 }

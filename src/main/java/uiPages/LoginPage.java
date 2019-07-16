@@ -11,7 +11,7 @@ import static helpers.WebElementHelper.setFieldValue;
 
 public class LoginPage extends BasePage {
 
-  private static final String URL = "/my-account";
+  private static final String URL_PATH = "/my-account";
   private static final String LOGIN_ERR_MSG = "ERROR: The username or password you entered is" +
       " incorrect. Lost your password?";
 
@@ -64,7 +64,7 @@ public class LoginPage extends BasePage {
   }
 
   public void open(){
-    openUrl(BASE_URL + URL);
+    openUrl(BASE_URL + URL_PATH);
   }
 
   public static String getExpectedLoginErrMsg() {
@@ -72,6 +72,6 @@ public class LoginPage extends BasePage {
   }
 
   public String getErrorMessage() {
-    return WebElementHelper.getTextFromPage(errorMessage);
+    return WebElementHelper.getElementText(errorMessage);
   }
 }

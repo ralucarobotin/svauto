@@ -16,12 +16,12 @@ public class DashboardPage extends BasePage {
 
   @Override
   protected boolean isCurrent() {
-    return areVisible(carousels.toArray(new WebElement[carousels.size()])) && carousels.size() == CAROUSELS_NR;
+    return areVisible(carousels) && carousels.size() == CAROUSELS_NR;
   }
 
   @Override
   protected boolean isValid() {
-    return areVisible(carousels.toArray(new WebElement[carousels.size()])) && carousels.size() == CAROUSELS_NR;
+    return areVisible(carousels) && carousels.size() == CAROUSELS_NR;
   }
 
   public DashboardPage(WebDriver driver){
