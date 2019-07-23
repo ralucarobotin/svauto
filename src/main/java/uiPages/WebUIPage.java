@@ -1,4 +1,8 @@
-package pages;
+package uiPages;
+
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -9,48 +13,44 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
-
 import helpers.PageNotCurrentException;
 import helpers.PageNotValidException;
 import helpers.Utilities;
 
-public abstract class WebUiPage {
+public abstract class WebUIPage {
 
   protected WebDriver driver;
-  private static final int    TIMEOUT = 10;
-  private static final Logger LOG     = Logger.getLogger(Class.class.getName());
-  private static final int DEFAULT_LOAD_TIME_SEC                      = 10;
-  private static final int WAIT_TIME_BEFORE_IS_CURRENT_CHECKS_MILLIS  = 500;
+  private static final int TIMEOUT = 10;
+  private static final Logger LOG = Logger.getLogger(Class.class.getName());
+  private static final int DEFAULT_LOAD_TIME_SEC = 10;
+  private static final int WAIT_TIME_BEFORE_IS_CURRENT_CHECKS_MILLIS = 500;
   private static final int WAIT_TIME_BETWEEN_IS_CURRENT_CHECKS_MILLIS = 500;
-  private static final String DOCUMENT_READY_STATE_GET      = "return document.readyState";
+  private static final String DOCUMENT_READY_STATE_GET = "return document.readyState";
   private static final String DOCUMENT_READY_STATE_COMPLETE = "complete";
 
-  public WebUiPage(WebDriver driver) {
+  public WebUIPage(WebDriver driver) {
     this.driver = driver;
     PageFactory.initElements(driver, this);
   }
 
   public WebDriver getDriver() {
-      return this.driver;
+    return this.driver;
   }
 
-  public void waitForElementToAppear(WebElement element){
-      waitFor(ExpectedConditions.visibilityOf(element), TIMEOUT);
+  public void waitForElementToAppear(WebElement element) {
+    waitFor(ExpectedConditions.visibilityOf(element), TIMEOUT);
   }
 
-  public void waitForElementToDisappear(WebElement element){
-      waitFor(ExpectedConditions.invisibilityOf(element), TIMEOUT);
+  public void waitForElementToDisappear(WebElement element) {
+    waitFor(ExpectedConditions.invisibilityOf(element), TIMEOUT);
   }
 
-  public void waitForElementToAppear(By element){
-      waitFor(ExpectedConditions.visibilityOfElementLocated(element), TIMEOUT);
+  public void waitForElementToAppear(By element) {
+    waitFor(ExpectedConditions.visibilityOfElementLocated(element), TIMEOUT);
   }
 
-  public void waitForElementToDisappear(By element){
-      waitFor(ExpectedConditions.invisibilityOfElementLocated(element), TIMEOUT);
+  public void waitForElementToDisappear(By element) {
+    waitFor(ExpectedConditions.invisibilityOfElementLocated(element), TIMEOUT);
   }
 
   /**
@@ -59,19 +59,17 @@ public abstract class WebUiPage {
    * @param expectedCondition the condition we expect
    * @param secondsToWait the maximum time in seconds to wait
    * @return true if the expected condition was met within <code>secondsToWait</code>, false
-   *         otherwise
+   * otherwise
    */
   public boolean waitFor(final ExpectedCondition<?> expectedCondition, final int secondsToWait) {
-      final WebDriverWait wait = new WebDriverWait(getDriver(), secondsToWait);
-      try {
-          wait.until(expectedCondition);
-          return true;
-      }
-      catch (final TimeoutException e) {
-          return false;
-      }
+    final WebDriverWait wait = new WebDriverWait(getDriver(), secondsToWait);
+    try {
+      wait.until(expectedCondition);
+      return true;
+    } catch (final TimeoutException e) {
+      return false;
+    }
   }
-
 
   public void verify() {
     verify(true);
@@ -102,8 +100,7 @@ public abstract class WebUiPage {
         if (isCurrent()) {
           if (!executeIsValid) {
             LOG.info(String.format("Page %s is current now. Skipping check whether it's valid", pageName));
-          }
-          else {
+          } else {
             LOG.info(String.format("Page %s is current now. Checking whether it's valid ...", pageName));
             if (!isValid()) {
               throw new PageNotValidException(pageName + " page loaded, but is not valid");
@@ -126,7 +123,7 @@ public abstract class WebUiPage {
         if (timeLeft < WAIT_TIME_BETWEEN_IS_CURRENT_CHECKS_MILLIS) {
           // adjust sleepTime to half of the time left to make sure we still get another
           // check in
-          sleepTime = (int) Math.floorDiv(timeLeft, 2);
+          sleepTime = (int)Math.floorDiv(timeLeft, 2);
         }
         Utilities.sleep(sleepTime, true);
       }
@@ -136,38 +133,38 @@ public abstract class WebUiPage {
     throw new PageNotCurrentException(pageName + " page did not load within " + waitTime + " seconds (the exact wait time was: " + totalWaitTime + "ms)");
   }
 
-    /**
-     * Returns whether the page currently displayed in the browser is this page
-     * <p>
-     * NOTE: This method should NOT CONTAIN ANY WAITS. It should simply check for the minimum amount
-     * of elements that uniquely identify the page / state in the browser to be present
-     * <p>
-     * This method should also not perform any type of document ready state checks, or spinners not
-     * being present etc. This is done from within {@link #isBrowserDoneLoading()}
-     * <p>
-     * It will be called from within {@link #verify()} inside of a time-based loop after the page
-     * document finished loading
-     *
-     * @return true when the page is current, false otherwise
-     */
-    protected abstract boolean isCurrent();
+  /**
+   * Returns whether the page currently displayed in the browser is this page
+   * <p>
+   * NOTE: This method should NOT CONTAIN ANY WAITS. It should simply check for the minimum amount
+   * of elements that uniquely identify the page / state in the browser to be present
+   * <p>
+   * This method should also not perform any type of document ready state checks, or spinners not
+   * being present etc. This is done from within {@link #isBrowserDoneLoading()}
+   * <p>
+   * It will be called from within {@link #verify()} inside of a time-based loop after the page
+   * document finished loading
+   *
+   * @return true when the page is current, false otherwise
+   */
+  protected abstract boolean isCurrent();
 
-    /**
-     * Returns whether this page is currently displayed in the browser in a valid / correct way
-     * <p>
-     * NOTE: This method should NOT CONTAIN ANY WAITS. It should simply check whether all elements
-     * currently displayed on the page are valid / correct
-     * <p>
-     * This method will be called after {@link #isCurrent()} returned true, so you can assume the
-     * browser is on the correct page, and the page finished loading
-     *
-     * @return true when the page is valid / correctly displayed, false otherwise
-     */
-    protected abstract boolean isValid();
+  /**
+   * Returns whether this page is currently displayed in the browser in a valid / correct way
+   * <p>
+   * NOTE: This method should NOT CONTAIN ANY WAITS. It should simply check whether all elements
+   * currently displayed on the page are valid / correct
+   * <p>
+   * This method will be called after {@link #isCurrent()} returned true, so you can assume the
+   * browser is on the correct page, and the page finished loading
+   *
+   * @return true when the page is valid / correctly displayed, false otherwise
+   */
+  protected abstract boolean isValid();
 
-    protected void openUrl(String url){
-        driver.get(url);
-    }
+  protected void openUrl(String url) {
+    driver.get(url);
+  }
 
   /**
    * Returns whether the html document / page finished loading and no active jQuery or animation
@@ -178,11 +175,11 @@ public abstract class WebUiPage {
     return Objects.equals(Utilities.executeScript(driver, DOCUMENT_READY_STATE_GET), DOCUMENT_READY_STATE_COMPLETE);
   }
 
-    private int getMaximumLoadTime() {
-        return DEFAULT_LOAD_TIME_SEC;
-    }
+  private int getMaximumLoadTime() {
+    return DEFAULT_LOAD_TIME_SEC;
+  }
 
-    private String getName() {
-        return getClass().getSimpleName();
-    }
+  private String getName() {
+    return getClass().getSimpleName();
+  }
 }
