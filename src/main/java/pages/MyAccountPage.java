@@ -14,7 +14,7 @@ public class MyAccountPage extends BasePage {
   @FindBy(css = "a[href*='history']")
   private WebElement orderHistoryAdnDetailsButton;
 
-  @FindBy(css = "a[href*='order-slip']")
+  @FindBy(css = "a[href*='products-slip']")
   private WebElement myCreditSlipsButton;
 
   @FindBy(css = "a[href*='addresses']")
