@@ -3,33 +3,35 @@ package api;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import helpers.Utilities;
-
 public class CommonApiWrapper {
     private static final Logger logger = Logger.getLogger(CommonApiWrapper.class.getName());
     private HttpClient httpclient = HttpClients.createDefault();
     private JsonHelper jsonHelper = new JsonHelper();
-    protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");
+    //protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");//TODO - To be fixed
 
-    protected int statusCode;
+    private int statusCode;
 
-    protected Object post(Object payload, String endpoint){
+    protected Object post(Object payload, String endpoint, Header[] headers) {
         HttpPost httpPost = new HttpPost(endpoint);
         logger.info("Post HTTP method initialized " + httpPost);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
         logger.info("POST REQUEST " + jsonHelper.parseJavaObjectsToJson(payload));
         httpPost.setEntity(requestEntity);
+
+        //Set the headers for POST call
+        for (Header header : headers) {
+            httpPost.setHeader(header);
+        }
+
         HttpResponse response = null;
         try {
             response = httpclient.execute(httpPost);
@@ -49,15 +51,22 @@ public class CommonApiWrapper {
         return responseDto;
     }
 
-    protected Object get(Object payload, String endpoint) {
+    protected Object get(Object payload, String endpoint, Header[] headers) {
         HttpGet httpGet = new HttpGet(endpoint);
         logger.info("Get HTTP method initialized " + httpGet);
+
+        //Set the headers for GET call
+        for (Header header : headers) {
+            httpGet.setHeader(header);
+        }
+
         HttpResponse response = null;
         try {
             response = httpclient.execute(httpGet);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         statusCode = response.getStatusLine().getStatusCode();
         Object responseDto = null;
         try {
@@ -72,7 +81,8 @@ public class CommonApiWrapper {
         return responseDto;
     }
 
-    protected Object put(Object payload, String endpoint){
+    @Deprecated
+    protected Object put(Object payload, String endpoint) {
         HttpPut httpPut = new HttpPut(endpoint);
         logger.info("Put HTTP method initialized " + httpPut);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
@@ -98,7 +108,8 @@ public class CommonApiWrapper {
         return responseDto;
     }
 
-    protected void delete(String endpoint){
+    @Deprecated
+    protected void delete(String endpoint) {
         HttpDelete httpDelete = new HttpDelete(endpoint);
         logger.info("Delete HTTP method initialized " + httpDelete);
         HttpResponse response = null;
