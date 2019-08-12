@@ -1,10 +1,14 @@
 package api.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Value {
     private String id;
-    private String variant_id;
+    @JsonProperty("variant_id")
+    private String variantId;
     private String name;
-    private Integer display_order;
+    @JsonProperty("display_order")
+    private Integer displayOrder;
 
     public String getId() {
         return id;
@@ -14,12 +18,12 @@ public class Value {
         this.id = id;
     }
 
-    public String getVariant_id() {
-        return variant_id;
+    public String getVariantId() {
+        return variantId;
     }
 
-    public void setVariant_id(String variant_id) {
-        this.variant_id = variant_id;
+    public void setVariantId(String variantId) {
+        this.variantId = variantId;
     }
 
     public String getName() {
@@ -30,11 +34,11 @@ public class Value {
         this.name = name;
     }
 
-    public Integer getDisplay_order() {
-        return display_order;
+    public Integer getDisplayOrder() {
+        return displayOrder;
     }
 
-    public void setDisplay_order(Integer display_order) {
-        this.display_order = display_order;
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 }

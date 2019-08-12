@@ -1,5 +1,7 @@
 package api.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigInteger;
 import java.util.List;
 
@@ -10,23 +12,33 @@ public class Products {
     private String brand;
     private Boolean available;
     private Boolean visible;
-    private Integer total_sales;
+    @JsonProperty("total_sales")
+    private Integer totalSales;
     private String type;
     private String currency;
-    private BigInteger min_price;
-    private BigInteger max_price;
+    @JsonProperty("min_price")
+    private BigInteger minPrice;
+    @JsonProperty("max_price")
+    private BigInteger maxPrice;
     private List<Variant> variants;
     private List<Categories> categories;
     private List<String> meta;
     private List<String> tags;
-    private List<String> related_product_ids;
-    private List<String> cross_sale_product_ids;
+    @JsonProperty("related_product_ids")
+    private List<String> relatedProduct_ids;
+    @JsonProperty("cross_sale_product_ids")
+    private List<String> crossSaleProductIds;
     private List<String> gtins;
-    private String default_image_url;
-    private BigInteger qty_available;
-    private List<Integer> merchant_ids;
-    private String date_created;
-    private String date_last_modified;
+    @JsonProperty("default_image_url")
+    private String defaultImageUrl;
+    @JsonProperty("qty_available")
+    private BigInteger qtyAvailable;
+    @JsonProperty("merchant_ids")
+    private List<Integer> merchantIds;
+    @JsonProperty("date_created")
+    private String dateCreated;
+    @JsonProperty("date_last_modified")
+    private String dateLastModified;
 
     public String getId() {
         return id;
@@ -52,6 +64,14 @@ public class Products {
         this.description = description;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public Boolean getAvailable() {
         return available;
     }
@@ -68,12 +88,12 @@ public class Products {
         this.visible = visible;
     }
 
-    public Integer getTotal_sales() {
-        return total_sales;
+    public Integer getTotalSales() {
+        return totalSales;
     }
 
-    public void setTotal_sales(Integer total_sales) {
-        this.total_sales = total_sales;
+    public void setTotalSales(Integer totalSales) {
+        this.totalSales = totalSales;
     }
 
     public String getType() {
@@ -92,20 +112,20 @@ public class Products {
         this.currency = currency;
     }
 
-    public BigInteger getMin_price() {
-        return min_price;
+    public BigInteger getMinPrice() {
+        return minPrice;
     }
 
-    public void setMin_price(BigInteger min_price) {
-        this.min_price = min_price;
+    public void setMinPrice(BigInteger minPrice) {
+        this.minPrice = minPrice;
     }
 
-    public BigInteger getMax_price() {
-        return max_price;
+    public BigInteger getMaxPrice() {
+        return maxPrice;
     }
 
-    public void setMax_price(BigInteger max_price) {
-        this.max_price = max_price;
+    public void setMaxPrice(BigInteger maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public List<Variant> getVariants() {
@@ -140,20 +160,20 @@ public class Products {
         this.tags = tags;
     }
 
-    public List<String> getRelated_product_ids() {
-        return related_product_ids;
+    public List<String> getRelatedProduct_ids() {
+        return relatedProduct_ids;
     }
 
-    public void setRelated_product_ids(List<String> related_product_ids) {
-        this.related_product_ids = related_product_ids;
+    public void setRelatedProduct_ids(List<String> relatedProduct_ids) {
+        this.relatedProduct_ids = relatedProduct_ids;
     }
 
-    public List<String> getCross_sale_product_ids() {
-        return cross_sale_product_ids;
+    public List<String> getCrossSaleProductIds() {
+        return crossSaleProductIds;
     }
 
-    public void setCross_sale_product_ids(List<String> cross_sale_product_ids) {
-        this.cross_sale_product_ids = cross_sale_product_ids;
+    public void setCrossSaleProductIds(List<String> crossSaleProductIds) {
+        this.crossSaleProductIds = crossSaleProductIds;
     }
 
     public List<String> getGtins() {
@@ -164,51 +184,43 @@ public class Products {
         this.gtins = gtins;
     }
 
-    public String getDefault_image_url() {
-        return default_image_url;
+    public String getDefaultImageUrl() {
+        return defaultImageUrl;
     }
 
-    public void setDefault_image_url(String default_image_url) {
-        this.default_image_url = default_image_url;
+    public void setDefaultImageUrl(String defaultImageUrl) {
+        this.defaultImageUrl = defaultImageUrl;
     }
 
-    public BigInteger getQty_available() {
-        return qty_available;
+    public BigInteger getQtyAvailable() {
+        return qtyAvailable;
     }
 
-    public void setQty_available(BigInteger qty_available) {
-        this.qty_available = qty_available;
+    public void setQtyAvailable(BigInteger qtyAvailable) {
+        this.qtyAvailable = qtyAvailable;
     }
 
-    public List<Integer> getMerchant_ids() {
-        return merchant_ids;
+    public List<Integer> getMerchantIds() {
+        return merchantIds;
     }
 
-    public void setMerchant_ids(List<Integer> merchant_ids) {
-        this.merchant_ids = merchant_ids;
+    public void setMerchantIds(List<Integer> merchantIds) {
+        this.merchantIds = merchantIds;
     }
 
-    public String getDate_created() {
-        return date_created;
+    public String getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate_created(String date_created) {
-        this.date_created = date_created;
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public String getDate_last_modified() {
-        return date_last_modified;
+    public String getDateLastModified() {
+        return dateLastModified;
     }
 
-    public void setDate_last_modified(String date_last_modified) {
-        this.date_last_modified = date_last_modified;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setDateLastModified(String dateLastModified) {
+        this.dateLastModified = dateLastModified;
     }
 }

@@ -1,26 +1,37 @@
 package api.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class LoginResponse {
 
     private int id;
-    private String first_name;
-    private String last_name;
+    @JsonProperty("first_name")
+    private String firstName;
+    @JsonProperty("last_name")
+    private String lastName;
     private String password;
     private String email;
     private String type;
     private String verified;
     private String status;
-    private String date_created;
-    private String date_last_modified;
+    @JsonProperty("date_created")
+    private String dateCreated;
+    @JsonProperty("date_last_modified")
+    private String dateLastModified;
     private List<Roles> roles;
-    private String tos_accepted;
-    private String payment_configured;
+    @JsonProperty("tos_accepted")
+    private String tosAccepted;
+    @JsonProperty("payment_configured")
+    private String paymentConfigured;
     private String token;
-    private String refresh_token;
-    private String merchant_id;
-    private String store_url;
+    @JsonProperty("refresh_token")
+    private String refreshToken;
+    @JsonProperty("merchant_id")
+    private String merchantId;
+    @JsonProperty("store_url")
+    private String storeUrl;
 
     public int getId() {
         return id;
@@ -30,20 +41,20 @@ public class LoginResponse {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -86,20 +97,20 @@ public class LoginResponse {
         this.status = status;
     }
 
-    public String getDate_created() {
-        return date_created;
+    public String getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate_created(String date_created) {
-        this.date_created = date_created;
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public String getDate_last_modified() {
-        return date_last_modified;
+    public String getDateLastModified() {
+        return dateLastModified;
     }
 
-    public void setDate_last_modified(String date_last_modified) {
-        this.date_last_modified = date_last_modified;
+    public void setDateLastModified(String dateLastModified) {
+        this.dateLastModified = dateLastModified;
     }
 
     public List<Roles> getRoles() {
@@ -110,20 +121,20 @@ public class LoginResponse {
         this.roles = roles;
     }
 
-    public String getTos_accepted() {
-        return tos_accepted;
+    public String getTosAccepted() {
+        return tosAccepted;
     }
 
-    public void setTos_accepted(String tos_accepted) {
-        this.tos_accepted = tos_accepted;
+    public void setTosAccepted(String tosAccepted) {
+        this.tosAccepted = tosAccepted;
     }
 
-    public String getPayment_configured() {
-        return payment_configured;
+    public String getPaymentConfigured() {
+        return paymentConfigured;
     }
 
-    public void setPayment_configured(String payment_configured) {
-        this.payment_configured = payment_configured;
+    public void setPaymentConfigured(String paymentConfigured) {
+        this.paymentConfigured = paymentConfigured;
     }
 
     public String getToken() {
@@ -134,27 +145,27 @@ public class LoginResponse {
         this.token = token;
     }
 
-    public String getRefresh_token() {
-        return refresh_token;
+    public String getRefreshToken() {
+        return refreshToken;
     }
 
-    public void setRefresh_token(String refresh_token) {
-        this.refresh_token = refresh_token;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
-    public String getMerchant_id() {
-        return merchant_id;
+    public String getMerchantId() {
+        return merchantId;
     }
 
-    public void setMerchant_id(String merchant_id) {
-        this.merchant_id = merchant_id;
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
     }
 
-    public String getStore_url() {
-        return store_url;
+    public String getStoreUrl() {
+        return storeUrl;
     }
 
-    public void setStore_url(String store_url) {
-        this.store_url = store_url;
+    public void setStoreUrl(String storeUrl) {
+        this.storeUrl = storeUrl;
     }
 }
