@@ -1,4 +1,4 @@
-package api.domain.product;
+package api.domain.login;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

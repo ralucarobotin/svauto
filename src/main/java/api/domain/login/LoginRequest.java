@@ -1,4 +1,4 @@
-package api.domain.product;
+package api.domain.login;
 
 public class LoginRequest {
 

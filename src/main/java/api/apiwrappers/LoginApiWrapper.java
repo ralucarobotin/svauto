@@ -1,8 +1,8 @@
 package api.apiwrappers;
 
 import api.CommonApiWrapper;
-import api.domain.product.LoginRequest;
-import api.domain.product.LoginResponse;
+import api.domain.login.LoginRequest;
+import api.domain.login.LoginResponse;
 import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
 import org.apache.http.message.BasicHeader;

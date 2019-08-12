@@ -1,8 +1,8 @@
 package api.utils;
 
 import api.apiwrappers.LoginApiWrapper;
-import api.domain.product.LoginRequest;
-import api.domain.product.LoginResponse;
+import api.domain.login.LoginRequest;
+import api.domain.login.LoginResponse;
 
 import static helpers.Utilities.getPropertyFromAppProp;
 
