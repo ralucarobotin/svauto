@@ -1,6 +1,7 @@
 package api.apiwrappers;
 
 import api.CommonApiWrapper;
+import api.Headers;
 import api.domain.product.Content;
 import api.utils.LoginUtils;
 import org.apache.http.Header;
@@ -14,9 +15,9 @@ public class ProductApiWrapper extends CommonApiWrapper {
     public Content getProducts(Content content, String page, String size) {
         String url = getPropertyFromAppProp("baseUrl");
         Header[] headers = {
-                new BasicHeader("X-Violet-App-Secret", getPropertyFromAppProp("X-Violet-App-Secret"))
-                , new BasicHeader("X-Violet-App-Id", getPropertyFromAppProp("X-Violet-App-Id"))
-                , new BasicHeader("X-Violet-Token", LoginUtils.getToken())
+                new BasicHeader(Headers.X_VIOLET_APP_SECRET, getPropertyFromAppProp(Headers.X_VIOLET_APP_SECRET))
+                , new BasicHeader(Headers.X_VIOLET_APP_ID, getPropertyFromAppProp(Headers.X_VIOLET_APP_ID))
+                , new BasicHeader(Headers.X_VIOLET_TOKEN, LoginUtils.getToken())
                 , new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json")
         };
         String endpoint = String.format("%s/catalog/products?page=%s&size=%s", url, page, size);
