@@ -20,7 +20,7 @@ public class CommonApiWrapper {
 
     private int statusCode;
 
-    protected Object post(Object payload, String endpoint, Header[] headers) {
+    protected Object post(Object payload, String endpoint, Header[] headers, Class mapClass) {
         HttpPost httpPost = new HttpPost(endpoint);
         logger.info("Post HTTP method initialized " + httpPost);
         StringEntity requestEntity = new StringEntity(jsonHelper.parseJavaObjectsToJson(payload), ContentType.APPLICATION_JSON);
@@ -41,7 +41,7 @@ public class CommonApiWrapper {
         statusCode = response.getStatusLine().getStatusCode();
         Object responseDto = null;
         try {
-            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()), payload.getClass());
+            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()), mapClass);
         } catch (IOException e) {
             e.printStackTrace();
         }
