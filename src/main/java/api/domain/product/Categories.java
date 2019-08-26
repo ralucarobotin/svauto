@@ -1,10 +1,13 @@
 package api.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Categories {
     private String id;
     private String name;
     private String slug;
-    private String parent_id;
+    @JsonProperty("parent_id")
+    private String parentId;
     private Integer depth;
 
     public String getId() {
@@ -31,12 +34,12 @@ public class Categories {
         this.slug = slug;
     }
 
-    public String getParent_id() {
-        return parent_id;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(String parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public Integer getDepth() {
