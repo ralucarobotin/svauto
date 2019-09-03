@@ -1,10 +1,13 @@
 package api.products;
 
-import api.apiwrappers.ProductApiWrapper;
-import api.domain.product.Content;
+import java.io.IOException;
+
 import org.testng.annotations.Test;
 
-import java.io.IOException;
+import api.apiwrappers.ProductApiWrapper;
+import api.domain.catalog.product.Content;
+import api.domain.catalog.product.Search;
+import api.utils.catalog.ProductsUtils;
 
 
 public class BaseTest {
@@ -19,5 +22,12 @@ public class BaseTest {
         //Get products via GET call
         Content getResponseOrder = productApiWrapper.getProducts(new Content(), page,size);
         System.out.println(getResponseOrder.getContent().toString());
+    }
+
+    @Test
+    private void searchProduct(){
+        Search payload = ProductsUtils.defaultSearch("Tartan");
+    Content searchResponse = productApiWrapper.searchProduct(payload, page, size, Content.class);
+    System.out.println(searchResponse.getContent().toString());
     }
 }

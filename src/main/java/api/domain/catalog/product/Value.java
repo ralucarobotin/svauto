@@ -1,4 +1,4 @@
-package api.domain.product;
+package api.domain.catalog.product;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
