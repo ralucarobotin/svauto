@@ -14,6 +14,7 @@ public class LoginPage extends BasePage {
   private static final String URL_PATH = "/my-account";
   private static final String LOGIN_ERR_MSG = "ERROR: The username or password you entered is" +
       " incorrect. Lost your password?";
+  private static final String EMPTY_PASS_LOGIN_ERR_MSG = "ERROR: The password field is empty.";
 
   @FindBy(id = "username")
   private WebElement emailField;
@@ -67,8 +68,12 @@ public class LoginPage extends BasePage {
     openUrl(BASE_URL + URL_PATH);
   }
 
-  public static String getExpectedLoginErrMsg() {
+  public static String getWrongLoginErrMsg() {
     return LOGIN_ERR_MSG;
+  }
+
+  public static String getEmptyPassLoginErrMsg() {
+    return EMPTY_PASS_LOGIN_ERR_MSG;
   }
 
   public String getErrorMessage() {

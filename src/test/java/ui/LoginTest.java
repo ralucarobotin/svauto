@@ -1,5 +1,6 @@
 package ui;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -31,7 +32,17 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, password);
         String errorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(errorMessage, this.loginPage.getExpectedLoginErrMsg(), "The error message is " +
+        Assert.assertEquals(errorMessage, this.loginPage.getWrongLoginErrMsg(), "The error message is " +
             "not correct.");
+    }
+
+    @Test
+    public void testLoginEmptyPass(){
+        this.loginPage.open();
+        this.loginPage.verify();
+        this.loginPage.login(email, StringUtils.EMPTY);
+        String errorMessage = this.loginPage.getErrorMessage();
+        Assert.assertEquals(errorMessage, this.loginPage.getEmptyPassLoginErrMsg(), "The empty " +
+            "password error message is not correct.");
     }
 }
