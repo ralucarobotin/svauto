@@ -2,7 +2,7 @@
 <suite name="Test Suite" verbose="1" configfailurepolicy="continue">
   <test name="Workshop tests">
     <classes>
-      <class name="tests.LoginTest"></class>
+      <class name="ui.LoginTest"></class>
     </classes>
   </test>
 </suite>
