@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.logging.Logger;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +15,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
   private WebDriver driver;
   private final static String BROWSER_SYSTEM_VAR = "browser";
-
+  protected static final Logger LOG = Logger.getLogger(Class.class.getName());
 
   @BeforeMethod(alwaysRun = true)
   public void setUpClass() {
