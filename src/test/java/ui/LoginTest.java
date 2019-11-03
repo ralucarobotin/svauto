@@ -14,10 +14,14 @@ public class LoginTest extends BaseTest {
 
     private String email;
     private String password;
+    private String emailValid;
+    private String passwordValid;
 
     public LoginTest() {
         this.email = getPropertyFromAppProp("email");
         this.password = getPropertyFromAppProp("password");
+        this.emailValid = getPropertyFromAppProp("emailValid");
+        this.passwordValid = getPropertyFromAppProp("passwordValid");
     }
 
     @BeforeMethod
@@ -39,9 +43,8 @@ public class LoginTest extends BaseTest {
     public void testPositiveLogin() {
         this.loginPage.open();
         this.loginPage.verify();
-        this.loginPage.login(getPropertyFromAppProp("email2"), getPropertyFromAppProp("password2"));
-        String logMessage = this.loginPage.getLogMessage();
-        Assert.assertEquals(logMessage, this.loginPage.getExpectedLoginMsg(), "The log in message is " +
-                "not correct.");
+        this.loginPage.login(emailValid, passwordValid);
+        boolean isLogInMessage = this.loginPage.isLogInMessage();
+        Assert.assertEquals(isLogInMessage, true, "The log in message does NOT appear.");
     }
 }
