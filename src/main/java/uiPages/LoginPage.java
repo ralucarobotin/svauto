@@ -14,6 +14,8 @@ public class LoginPage extends BasePage {
   private static final String URL_PATH = "/my-account";
   private static final String LOGIN_ERR_MSG = "ERROR: The username or password you entered is" +
       " incorrect. Lost your password?";
+  private static final String LOGIN_NO_USER_ERR_MSG = "Error: Username is required.";
+  private static final String LOGIN_NO_PASSWORD_ERR_MSG = "ERROR: The password field is empty.";
 
   @FindBy(id = "username")
   private WebElement emailField;
@@ -32,6 +34,12 @@ public class LoginPage extends BasePage {
 
   @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
   private WebElement errorMessage;
+
+  @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
+  private WebElement noUserErrorMessage;
+
+  @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
+  private WebElement noPasswordErrorMessage;
 
   @FindBy(xpath = "//*[@id=\'post-8\']/div/div/div")
   private WebElement logInMessage;
@@ -58,6 +66,20 @@ public class LoginPage extends BasePage {
     logInButton.click();
   }
 
+  public void login() {
+    logInButton.click();
+  }
+
+  public void loginEmail(String email) {
+    fillInEmail(email);
+    logInButton.click();
+  }
+
+  public void loginPassword(String password) {
+    fillInPassword(password);
+    logInButton.click();
+  }
+
   private void fillInEmail(String email){
     setFieldValue(emailField, email);
   }
@@ -70,12 +92,22 @@ public class LoginPage extends BasePage {
     openUrl(BASE_URL + URL_PATH);
   }
 
-  public static String getExpectedLoginErrMsg() {
-    return LOGIN_ERR_MSG;
-  }
+  public static String getExpectedLoginErrMsg() { return LOGIN_ERR_MSG; }
+
+  public static String getExpectedLoginNoUserErrMsg() { return LOGIN_NO_USER_ERR_MSG; }
+
+  public static String getExpectedLoginNoPassErrMsg() { return LOGIN_NO_PASSWORD_ERR_MSG; }
 
   public String getErrorMessage() {
     return WebElementHelper.getElementText(errorMessage);
+  }
+
+  public String getNoUserErrorMessage() {
+    return WebElementHelper.getElementText(noUserErrorMessage);
+  }
+
+  public String getNoPassErrorMessage() {
+    return WebElementHelper.getElementText(noPasswordErrorMessage);
   }
 
   public boolean isLogInMessage() {
