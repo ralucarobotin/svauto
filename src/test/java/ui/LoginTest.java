@@ -40,6 +40,36 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
+    public void testNegativeLoginNoEmail() {
+        this.loginPage.open();
+        this.loginPage.verify();
+        this.loginPage.loginPassword(passwordValid);
+        String noUserErrorMessage = this.loginPage.getNoUserErrorMessage();
+        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginNoUserErrMsg(), "The error message is " +
+                "not correct.");
+    }
+
+    @Test
+    public void testNegativeLoginNoPass() {
+        this.loginPage.open();
+        this.loginPage.verify();
+        this.loginPage.loginEmail(emailValid);
+        String noPassErrorMessage = this.loginPage.getNoPassErrorMessage();
+        Assert.assertEquals(noPassErrorMessage, this.loginPage.getExpectedLoginNoPassErrMsg(), "The error message is " +
+                "not correct.");
+    }
+
+    @Test
+    public void testNegativeLoginNoEmailNoPass() {
+        this.loginPage.open();
+        this.loginPage.verify();
+        this.loginPage.login();
+        String noUserErrorMessage = this.loginPage.getNoUserErrorMessage();
+        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginNoUserErrMsg(), "The error message is " +
+                "not correct.");
+    }
+
+    @Test
     public void testPositiveLogin() {
         this.loginPage.open();
         this.loginPage.verify();
