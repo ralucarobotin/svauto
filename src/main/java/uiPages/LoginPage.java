@@ -14,7 +14,6 @@ public class LoginPage extends BasePage {
   private static final String URL_PATH = "/my-account";
   private static final String LOGIN_ERR_MSG = "ERROR: The username or password you entered is" +
       " incorrect. Lost your password?";
-  private static final String LOGIN_MSG = "MY ACCOUNT";
 
   @FindBy(id = "username")
   private WebElement emailField;
@@ -34,7 +33,7 @@ public class LoginPage extends BasePage {
   @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
   private WebElement errorMessage;
 
-  @FindBy(xpath = "//*[@id=\'noo-site\']/section/div/div/h1")
+  @FindBy(xpath = "//*[@id=\'post-8\']/div/div/div")
   private WebElement logInMessage;
 
   public LoginPage(WebDriver driver) {
@@ -75,15 +74,11 @@ public class LoginPage extends BasePage {
     return LOGIN_ERR_MSG;
   }
 
-  public static String getExpectedLoginMsg() {
-    return LOGIN_MSG;
-  }
-
   public String getErrorMessage() {
     return WebElementHelper.getElementText(errorMessage);
   }
 
-  public String getLogMessage() {
-    return WebElementHelper.getElementText(logInMessage);
+  public boolean isLogInMessage() {
+    return WebElementHelper.isElementDisplayed(logInMessage);
   }
 }
