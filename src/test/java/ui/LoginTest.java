@@ -5,12 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import uiPages.LoginPage;
+import pages.MyAccountPage;
 
 import static helpers.Utilities.getPropertyFromAppProp;
 
 public class LoginTest extends BaseTest {
 
     private LoginPage loginPage = null;
+    private MyAccountPage myAccountPage = null;
 
     private String email;
     private String password;
@@ -27,6 +29,7 @@ public class LoginTest extends BaseTest {
     @BeforeMethod
     void beforeMethod() {
         this.loginPage = new LoginPage(getDriver());
+        this.myAccountPage = new MyAccountPage(getDriver());
     }
 
     @Test
@@ -35,7 +38,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, password);
         String errorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(errorMessage, this.loginPage.getExpectedLoginErrMsg(), "The error message is " +
+        Assert.assertEquals(errorMessage, this.loginPage.getExpectedLoginErrMsg("wrongLogIn"), "The error message is " +
             "not correct.");
     }
 
@@ -44,8 +47,8 @@ public class LoginTest extends BaseTest {
         this.loginPage.open();
         this.loginPage.verify();
         this.loginPage.loginPassword(passwordValid);
-        String noUserErrorMessage = this.loginPage.getNoUserErrorMessage();
-        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginNoUserErrMsg(), "The error message is " +
+        String noUserErrorMessage = this.loginPage.getErrorMessage();
+        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginErrMsg("noUser"), "The error message is " +
                 "not correct.");
     }
 
@@ -54,8 +57,8 @@ public class LoginTest extends BaseTest {
         this.loginPage.open();
         this.loginPage.verify();
         this.loginPage.loginEmail(emailValid);
-        String noPassErrorMessage = this.loginPage.getNoPassErrorMessage();
-        Assert.assertEquals(noPassErrorMessage, this.loginPage.getExpectedLoginNoPassErrMsg(), "The error message is " +
+        String noPassErrorMessage = this.loginPage.getErrorMessage();
+        Assert.assertEquals(noPassErrorMessage, this.loginPage.getExpectedLoginErrMsg("noPassword"), "The error message is " +
                 "not correct.");
     }
 
@@ -63,18 +66,18 @@ public class LoginTest extends BaseTest {
     public void testNegativeLoginNoEmailNoPass() {
         this.loginPage.open();
         this.loginPage.verify();
-        this.loginPage.login();
-        String noUserErrorMessage = this.loginPage.getNoUserErrorMessage();
-        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginNoUserErrMsg(), "The error message is " +
+        this.loginPage.clickLoginButton();
+        String noUserErrorMessage = this.loginPage.getErrorMessage();
+        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginErrMsg("noUser"), "The error message is " +
                 "not correct.");
     }
 
     @Test
-    public void testPositiveLogin() {
+    public void testPositiveLogin() throws InterruptedException {
         this.loginPage.open();
         this.loginPage.verify();
         this.loginPage.login(emailValid, passwordValid);
-        boolean isLogInMessage = this.loginPage.isLogInMessage();
+        boolean isLogInMessage = myAccountPage.isLogInMessage();
         Assert.assertEquals(isLogInMessage, true, "The log in message does NOT appear.");
     }
 }
