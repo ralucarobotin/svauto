@@ -32,17 +32,8 @@ public class LoginPage extends BasePage {
   @FindBy(xpath = "//p[contains(@class, 'lost_password')]/a")
   private WebElement lostPasswordLink;
 
-  @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
+  @FindBy(xpath = "//ul[@class='woocommerce-error']")
   private WebElement errorMessage;
-
-  @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
-  private WebElement noUserErrorMessage;
-
-  @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
-  private WebElement noPasswordErrorMessage;
-
-  @FindBy(xpath = "//*[@id=\'post-8\']/div/div/div")
-  private WebElement logInMessage;
 
   public LoginPage(WebDriver driver) {
     super(driver);
@@ -60,24 +51,24 @@ public class LoginPage extends BasePage {
     return areVisible(emailField, passField, logInButton,rememberMeCheckbox, lostPasswordLink);
   }
 
-  public void login(String email, String password) {
-    fillInEmail(email);
-    fillInPassword(password);
+  public void clickLoginButton() {
     logInButton.click();
   }
 
-  public void login() {
-    logInButton.click();
+  public void login(String email, String password) {
+    fillInEmail(email);
+    fillInPassword(password);
+    clickLoginButton();
   }
 
   public void loginEmail(String email) {
     fillInEmail(email);
-    logInButton.click();
+    clickLoginButton();
   }
 
   public void loginPassword(String password) {
     fillInPassword(password);
-    logInButton.click();
+    clickLoginButton();
   }
 
   private void fillInEmail(String email){
@@ -92,25 +83,19 @@ public class LoginPage extends BasePage {
     openUrl(BASE_URL + URL_PATH);
   }
 
-  public static String getExpectedLoginErrMsg() { return LOGIN_ERR_MSG; }
-
-  public static String getExpectedLoginNoUserErrMsg() { return LOGIN_NO_USER_ERR_MSG; }
-
-  public static String getExpectedLoginNoPassErrMsg() { return LOGIN_NO_PASSWORD_ERR_MSG; }
+  public static String getExpectedLoginErrMsg(String errorType) {
+      switch(errorType) {
+          case "noUser":
+              return LOGIN_NO_USER_ERR_MSG;
+          case "noPassword":
+              return LOGIN_NO_PASSWORD_ERR_MSG;
+          case "wrongLogIn":
+              return LOGIN_ERR_MSG;
+          default: return "no error message";
+      }
+  }
 
   public String getErrorMessage() {
     return WebElementHelper.getElementText(errorMessage);
-  }
-
-  public String getNoUserErrorMessage() {
-    return WebElementHelper.getElementText(noUserErrorMessage);
-  }
-
-  public String getNoPassErrorMessage() {
-    return WebElementHelper.getElementText(noPasswordErrorMessage);
-  }
-
-  public boolean isLogInMessage() {
-    return WebElementHelper.isElementDisplayed(logInMessage);
   }
 }
