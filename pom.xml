@@ -6,6 +6,7 @@
 
     <properties>
         <suiteFile>TestSuite.xml</suiteFile>
+        <browserName>chrome</browserName>
     </properties>
 
     <groupId>com.softvision.svauto</groupId>
@@ -84,6 +85,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
                 <configuration>
+                    <systemPropertyVariables>
+                        <browser>${browserName}</browser>
+                    </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/${suiteFile}</suiteXmlFile>
                     </suiteXmlFiles>
