@@ -1,17 +1,18 @@
 package uiPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import helpers.WebElementHelper;
+import org.openqa.selenium.support.ui.Select;
 
 import static helpers.WebElementHelper.areVisible;
-import static helpers.WebElementHelper.setFieldValue;
 
 public class ProductPage extends BasePage {
 
-    private static final String URL_PATH = "/product";
+    private static final String URL_PATH = "/product/%s";
 
     @FindBy(className = "product-essential__description")
     private WebElement productDescriptionField;
@@ -19,15 +20,18 @@ public class ProductPage extends BasePage {
     @FindBy(className = "product-essential__specification")
     private WebElement productSpecificationField;
 
-    @FindBy(xpath = "//button[@class='single_add_to_cart_button button alt disabled wc-variation-selection-needed']")
-    private WebElement disabledAddToCart;
-
     @FindBy(xpath = "//*[@id=\'pa_color\']/option[2]")
     private WebElement attributeColor;
 
     @FindBy(xpath = "//*[@id=\'pa_size\']/option[2]")
     private WebElement attributeSize;
+/**
+    @FindBy(id = "pa_color")
+    private WebElement attributeColor;
 
+    @FindBy(id = "pa_size")
+    private WebElement attributeSize;
+*/
     @FindBy(className = "woocommerce-message")
     private WebElement addedmessage;
 
@@ -47,8 +51,16 @@ public class ProductPage extends BasePage {
     @Override
     protected boolean isValid() {
         super.isValid();
-        return areVisible(productDescriptionField, productSpecificationField, disabledAddToCart);
+        return areVisible(productDescriptionField, productSpecificationField);
     }
+
+    /**
+    Select color = new Select(attributeColor);
+    color.selectByIndex(2);
+
+    Select size = new Select(attributeSize);
+    size.selectByIndex(2);
+     */
 
     public void attributeSelector() {
         attributeColor.click();
@@ -60,8 +72,8 @@ public class ProductPage extends BasePage {
         addToCart.click();
     }
 
-    public void open(String product){
-        openUrl(BASE_URL + URL_PATH + product);
+    public void openProductUrl(String product){
+        openUrl(String.format(BASE_URL + URL_PATH, product));
     }
 
     public boolean isAddedMessage() {
