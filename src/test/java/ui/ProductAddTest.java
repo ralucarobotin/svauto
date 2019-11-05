@@ -26,7 +26,7 @@ public class ProductAddTest extends BaseTest {
 
     @Test
     public void addProductToCart() {
-        this.productPage.open(specificProduct);
+        this.productPage.openProductUrl(specificProduct);
         this.productPage.verify();
         this.productPage.attributeSelector();
         this.productPage.addToCart();
