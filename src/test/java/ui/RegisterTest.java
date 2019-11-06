@@ -1,19 +1,20 @@
 package ui;
 
+import externalUIPages.WordpressPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import uiPages.BasePage;
 import uiPages.RegisterPage;
-import static org.testng.Assert.*;
 
-import static helpers.Utilities.getPropertyFromRegProp;
-
+import static helpers.Utilities.getPropertyFileContent;
+import static helpers.Utilities.getPropertyValue;
 
 
 public class RegisterTest extends BaseTest {
 
     private RegisterPage registerPage = null;
+    private WordpressPage wordpressPage = null;
+    public static final String REG_FILE = "./register.properties";
 
     private String email;
     private String password;
@@ -26,11 +27,18 @@ public class RegisterTest extends BaseTest {
         this.password = getPropertyFromRegProp("password");
     }
 
-
+    public static String getPropertyFromRegProp(String prop){
+        return getPropertyValue(getPropertyFileContent(REG_FILE), prop);
+    }
 
     @BeforeMethod
     void beforeMethod() {
         this.registerPage = new RegisterPage(getDriver());
+    }
+
+    @BeforeMethod
+    void beforeMethodForWordpress() {
+        this.wordpressPage = new WordpressPage(getDriver());
     }
 
     @Test
@@ -38,8 +46,10 @@ public class RegisterTest extends BaseTest {
         this.registerPage.open();
         this.registerPage.verify();
         this.registerPage.register(username, email, password);
-        String validationMessage = this.registerPage.getRegisterMessage();
-        Assert.assertEquals(validationMessage, this.registerPage.getExpectedRegisterMsg(), "The error message is " +
+
+        this.wordpressPage.open();
+        String validationMessage = this.wordpressPage.getRegisterMessage();
+        Assert.assertEquals(validationMessage, this.wordpressPage.getExpectedRegisterMsg(), "The error message is " +
                 "not correct.");
     }
 
