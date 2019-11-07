@@ -16,7 +16,7 @@ public class LoginUtils {
     public static LoginRequest createLogin() {
 
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername(getPropertyFromAppProp("email"));
+        loginRequest.setUsername(getPropertyFromAppProp("emailValid"));
         loginRequest.setPassword(getPropertyFromAppProp("password"));
 
         return loginRequest;

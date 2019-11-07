@@ -20,18 +20,12 @@ public class ProductPage extends BasePage {
     @FindBy(className = "product-essential__specification")
     private WebElement productSpecificationField;
 
-    @FindBy(xpath = "//*[@id=\'pa_color\']/option[2]")
-    private WebElement attributeColor;
-
-    @FindBy(xpath = "//*[@id=\'pa_size\']/option[2]")
-    private WebElement attributeSize;
-/**
     @FindBy(id = "pa_color")
     private WebElement attributeColor;
 
     @FindBy(id = "pa_size")
     private WebElement attributeSize;
-*/
+
     @FindBy(className = "woocommerce-message")
     private WebElement addedmessage;
 
@@ -54,20 +48,17 @@ public class ProductPage extends BasePage {
         return areVisible(productDescriptionField, productSpecificationField);
     }
 
-    /**
-    Select color = new Select(attributeColor);
-    color.selectByIndex(2);
-
-    Select size = new Select(attributeSize);
-    size.selectByIndex(2);
-     */
-
-    public void attributeSelector() {
-        attributeColor.click();
-        attributeSize.click();
+    public void selectColor() {
+        Select color = new Select(attributeColor);
+        color.selectByIndex(1);
     }
 
-    public void addToCart() {
+    public void selectSize() {
+        Select size = new Select(attributeSize);
+        size.selectByIndex(1);
+    }
+
+    public void clickAddToCart() {
         waitForElementToAppear(addToCart);
         addToCart.click();
     }
@@ -76,7 +67,7 @@ public class ProductPage extends BasePage {
         openUrl(String.format(BASE_URL + URL_PATH, product));
     }
 
-    public boolean isAddedMessage() {
+    public boolean isAddedMessageDisplayed() {
         return WebElementHelper.isElementDisplayed(addedmessage);
     }
 }

@@ -16,6 +16,9 @@ public class MyAccountPage extends BasePage {
     @FindBy(className = "woocommerce-MyAccount-content")
     private WebElement logInMessage;
 
+    @FindBy(className = "page-title")
+    private WebElement pageTitle;
+
     public MyAccountPage(WebDriver driver) {
         super(driver);
     }
@@ -23,13 +26,13 @@ public class MyAccountPage extends BasePage {
     @Override
     protected boolean isCurrent() {
         super.isCurrent();
-        return areVisible();
+        return areVisible(pageTitle);
     }
 
     @Override
     protected boolean isValid() {
         super.isValid();
-        return areVisible();
+        return areVisible(pageTitle);
     }
 
     public void open(){

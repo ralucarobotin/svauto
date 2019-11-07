@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
     private String passwordValid;
 
     public LoginTest() {
-        this.email = getPropertyFromAppProp("email");
+        this.email = getPropertyFromAppProp("emailValid");
         this.password = getPropertyFromAppProp("password");
         this.emailValid = getPropertyFromAppProp("emailValid");
         this.passwordValid = getPropertyFromAppProp("passwordValid");
@@ -38,7 +38,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, password);
         String errorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(errorMessage, this.loginPage.getExpectedLoginErrMsg("wrongLogIn"), "The error message is " +
+        Assert.assertEquals(errorMessage, this.loginPage.getExpectedWrongLoginErrMsg(), "The no user, no password error message is " +
             "not correct.");
     }
 
@@ -48,7 +48,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.loginPassword(passwordValid);
         String noUserErrorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginErrMsg("noUser"), "The error message is " +
+        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedNoUserErrMsg(), "The no user error message is " +
                 "not correct.");
     }
 
@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.loginEmail(emailValid);
         String noPassErrorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(noPassErrorMessage, this.loginPage.getExpectedLoginErrMsg("noPassword"), "The error message is " +
+        Assert.assertEquals(noPassErrorMessage, this.loginPage.getExpectedNoPasswordErrMsg(), "The no password error message is " +
                 "not correct.");
     }
 
@@ -68,12 +68,12 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.clickLoginButton();
         String noUserErrorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedLoginErrMsg("noUser"), "The error message is " +
+        Assert.assertEquals(noUserErrorMessage, this.loginPage.getExpectedNoUserErrMsg(), "The no user error message is " +
                 "not correct.");
     }
 
     @Test
-    public void testPositiveLogin() throws InterruptedException {
+    public void testPositiveLogin() {
         this.loginPage.open();
         this.loginPage.verify();
         this.loginPage.login(emailValid, passwordValid);
