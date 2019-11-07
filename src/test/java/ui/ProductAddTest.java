@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import uiPages.LoginPage;
 import uiPages.ProductPage;
 
-import static helpers.Utilities.getPropertyFromAppProp;
+import static helpers.Utilities.getPropertyFromProductsProp;
 
 public class ProductAddTest extends BaseTest {
 
@@ -16,7 +16,7 @@ public class ProductAddTest extends BaseTest {
     private String specificProduct;
 
     public ProductAddTest() {
-        this.specificProduct = getPropertyFromAppProp("product1");
+        this.specificProduct = getPropertyFromProductsProp("product3");
     }
 
     @BeforeMethod
@@ -28,8 +28,9 @@ public class ProductAddTest extends BaseTest {
     public void addProductToCart() {
         this.productPage.openProductUrl(specificProduct);
         this.productPage.verify();
-        this.productPage.attributeSelector();
-        this.productPage.addToCart();
-        Assert.assertTrue(this.productPage.isAddedMessage(), "The product was NOT added to the cart");
+        this.productPage.selectColor();
+        this.productPage.selectSize();
+        this.productPage.clickAddToCart();
+        Assert.assertTrue(this.productPage.isAddedMessageDisplayed(), "The product was NOT added to the cart");
     }
 }

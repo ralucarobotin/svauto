@@ -32,7 +32,7 @@ public class LoginPage extends BasePage {
   @FindBy(xpath = "//p[contains(@class, 'lost_password')]/a")
   private WebElement lostPasswordLink;
 
-  @FindBy(xpath = "//ul[@class='woocommerce-error']")
+  @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
   private WebElement errorMessage;
 
   public LoginPage(WebDriver driver) {
@@ -83,17 +83,11 @@ public class LoginPage extends BasePage {
     openUrl(BASE_URL + URL_PATH);
   }
 
-  public static String getExpectedLoginErrMsg(String errorType) {
-      switch(errorType) {
-          case "noUser":
-              return LOGIN_NO_USER_ERR_MSG;
-          case "noPassword":
-              return LOGIN_NO_PASSWORD_ERR_MSG;
-          case "wrongLogIn":
-              return LOGIN_ERR_MSG;
-          default: return "no error message";
-      }
-  }
+  public static String getExpectedNoUserErrMsg() { return LOGIN_NO_USER_ERR_MSG; }
+
+  public static String getExpectedNoPasswordErrMsg() { return LOGIN_NO_PASSWORD_ERR_MSG; }
+
+  public static String getExpectedWrongLoginErrMsg() { return LOGIN_ERR_MSG; }
 
   public String getErrorMessage() {
     return WebElementHelper.getElementText(errorMessage);
