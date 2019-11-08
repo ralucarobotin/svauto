@@ -26,10 +26,10 @@ public class ProductApiWrapper extends CommonApiWrapper {
     }
 
 
-    public Content searchProduct(Object content, String page, String size, Class mapClass){
+    public Content searchProduct(Object content, String page, String size){
         String endpoint = String.format("%s/catalog/products/search?page=%s&size=%s", url, page,
             size);
-        return (Content) post(content, endpoint, headers, mapClass);
+        return (Content) post(content, endpoint, headers, Content.class);
     }
 
 

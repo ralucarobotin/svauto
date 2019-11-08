@@ -3,15 +3,13 @@ package api.domain.catalog.product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-*
-*
-* @author mmuresan
-* @since 2019-09-02
-*/
+ * @author mmuresan
+ * @since 2019-09-02
+ */
 public class Search {
 
-  String query;
-  @JsonProperty("merchant_id")
+  private String query;
+  @JsonProperty("merchant_id") private
   String merchantId;
   @JsonProperty("category_id")
   String categoryId;
@@ -24,11 +22,19 @@ public class Search {
   @JsonProperty("min_price")
   String minPrice;
   @JsonProperty("max_price")
-  String maxPrice;
+  private String maxPrice;
+
+  public String getQuery() {
+    return query;
+  }
 
   public Search setQuery(String query) {
     this.query = query;
     return this;
+  }
+
+  public String getMerchantId() {
+    return merchantId;
   }
 
   public Search setMerchantId(String merchantId) {
@@ -36,9 +42,17 @@ public class Search {
     return this;
   }
 
+  public String getCategoryId() {
+    return categoryId;
+  }
+
   public Search setCategoryId(String categoryId) {
     this.categoryId = categoryId;
     return this;
+  }
+
+  public String getCategorySlug() {
+    return categorySlug;
   }
 
   public Search setCategorySlug(String categorySlug) {
@@ -46,9 +60,17 @@ public class Search {
     return this;
   }
 
+  public String getMinCommission() {
+    return minCommission;
+  }
+
   public Search setMinCommission(String minCommission) {
     this.minCommission = minCommission;
     return this;
+  }
+
+  public String getMaxCommission() {
+    return maxCommission;
   }
 
   public Search setMaxCommission(String maxCommission) {
@@ -56,9 +78,17 @@ public class Search {
     return this;
   }
 
+  public String getMinPrice() {
+    return minPrice;
+  }
+
   public Search setMinPrice(String minPrice) {
     this.minPrice = minPrice;
     return this;
+  }
+
+  public String getMaxPrice() {
+    return maxPrice;
   }
 
   public Search setMaxPrice(String maxPrice) {
