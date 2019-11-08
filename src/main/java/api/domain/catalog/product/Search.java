@@ -2,25 +2,21 @@ package api.domain.catalog.product;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * @author mmuresan
- * @since 2019-09-02
- */
 public class Search {
 
   private String query;
-  @JsonProperty("merchant_id") private
-  String merchantId;
+  @JsonProperty("merchant_id")
+  private String merchantId;
   @JsonProperty("category_id")
-  String categoryId;
+  private String categoryId;
   @JsonProperty("category_slug")
-  String categorySlug;
+  private String categorySlug;
   @JsonProperty("min_commission")
-  String minCommission;
+  private String minCommission;
   @JsonProperty("max_commission")
-  String maxCommission;
+  private String maxCommission;
   @JsonProperty("min_price")
-  String minPrice;
+  private String minPrice;
   @JsonProperty("max_price")
   private String maxPrice;
 
