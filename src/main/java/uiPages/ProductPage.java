@@ -48,13 +48,13 @@ public class ProductPage extends BasePage {
     }
 
     public void selectColor() {
-        Select color = new Select(attributeColor);
-        color.selectByIndex(1);
+        Select attributeSelect = new Select(attributeColor);
+        attributeSelect.selectByIndex(1);
     }
 
     public void selectSize() {
-        Select size = new Select(attributeSize);
-        size.selectByIndex(1);
+        Select attributeSelect = new Select(attributeSize);
+        attributeSelect.selectByIndex(1);
     }
 
     public void clickAddToCart() {
