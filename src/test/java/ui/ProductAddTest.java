@@ -2,6 +2,7 @@ package ui;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import uiPages.ProductPage;
@@ -20,22 +21,39 @@ public class ProductAddTest extends BaseTest {
         return getPropertyValue(getPropertyFileContent(PRODUCT_FILE), prop);
     }
 
-    public ProductAddTest() {
-        this.specificProduct = getPropertyFromProductsProp("product3");
-    }
-
     @BeforeMethod
     void beforeMethod() {
         this.productPage = new ProductPage(getDriver());
     }
 
     @Test
-    public void addProductToCart() {
+    public void addAnyProductToCart() {
+        int i=1;
+        while(!getPropertyFromProductsProp("product" + i).equals("empty")){
+            this.specificProduct = getPropertyFromProductsProp("product"+i);
+            this.productPage.openProductUrl(specificProduct);
+            this.productPage.verify();
+            this.productPage.selectColorByIndex(1);
+            this.productPage.selectSizeByIndex(1);
+            this.productPage.clickAddToCart();
+            Assert.assertTrue(this.productPage.isAddedMessageDisplayed(), "The product was NOT added to the cart");
+            String productName = this.productPage.getProductName().toLowerCase();
+            Assert.assertTrue(this.productPage.getConfirmMessage().contains(productName), "A different product was added.");
+            i++;
+        }
+    }
+
+    @Parameters({ "product", "color", "size" })
+    @Test
+    public void addSpecificProductToCart(String product, String color, String size) {
+        this.specificProduct = getPropertyFromProductsProp(product);
         this.productPage.openProductUrl(specificProduct);
         this.productPage.verify();
-        this.productPage.selectColor();
-        this.productPage.selectSize();
+        this.productPage.selectColorByValue(color);
+        this.productPage.selectSizeByValue(size);
         this.productPage.clickAddToCart();
         Assert.assertTrue(this.productPage.isAddedMessageDisplayed(), "The product was NOT added to the cart");
+        String productName = this.productPage.getProductName().toLowerCase();
+        Assert.assertTrue(this.productPage.getConfirmMessage().contains(productName), "A different product was added.");
     }
 }

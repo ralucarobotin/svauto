@@ -27,4 +27,5 @@ public class BasePage extends WebUIPage {
   protected boolean isValid() {
     return headerFooter.isValid();
   }
+
 }

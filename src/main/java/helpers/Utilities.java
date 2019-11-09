@@ -25,6 +25,8 @@ public class Utilities {
     final String propertyValue = properties.getProperty(propertyName);
     if (StringUtils.isNotBlank(propertyValue)) {
       return propertyValue;
+    } else if (StringUtils.isBlank(propertyValue)){
+      return "empty";
     } else {
       throw new IllegalArgumentException(String.format(
           "Environment variable '%s' does not exist or is blank", propertyValue));
