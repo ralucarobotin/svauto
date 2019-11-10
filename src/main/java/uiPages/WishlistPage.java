@@ -38,14 +38,20 @@ public class WishlistPage extends BasePage {
     @FindBy(className = "product-add-to-cart")
     private WebElement tableColumnAddToCart;
 
-    @FindBy(className = "remove remove_from_wishlist")
+    @FindBy(className = "remove_from_wishlist")
     private WebElement removeButton;
 
-    @FindBy(className = "button product_type_variable add_to_cart_button add_to_cart button alt")
+    @FindBy(className = "product_type_variable")
     private WebElement selectOptionsButton;
 
     @FindBy(className = "woocommerce-message")
     private WebElement removedmessage;
+
+    @FindBy(xpath = "//tr[@id='yith-wcwl-row-1365']//td[@class='product-name']")
+    private WebElement firstProductName;
+
+    @FindBy(xpath = "//tr[@id='yith-wcwl-row-1497']//td[@class='product-name']")
+    private WebElement secondProductName;
 
     public WishlistPage(WebDriver driver) {
         super(driver);
@@ -68,6 +74,7 @@ public class WishlistPage extends BasePage {
     }
 
     public void clickSelectOptionsButton() {
+        selectOptionsButton.isDisplayed();
         waitForElementToAppear(selectOptionsButton);
         selectOptionsButton.click();
     }
@@ -83,7 +90,12 @@ public class WishlistPage extends BasePage {
 
     public String getWishlistProducts() { return WebElementHelper.getElementText(tableColumnName); }
 
+    public String getFirstWishlistProduct() { return WebElementHelper.getElementText(firstProductName); }
+
+    public String getSecondWishlistProduct() { return WebElementHelper.getElementText(secondProductName); }
+
     public boolean isRemovedMessageDisplayed() {
+        waitForElementToAppear(removedmessage);
         return WebElementHelper.isElementDisplayed(removedmessage);
     }
 }
