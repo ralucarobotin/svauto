@@ -1,12 +1,16 @@
 package uiPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import helpers.WebElementHelper;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
 
 import static helpers.WebElementHelper.areVisible;
 
@@ -35,19 +39,29 @@ public class ProductPage extends BasePage {
     @FindBy(xpath = "//button[@class='single_add_to_cart_button button alt']")
     private WebElement addToCart;
 
+    @FindBy(xpath = "//a[contains(text(),'My Wishlist')]")
+    private WebElement myWishlistButton;
+
+    @FindBy(xpath = "/html/body/p/a")
+    private WebElement bannerDismissButton;
+
+    @FindBy(className = "add_to_wishlist")
+    private WebElement addToWishlistButton;
+
+    @FindBy(className = "//div[@class='summary entry-summary']//a[@class='compare button'][contains(text(),'Compare')]")
+    private WebElement productId;
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
     protected boolean isCurrent() {
-        //super.isCurrent();
         return areVisible(productDescriptionField, productSpecificationField);
     }
 
     @Override
     protected boolean isValid() {
-        //super.isValid();
         return areVisible(productDescriptionField, productSpecificationField);
     }
 
@@ -76,6 +90,27 @@ public class ProductPage extends BasePage {
         addToCart.click();
     }
 
+    public void clickMyWishlistButton() {
+        waitForElementToAppear(myWishlistButton);
+        myWishlistButton.click();
+    }
+
+    public void clickBannerDismissButton() {
+        waitForElementToAppear(bannerDismissButton);
+        bannerDismissButton.click();
+    }
+
+    public void clickAddToWishlistButton() {
+        Actions action = new Actions(driver);
+        action.moveToElement(addToWishlistButton).perform();
+        addToWishlistButton.click();
+    }
+
+    public void scrollToTop() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("scroll(0, 0);");
+    }
+
     public void openProductUrl(String product){
         openUrl(String.format(BASE_URL + URL_PATH, product));
     }
@@ -85,6 +120,8 @@ public class ProductPage extends BasePage {
     }
 
     public String getProductName() { return WebElementHelper.getElementText(productName); }
+
+    public String getProductId() { return WebElementHelper.getElementText(productId); }
 
     public String getConfirmMessage() { return WebElementHelper.getElementText(addedmessage); }
 }
