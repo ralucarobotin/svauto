@@ -10,8 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import helpers.WebElementHelper;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.concurrent.TimeUnit;
-
 import static helpers.WebElementHelper.areVisible;
 
 public class ProductPage extends BasePage {
@@ -48,7 +46,7 @@ public class ProductPage extends BasePage {
     @FindBy(className = "add_to_wishlist")
     private WebElement addToWishlistButton;
 
-    @FindBy(className = "//div[@class='summary entry-summary']//a[@class='compare button'][contains(text(),'Compare')]")
+    @FindBy(className = "variations_form")
     private WebElement productId;
 
     public ProductPage(WebDriver driver) {

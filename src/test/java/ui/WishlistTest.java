@@ -41,58 +41,65 @@ public class WishlistTest extends BaseTest {
 
     @Test
     public void addProductToWishlist() {
-        this.productPage.openProductUrl("/pink-drop-shoulder-oversized-t-shirt/");
+        this.productPage.openProductUrl("/pink-ultimate-ma1-bomber-jacket/");
         this.productPage.clickBannerDismissButton();
         this.productPage.clickAddToWishlistButton();
         String addedProductName = this.productPage.getProductName();
         this.productPage.scrollToTop();
         this.productPage.clickMyWishlistButton();
         this.wishlistPage.verify();
-        String wishlistProducts = this.wishlistPage.getWishlistProducts();
-        Assert.assertTrue(wishlistProducts.contains(addedProductName), "The product was NOT added to the Wishlist");
+        String wishlistProduct = this.wishlistPage.getFirstWishlistProduct();
+        Assert.assertTrue(wishlistProduct.contains(addedProductName), "The product was NOT added to the Wishlist");
     }
 
-    /**
-     * under construction
-     * imi da o eroare json si nu reusesc sa o rezolv
     @Test
     public void removeProductFromWishlist() {
-        this.productPage.openProductUrl("/pink-drop-shoulder-oversized-t-shirt/");
+        this.productPage.openProductUrl("/pink-ultimate-ma1-bomber-jacket/");
         this.productPage.clickBannerDismissButton();
         this.productPage.clickAddToWishlistButton();
-        String addedProductName = this.productPage.getProductName();
         this.productPage.scrollToTop();
         this.productPage.clickMyWishlistButton();
         this.wishlistPage.verify();
-        String wishlistProducts = this.wishlistPage.getWishlistProducts();
         this.wishlistPage.clickRemoveButton();
         Assert.assertTrue(this.wishlistPage.isRemovedMessageDisplayed(), "The product was NOT removed from the Wishlist");
     }
-    */
+
+    @Test
+    public void selectOptionsProductFromWishlist() {
+        this.productPage.openProductUrl("/pink-ultimate-ma1-bomber-jacket/");
+        this.productPage.clickBannerDismissButton();
+        this.productPage.clickAddToWishlistButton();
+        this.productPage.scrollToTop();
+        this.productPage.clickMyWishlistButton();
+        this.wishlistPage.verify();
+        String wishlistProduct = this.wishlistPage.getFirstWishlistProduct();
+        this.wishlistPage.clickSelectOptionsButton();
+        String addedProductName = this.productPage.getProductName();
+        Assert.assertTrue(wishlistProduct.contains(addedProductName), "The product page from the wishlist is NOT selected.");
+    }
 
     /**
-     * under construction
+     * in testul asta vreau sa verific ca se pot adauga mai multe produse in wishlist
+     * da nu am reusit sa identific randurile din tabel in functie de idul produsului
+     * nu stiu cum sa identific idul produsului ca sa pot adauga la capatul selectorului de rand al tabelului cu produse
+     * momentan ii facut cu produsul specific da vreau sa pot verifica orice produs intra in lista
+     */
     @Test
     public void addTwoProductsToWishlist() {
-        this.productPage.openProductUrl("/pink-drop-shoulder-oversized-t-shirt/");
+        this.productPage.openProductUrl("/pink-ultimate-ma1-bomber-jacket/");
         this.productPage.clickBannerDismissButton();
         this.productPage.clickAddToWishlistButton();
         String addedProductName1 = this.productPage.getProductName();
-        //String prodid = this.productPage.getProductId();
-        //dute la alt produs
-        //adauga produsul
-        //trebuie luat si idul produsului ca sa pot cauta dupa el in wishlist
-        this.productPage.openProductUrl("/pink-ultimate-ma1-bomber-jacket/");
-        //this.productPage.clickBannerDismissButton();
+        this.productPage.openProductUrl("/pink-drop-shoulder-oversized-t-shirt/");
         this.productPage.clickAddToWishlistButton();
         String addedProductName2 = this.productPage.getProductName();
         this.productPage.scrollToTop();
         this.productPage.clickMyWishlistButton();
         this.wishlistPage.verify();
         this.wishlistPage.scrollToTable();
-        String wishlistProducts = this.wishlistPage.getWishlistProducts();
-        Assert.assertTrue(wishlistProducts.contains(addedProductName1), "The product1 was NOT added to the Wishlist");
-        Assert.assertTrue(wishlistProducts.contains(addedProductName2), "The product2 was NOT added to the Wishlist");
+        String wishlistProduct1 = this.wishlistPage.getFirstWishlistProduct();
+        String wishlistProduct2 = this.wishlistPage.getSecondWishlistProduct();
+        Assert.assertTrue(wishlistProduct1.contains(addedProductName1), "The product1 was NOT added to the Wishlist");
+        Assert.assertTrue(wishlistProduct2.contains(addedProductName2), "The product2 was NOT added to the Wishlist");
     }
-    */
 }
