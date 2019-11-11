@@ -19,6 +19,9 @@ public class ProductPage extends BasePage {
     @FindBy(className = "product-essential__specification")
     private WebElement productSpecificationField;
 
+    @FindBy(xpath = "//h1[@class='product_title entry-title']")
+    private WebElement productName;
+
     @FindBy(id = "pa_color")
     private WebElement attributeColor;
 
@@ -37,24 +40,34 @@ public class ProductPage extends BasePage {
 
     @Override
     protected boolean isCurrent() {
-        super.isCurrent();
+        //super.isCurrent();
         return areVisible(productDescriptionField, productSpecificationField);
     }
 
     @Override
     protected boolean isValid() {
-        super.isValid();
+        //super.isValid();
         return areVisible(productDescriptionField, productSpecificationField);
     }
 
-    public void selectColor() {
-        Select color = new Select(attributeColor);
-        color.selectByIndex(1);
+    public void selectColorByIndex(int index) {
+        Select attributeSelect = new Select(attributeColor);
+        attributeSelect.selectByIndex(index);
     }
 
-    public void selectSize() {
-        Select size = new Select(attributeSize);
-        size.selectByIndex(1);
+    public void selectSizeByIndex(int index) {
+        Select attributeSelect = new Select(attributeSize);
+        attributeSelect.selectByIndex(index);
+    }
+
+    public void selectColorByValue(String value) {
+        Select attributeSelect = new Select(attributeColor);
+        attributeSelect.selectByValue(value.toLowerCase());
+    }
+
+    public void selectSizeByValue(String value) {
+        Select attributeSelect = new Select(attributeSize);
+        attributeSelect.selectByValue(value.toLowerCase());
     }
 
     public void clickAddToCart() {
@@ -69,4 +82,8 @@ public class ProductPage extends BasePage {
     public boolean isAddedMessageDisplayed() {
         return WebElementHelper.isElementDisplayed(addedmessage);
     }
+
+    public String getProductName() { return WebElementHelper.getElementText(productName); }
+
+    public String getConfirmMessage() { return WebElementHelper.getElementText(addedmessage); }
 }
