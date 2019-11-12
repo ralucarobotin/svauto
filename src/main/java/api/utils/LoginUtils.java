@@ -1,6 +1,6 @@
 package api.utils;
 
-import api.apiwrappers.LoginApiWrapper;
+import api.wrappers.LoginApiWrapper;
 import api.domain.login.LoginRequest;
 import api.domain.login.LoginResponse;
 
