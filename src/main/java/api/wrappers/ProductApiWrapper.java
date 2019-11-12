@@ -1,4 +1,4 @@
-package api.apiwrappers;
+package api.wrappers;
 
 import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
@@ -6,7 +6,7 @@ import org.apache.http.message.BasicHeader;
 
 import api.CommonApiWrapper;
 import api.Headers;
-import api.domain.catalog.product.Content;
+import api.domain.product.Content;
 import api.utils.LoginUtils;
 
 import static helpers.Utilities.getPropertyFromAppProp;
@@ -31,7 +31,4 @@ public class ProductApiWrapper extends CommonApiWrapper {
             size);
         return (Content) post(content, endpoint, headers, Content.class);
     }
-
-
-
 }

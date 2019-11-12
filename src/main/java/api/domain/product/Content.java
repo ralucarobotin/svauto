@@ -1,4 +1,4 @@
-package api.domain.catalog.product;
+package api.domain.product;
 
 import java.util.List;
 
