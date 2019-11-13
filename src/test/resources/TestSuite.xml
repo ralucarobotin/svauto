@@ -3,7 +3,6 @@
   <test name="Workshop tests">
     <classes>
       <class name="ui.LoginTest"></class>
-      <class name="ui.ProductAddTest"></class>
     </classes>
   </test>
 </suite>
