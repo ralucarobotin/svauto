@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
         this.loginPage.verify();
         this.loginPage.login(email, password);
         String errorMessage = this.loginPage.getErrorMessage();
-        Assert.assertEquals(errorMessage, this.loginPage.getExpectedLoginErrMsg(), "The error message is " +
-            "not correct.");
+        Assert.assertEquals(errorMessage, this.loginPage.getErrorMessage(), "The error message is " +
+                "not correct.");
     }
 }

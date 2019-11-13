@@ -1,12 +1,12 @@
 package helpers;
 
-import java.util.Properties;
-import java.util.logging.Logger;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+
+import java.util.Properties;
+import java.util.logging.Logger;
 
 
 /**

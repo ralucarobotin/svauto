@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
 
   private static final String URL_PATH = "/my-account";
   private static final String LOGIN_ERR_MSG = "ERROR: The username or password you entered is" +
-      " incorrect. Lost your password?";
+          " incorrect. Lost your password?";
 
   @FindBy(id = "username")
   private WebElement emailField;

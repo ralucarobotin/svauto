@@ -1,6 +1,6 @@
-package api.utils.catalog;
+package api.utils;
 
-import api.domain.catalog.product.Search;
+import api.domain.product.Search;
 
 public class ProductsUtils {
 
