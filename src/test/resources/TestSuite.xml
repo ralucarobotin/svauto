@@ -1,9 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test Suite" verbose="1" configfailurepolicy="continue">
   <test name="Workshop tests">
+    <parameter name="product" value="product12"/>
+    <parameter name="color" value="Nude"/>
+    <parameter name="size" value="large"/>
     <classes>
       <class name="ui.LoginTest"></class>
       <class name="ui.ProductAddTest"></class>
+      <class name="ui.WishlistTest"></class>
     </classes>
   </test>
 </suite>
