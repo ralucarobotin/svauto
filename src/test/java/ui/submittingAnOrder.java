@@ -1,12 +1,14 @@
 package ui;
 
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.MyAccountPage;
-import uiPages.LoginPage;
-import uiPages.ProductPage;
+import uiPages.*;
 
 import static helpers.Utilities.getPropertyFromAppProp;
+import static helpers.Utilities.getPropertyFromProductsProp;
 
 public class submittingAnOrder extends BaseTest {
     /**
@@ -16,11 +18,32 @@ public class submittingAnOrder extends BaseTest {
      * 4. Submit the order
      */
 
-    @BeforeTest
+    private LoginPage loginPage = null;
+    private ProductPage productPage = null;
+    private CartPage cartPage = null;
+
+    @BeforeMethod
     public void BeforeMethod() {
-        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage = new LoginPage(getDriver());
+        productPage = new ProductPage(getDriver());
+        cartPage = new CartPage(getDriver());
+    }
+
+    @Test
+    public void submittingAnOrder() {
+        // open page and login
         loginPage.open();
         loginPage.login(getPropertyFromAppProp("emailValid"), getPropertyFromAppProp("passwordValid"));
+        // add the products to cart
+        for (int i = 1; i <= 3; i++) {
+            productPage.openProductUrl(getPropertyFromProductsProp("product" + i));
+            productPage.selectColor();
+            productPage.selectSize();
+            productPage.clickAddToCart();
+        }
+        // go to the cart and proceed to checkout
+        cartPage.open();
+        cartPage.proceedToCheckout();
     }
 
 
