@@ -7,8 +7,7 @@ import org.testng.annotations.Test;
 import pages.MyAccountPage;
 import uiPages.*;
 
-import static helpers.Utilities.getPropertyFromAppProp;
-import static helpers.Utilities.getPropertyFromProductsProp;
+import static helpers.Utilities.*;
 
 public class submittingAnOrder extends BaseTest {
     /**
@@ -21,12 +20,14 @@ public class submittingAnOrder extends BaseTest {
     private LoginPage loginPage = null;
     private ProductPage productPage = null;
     private CartPage cartPage = null;
+    private CheckoutPage checkoutPage = null;
 
     @BeforeMethod
     public void BeforeMethod() {
         loginPage = new LoginPage(getDriver());
         productPage = new ProductPage(getDriver());
         cartPage = new CartPage(getDriver());
+        checkoutPage = new CheckoutPage(getDriver());
     }
 
     @Test
@@ -44,6 +45,16 @@ public class submittingAnOrder extends BaseTest {
         // go to the cart and proceed to checkout
         cartPage.open();
         cartPage.proceedToCheckout();
+        checkoutPage.fillInFirstName(getPropertyFromBillingProp("firstName"));
+        checkoutPage.fillInLastName(getPropertyFromBillingProp("lastName"));
+        checkoutPage.fillInBillingAddress(getPropertyFromBillingProp("billingAddress"));
+        checkoutPage.fillInCity(getPropertyFromBillingProp("city"));
+//        checkoutPage.fillInCounty(getPropertyFromBillingProp("county"));
+        checkoutPage.fillInPostcode(getPropertyFromBillingProp("postcode"));
+        checkoutPage.fillInPhone(getPropertyFromBillingProp("phone"));
+        checkoutPage.checkInTerms();
+        checkoutPage.placeOrder();
+
     }
 
 
