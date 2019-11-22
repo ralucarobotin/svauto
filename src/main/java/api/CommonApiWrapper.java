@@ -21,7 +21,7 @@ public class CommonApiWrapper {
     private JsonHelper jsonHelper = new JsonHelper();
     //protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");//TODO - To be fixed
 
-    private int statusCode;
+    public int statusCode;
 
     protected Object post(Object payload, String endpoint, Header[] headers, Class mapClass) {
         HttpPost httpPost = new HttpPost(endpoint);
