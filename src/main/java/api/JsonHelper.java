@@ -24,5 +24,4 @@ class JsonHelper {
     String parseJavaObjectsToJson(Object object){
        return gson.toJson(object);
     }
-
 }
