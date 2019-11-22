@@ -21,6 +21,7 @@ public class Products {
     @JsonProperty("max_price")
     private BigInteger maxPrice;
     private List<Variant> variants;
+    private List<Offers> offers;
     private List<Categories> categories;
     private List<String> meta;
     private List<String> tags;
@@ -222,5 +223,21 @@ public class Products {
 
     public void setDateLastModified(String dateLastModified) {
         this.dateLastModified = dateLastModified;
+    }
+
+    public List<Offers> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offers> offers) {
+        this.offers = offers;
+    }
+
+    public Integer getMaxComissionRate() {
+        return maxComissionRate;
+    }
+
+    public void setMaxComissionRate(Integer maxComissionRate) {
+        this.maxComissionRate = maxComissionRate;
     }
 }
