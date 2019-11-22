@@ -1,12 +1,11 @@
 package uiPages;
 
-import java.util.List;
-
+import helpers.WebElementHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import helpers.WebElementHelper;
+import java.util.List;
 
 public class HeaderFooter extends WebUIPage{
 
