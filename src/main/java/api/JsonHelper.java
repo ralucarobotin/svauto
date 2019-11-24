@@ -1,9 +1,10 @@
 package api;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 class JsonHelper {
-    private Gson gson = new Gson();
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     /**
      * Parse java objects to Json
@@ -23,5 +24,4 @@ class JsonHelper {
     String parseJavaObjectsToJson(Object object){
        return gson.toJson(object);
     }
-
 }
