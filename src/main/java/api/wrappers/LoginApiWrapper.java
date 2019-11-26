@@ -1,4 +1,4 @@
-package api.apiwrappers;
+package api.wrappers;
 
 import api.CommonApiWrapper;
 import api.domain.login.LoginRequest;

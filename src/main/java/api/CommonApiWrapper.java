@@ -1,16 +1,19 @@
 package api;
 
-import java.io.IOException;
-import java.util.logging.Logger;
-
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.*;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class CommonApiWrapper {
     private static final Logger logger = Logger.getLogger(CommonApiWrapper.class.getName());
@@ -18,7 +21,7 @@ public class CommonApiWrapper {
     private JsonHelper jsonHelper = new JsonHelper();
     //protected String baseUrl = Utilities.getPropertyFromAppProp("baseUrl");//TODO - To be fixed
 
-    private int statusCode;
+    public int statusCode;
 
     protected Object post(Object payload, String endpoint, Header[] headers, Class mapClass) {
         HttpPost httpPost = new HttpPost(endpoint);
