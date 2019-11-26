@@ -1,6 +1,6 @@
 package api.utils;
 
-import api.wrappers.LoginApiWrapper;
+import api.apiwrappers.LoginApiWrapper;
 import api.domain.login.LoginRequest;
 import api.domain.login.LoginResponse;
 
@@ -16,8 +16,8 @@ public class LoginUtils {
     public static LoginRequest createLogin() {
 
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername(getPropertyFromAppProp("apiUser"));
-        loginRequest.setPassword(getPropertyFromAppProp("apiPassword"));
+        loginRequest.setUsername(getPropertyFromAppProp("emailValid"));
+        loginRequest.setPassword(getPropertyFromAppProp("password"));
 
         return loginRequest;
     }

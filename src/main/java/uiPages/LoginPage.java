@@ -13,7 +13,9 @@ public class LoginPage extends BasePage {
 
   private static final String URL_PATH = "/my-account";
   private static final String LOGIN_ERR_MSG = "ERROR: The username or password you entered is" +
-          " incorrect. Lost your password?";
+      " incorrect. Lost your password?";
+  private static final String LOGIN_NO_USER_ERR_MSG = "Error: Username is required.";
+  private static final String LOGIN_NO_PASSWORD_ERR_MSG = "ERROR: The password field is empty.";
 
   @FindBy(id = "username")
   private WebElement emailField;
@@ -49,10 +51,24 @@ public class LoginPage extends BasePage {
     return areVisible(emailField, passField, logInButton,rememberMeCheckbox, lostPasswordLink);
   }
 
+  public void clickLoginButton() {
+    logInButton.click();
+  }
+
   public void login(String email, String password) {
     fillInEmail(email);
     fillInPassword(password);
-    logInButton.click();
+    clickLoginButton();
+  }
+
+  public void loginEmail(String email) {
+    fillInEmail(email);
+    clickLoginButton();
+  }
+
+  public void loginPassword(String password) {
+    fillInPassword(password);
+    clickLoginButton();
   }
 
   private void fillInEmail(String email){
@@ -67,9 +83,11 @@ public class LoginPage extends BasePage {
     openUrl(BASE_URL + URL_PATH);
   }
 
-  public static String getExpectedLoginErrMsg() {
-    return LOGIN_ERR_MSG;
-  }
+  public static String getExpectedNoUserErrMsg() { return LOGIN_NO_USER_ERR_MSG; }
+
+  public static String getExpectedNoPasswordErrMsg() { return LOGIN_NO_PASSWORD_ERR_MSG; }
+
+  public static String getExpectedWrongLoginErrMsg() { return LOGIN_ERR_MSG; }
 
   public String getErrorMessage() {
     return WebElementHelper.getElementText(errorMessage);

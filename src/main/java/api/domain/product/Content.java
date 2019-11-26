@@ -1,16 +1,16 @@
 package api.domain.product;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Content {
 
-    private ArrayList<Products> content;
+    private List<Products> content;
 
-    public ArrayList<Products> getContent() {
+    public List<Products> getContent() {
         return content;
     }
 
-    public void setContent(ArrayList<Products> content) {
+    public void setContent(List<Products> content) {
         this.content = content;
     }
 }
