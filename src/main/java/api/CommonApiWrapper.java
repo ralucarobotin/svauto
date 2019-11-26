@@ -44,8 +44,7 @@ public class CommonApiWrapper {
         statusCode = response.getStatusLine().getStatusCode();
         Object responseDto = null;
         try {
-            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()),
-                mapClass);
+            responseDto = jsonHelper.parseJsonToJava(EntityUtils.toString(response.getEntity()), mapClass);
         } catch (IOException e) {
             e.printStackTrace();
         }
