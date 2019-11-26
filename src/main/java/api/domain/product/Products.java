@@ -1,9 +1,9 @@
 package api.domain.product;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigInteger;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Products {
     private String id;
@@ -34,6 +34,8 @@ public class Products {
     private String defaultImageUrl;
     @JsonProperty("qty_available")
     private BigInteger qtyAvailable;
+    @JsonProperty("max_commission_rate")
+    private Integer maxComissionRate;
     @JsonProperty("merchant_ids")
     private List<Integer> merchantIds;
     @JsonProperty("date_created")
