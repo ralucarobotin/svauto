@@ -1,9 +1,9 @@
 package api.domain.product;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigInteger;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Products {
     private String id;
