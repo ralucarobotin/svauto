@@ -16,6 +16,8 @@ public class CartWithItems {
     private List<Bags> bags;
     @JsonProperty("shipping_address")
     private List<ShippingAddress> shippingAddress;
+    @JsonProperty("billing_address")
+    private List<BillingAddress> billingAddress;
     private String status;
     @JsonProperty("data_created")
     private String dataCreated;
@@ -76,6 +78,13 @@ public class CartWithItems {
     }
     public void setShippingAddress(List<ShippingAddress> values) {
         this.shippingAddress = values;
+    }
+
+    public List<BillingAddress> getBillingAddress() {
+        return billingAddress;
+    }
+    public void setBillingAddress(List<BillingAddress> values) {
+        this.billingAddress = values;
     }
 
     public String getStatus() {
