@@ -1,12 +1,12 @@
 package helpers;
 
-import java.util.Properties;
-import java.util.logging.Logger;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+
+import java.util.Properties;
+import java.util.logging.Logger;
 
 
 /**
@@ -14,8 +14,8 @@ import org.openqa.selenium.WebDriverException;
  */
 public class Utilities {
   public static final String APP_FILE = "./app.properties";
-  public static final String PRODUCT_FILE = "./products.properties";
   public static final String BILING_FILE = "./billing.properties";
+
   private static final Logger LOG = Logger.getLogger(Class.class.getName());
   private static final String SLEEP_INTERRUPTED = "Sleep interrupted!";
 
@@ -39,10 +39,6 @@ public class Utilities {
 
   public static String getPropertyFromAppProp(String prop){
     return getPropertyValue(getPropertyFileContent(APP_FILE), prop);
-  }
-
-  public static String getPropertyFromProductsProp(String prop){
-    return getPropertyValue(getPropertyFileContent(PRODUCT_FILE), prop);
   }
 
   public static String getPropertyFromBillingProp(String prop){
