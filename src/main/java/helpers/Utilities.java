@@ -13,6 +13,8 @@ import java.util.logging.Logger;
  * General helper class
  */
 public class Utilities {
+
+  public static final String PRODUCT_FILE = "./products.properties";
   public static final String APP_FILE = "./app.properties";
   public static final String BILING_FILE = "./billing.properties";
 
@@ -35,6 +37,10 @@ public class Utilities {
 
   public static Properties getPropertyFileContent(String propertiesFileName){
     return new ReadPropFile().getPropertiesValue(propertiesFileName);
+  }
+
+  public static String getPropertyFromProductsProp(String prop){
+    return getPropertyValue(getPropertyFileContent(PRODUCT_FILE), prop);
   }
 
   public static String getPropertyFromAppProp(String prop){

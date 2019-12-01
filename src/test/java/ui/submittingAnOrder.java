@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.MyAccountPage;
 import uiPages.*;
 
 import static helpers.Utilities.*;
