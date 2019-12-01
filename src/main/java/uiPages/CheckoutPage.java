@@ -1,7 +1,9 @@
 package uiPages;
 
+import helpers.WebElementHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static helpers.WebElementHelper.*;
@@ -34,6 +36,9 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(css = "#place_order")
     protected WebElement placeOrder;
+
+    @FindBy(css = ".woocommerce-thankyou-order-received")
+    private WebElement errorMessage;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -71,28 +76,25 @@ public class CheckoutPage extends BasePage {
         setFieldValue(cityCheckoutField, city);
     }
 
-//    public void fillInCounty(String county){
-//        countyCheckoutField.getAttribute(county);
-//    }
-
     public void fillInPostcode(String postcode){
         setFieldValue(postcodeCheckoutField, postcode);
     }
+
     public void fillInPhone(String phone){
         setFieldValue(phoneCheckoutField, phone);
     }
 
     public void checkInTerms(){
-        termsCheckoutCheckBox.click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(termsCheckoutCheckBox).click().perform();
     }
 
     public void placeOrder() {
         placeOrder.click();
     }
 
-
-
-
-
-
+    public String getErrorMessage() {
+        waitForElementToAppear(errorMessage);
+        return WebElementHelper.getElementText(errorMessage);
+    }
 }

@@ -1,11 +1,9 @@
 package ui;
 
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import uiPages.*;
-
 import static helpers.Utilities.*;
 
 public class submittingAnOrder extends BaseTest {
@@ -30,7 +28,7 @@ public class submittingAnOrder extends BaseTest {
     }
 
     @Test
-    public void submittingAnOrder() {
+    public void submittingAnOrder(){
         // open page and login
         loginPage.open();
         loginPage.login(getPropertyFromAppProp("emailValid"), getPropertyFromAppProp("passwordValid"));
@@ -48,12 +46,14 @@ public class submittingAnOrder extends BaseTest {
         checkoutPage.fillInLastName(getPropertyFromBillingProp("lastName"));
         checkoutPage.fillInBillingAddress(getPropertyFromBillingProp("billingAddress"));
         checkoutPage.fillInCity(getPropertyFromBillingProp("city"));
-//        checkoutPage.fillInCounty(getPropertyFromBillingProp("county"));
         checkoutPage.fillInPostcode(getPropertyFromBillingProp("postcode"));
         checkoutPage.fillInPhone(getPropertyFromBillingProp("phone"));
         checkoutPage.checkInTerms();
+        // place and check if the order has been received
         checkoutPage.placeOrder();
-
+        String errorMessage = this.checkoutPage.getErrorMessage();
+        Assert.assertEquals(errorMessage, this.checkoutPage.getErrorMessage(), "The error message is " +
+                "not correct.");
     }
 
 
