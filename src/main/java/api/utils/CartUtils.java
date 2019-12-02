@@ -1,11 +1,11 @@
 package api.utils;
 
-import api.domain.cart.items.AddItemToCart;
+import api.domain.cart.items.Skus;
 
 public class CartUtils {
 
-    public static AddItemToCart addItemToCart(String skuId, String quantity){
-        AddItemToCart item = new AddItemToCart();
+    public static Skus addSkusToCart(int skuId, int quantity){
+        Skus item = new Skus();
         item.setSkuId(skuId);
         item.setQuantity(quantity);
         return item;

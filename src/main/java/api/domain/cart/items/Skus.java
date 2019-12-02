@@ -12,7 +12,7 @@ public class Skus {
     @JsonProperty("product_id")
     private String productId;
     @JsonProperty("sku_id")
-    private Integer skuId;
+    private Integer sku_id;
     @JsonProperty("external_id")
     private String externalId;
     private String name;
@@ -56,11 +56,9 @@ public class Skus {
         this.productId = productId;
     }
 
-    public Integer getSkuId() {
-        return skuId;
-    }
+    public Integer getSkuId() { return sku_id; }
     public void setSkuId(Integer skuId) {
-        this.skuId = skuId;
+        this.sku_id = skuId;
     }
 
     public String getExternalId() {
