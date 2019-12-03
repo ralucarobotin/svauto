@@ -9,7 +9,7 @@ public class BillingAddress {
     private String state;
     private String country;
     @JsonProperty("postal_code")
-    private String postalCode;
+    private String postal_code;
     private String phone;
     private String type;
     @JsonProperty("first_name")
@@ -17,9 +17,9 @@ public class BillingAddress {
     @JsonProperty("last_name")
     private String lastName;
     @JsonProperty("address_1")
-    private String address1;
+    private String address_1;
     @JsonProperty("address_2")
-    private String address2;
+    private String address_2;
 
     public String getName() {
         return name;
@@ -50,10 +50,10 @@ public class BillingAddress {
     }
 
     public String getPostalCode() {
-        return postalCode;
+        return postal_code;
     }
     public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+        this.postal_code = postalCode;
     }
 
     public String getPhone() {
@@ -85,16 +85,16 @@ public class BillingAddress {
     }
 
     public String getAddress1() {
-        return address1;
+        return address_1;
     }
     public void setAddress1(String address1) {
-        this.address1 = address1;
+        this.address_1 = address1;
     }
 
     public String getAddress2() {
-        return address2;
+        return address_2;
     }
     public void setAddress2(String address2) {
-        this.address2 = address2;
+        this.address_2 = address2;
     }
 }
