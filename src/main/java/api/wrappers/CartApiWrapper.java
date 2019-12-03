@@ -23,4 +23,9 @@ public class CartApiWrapper extends CommonApiWrapper {
         String endpoint = String.format("%s/checkout/cart", url);
         return (Cart) post(cart, endpoint, headers, Cart.class);
     }
+
+    public Cart postCartItems(Object productSkus, int cartId) {
+        String endpoint = String.format("%s/checkout/cart/%s/skus", url, cartId);
+        return (Cart) post(productSkus, endpoint, headers, Cart.class);
+    }
 }
