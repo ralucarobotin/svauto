@@ -13,6 +13,7 @@ public class CartWithItems {
     private Integer appId;
     @JsonProperty("developer_id")
     private Integer developerId;
+    private List<Customer> customer;
     private List<Bags> bags;
     @JsonProperty("shipping_address")
     private List<ShippingAddress> shippingAddress;
@@ -64,6 +65,13 @@ public class CartWithItems {
     }
     public void setDeveloperId(Integer developerId) {
         this.developerId = developerId;
+    }
+
+    public List<Customer> getCustomer() {
+        return customer;
+    }
+    public void setCustomer(List<Customer> values) {
+        this.customer = values;
     }
 
     public List<Bags> getBags() {
