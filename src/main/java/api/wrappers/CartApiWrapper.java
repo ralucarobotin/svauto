@@ -2,6 +2,7 @@ package api.wrappers;
 
 import api.CommonApiWrapper;
 import api.Headers;
+import api.domain.cart.items.BillingAddress;
 import api.domain.checkout.cart.Cart;
 import api.utils.LoginUtils;
 import org.apache.http.Header;
@@ -27,5 +28,10 @@ public class CartApiWrapper extends CommonApiWrapper {
     public Cart postCartItems(Object productSkus, int cartId) {
         String endpoint = String.format("%s/checkout/cart/%s/skus", url, cartId);
         return (Cart) post(productSkus, endpoint, headers, Cart.class);
+    }
+
+    public Cart postCartBillingAddress(Object billingAddress, int cartId) {
+        String endpoint = String.format("%s/checkout/cart/%s/billing_address", url, cartId);
+        return (Cart) post(billingAddress, endpoint, headers, Cart.class);
     }
 }
