@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest {
     private String password;
 
     public LoginTest() {
-        this.email = getPropertyFromAppProp("email");
+        this.email = getPropertyFromAppProp("emailValid");
         this.password = getPropertyFromAppProp("password");
     }
 
