@@ -2,7 +2,10 @@
 <suite name="Test Suite" verbose="1" configfailurepolicy="continue">
   <test name="Workshop tests">
     <classes>
-      <class name="ui.LoginTest"></class>
+      <class name="ui.LoginTest"/>
+      <class name="api.products.GetProductsTests"/>
+      <class name="api.products.SearchProductsTests"/>
+      <class name="api.cart.PostCartTests"/>
     </classes>
   </test>
 </suite>

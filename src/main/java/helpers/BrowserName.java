@@ -2,7 +2,8 @@ package helpers;
 
 public enum BrowserName {
   CHROME("chrome"),
-  FIREFOX("firefox");
+  FIREFOX("firefox"),
+  HEADLESS("headless");
 
   private final String name;
 

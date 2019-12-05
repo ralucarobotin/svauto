@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,6 +31,14 @@ public class BaseTest {
     } else if (browserVariable.equals(BrowserName.FIREFOX.getName())) {
       WebDriverManager.firefoxdriver().setup();
       driver = new FirefoxDriver();
+      driver.manage().window().maximize();
+    } else if (browserVariable.equals(BrowserName.HEADLESS.getName())) {
+      WebDriverManager.chromedriver().setup();
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--no-sandbox");
+      options.addArguments("--headless");
+      options.addArguments("--disable-dev-shm-usage");
+      driver = new ChromeDriver(options);
       driver.manage().window().maximize();
     } else {
       throw new IllegalArgumentException("Browser name is incorrectly set in VM options");
