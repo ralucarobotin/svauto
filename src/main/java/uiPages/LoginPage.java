@@ -1,10 +1,9 @@
 package uiPages;
 
+import helpers.WebElementHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import helpers.WebElementHelper;
 
 import static helpers.WebElementHelper.areVisible;
 import static helpers.WebElementHelper.setFieldValue;
