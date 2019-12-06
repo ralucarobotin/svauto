@@ -1,5 +1,6 @@
 package api.domain.checkout.cart;
 
+import api.domain.customer.Customer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Cart {
@@ -22,6 +23,7 @@ public class Cart {
     @JsonProperty("currency_symbol")
     private String currencySymbol;
     private Boolean guest;
+    private Customer customer;
 
     public Integer getId() {
         return id;
@@ -117,5 +119,13 @@ public class Cart {
 
     public void setGuest(Boolean guest) {
         this.guest = guest;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
