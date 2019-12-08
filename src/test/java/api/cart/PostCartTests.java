@@ -1,6 +1,7 @@
 package api.cart;
 
 import api.domain.cart.items.BillingAddress;
+import api.domain.cart.items.Customer;
 import api.domain.cart.items.Skus;
 import api.domain.checkout.cart.Cart;
 import api.utils.CartUtils;
@@ -35,6 +36,15 @@ public class PostCartTests {
         Cart postCartResponse = cartApiWrapper.postEmptycart(cart);
         BillingAddress billingAddress = CartUtils.addBillingAddressToCart("John", "Knoxville", "KN", "US", "539784", "996325698", "shipping", "Lettuce", "No. 666");
         Cart postCartBillingAddress = cartApiWrapper.postCartBillingAddress(billingAddress, postCartResponse.getId());
+        Assert.assertEquals(cartApiWrapper.statusCode, HttpStatus.SC_OK, "incorrect error code");
+    }
+
+    @Test
+    public void addCustomerInfoToCart() {
+        Cart cart = new Cart();
+        Cart postCartResponse = cartApiWrapper.postEmptycart(cart);
+        Customer infoToAdd = CartUtils.addCustomerInfoToCart("Gelu", "Haiduc", "haiduc.gelu@email.com");
+        Cart postCartCustomerInfo = cartApiWrapper.postCartCustomerInfo(infoToAdd, postCartResponse.getId());
         Assert.assertEquals(cartApiWrapper.statusCode, HttpStatus.SC_OK, "incorrect error code");
     }
 }
